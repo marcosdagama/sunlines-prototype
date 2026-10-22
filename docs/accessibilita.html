@@ -336,6 +336,29 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
 .ft-legal-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;font-size:14px}
 .ft-legal-links a,.ft-legal-links button{color:var(--on-navy);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer}
 .ft-legal-links a:hover,.ft-legal-links button:hover{color:#fff;text-decoration:underline}
+
+/* hero carousel */
+.hc{position:relative;display:grid;gap:12px;min-width:0}
+.hc-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;border-radius:var(--r-md);scrollbar-width:none;aspect-ratio:4/3;max-width:100%;background:var(--navy)}
+.hc-track::-webkit-scrollbar{display:none}
+.hc-track:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.hc-slide{position:relative;flex:0 0 100%;margin:0;scroll-snap-align:start;scroll-snap-stop:always}
+.hc-slide img{display:block;width:100%;height:100%;object-fit:cover}
+.hc-slide figcaption{position:absolute;left:0;right:0;bottom:0;display:grid;gap:4px;justify-items:start;padding:48px 18px 16px;background:linear-gradient(180deg,rgba(11,37,69,0),rgba(11,37,69,.82))}
+.hc-tag{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--orange);color:var(--navy);padding:3px 8px;border-radius:4px}
+.hc-cap{color:#fff;font-weight:600;font-size:17px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.hc-cap:hover{text-decoration:underline}.hc-cap:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.hc-bar{display:flex;align-items:center;gap:8px}
+.hc-dots{display:flex;gap:2px;margin-right:auto}
+.hc-dot{width:32px;height:44px;border:0;background:none;cursor:pointer;padding:0;display:grid;place-items:center}
+.hc-dot::before{content:"";width:22px;height:4px;border-radius:2px;background:var(--hairline);transition:background .2s,width .2s}
+.hc-dot[aria-current="true"]::before{background:var(--orange);width:28px}
+.hc-dot:hover::before{background:var(--granite)}
+.hc-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--hairline);background:var(--white);color:var(--navy);cursor:pointer;flex:none}
+.hc-btn:hover{border-color:var(--navy)}
+.hc-btn:focus-visible,.hc-dot:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.hc-play .i:last-child{display:none}.hc-play[data-on="0"] .i:first-child{display:none}.hc-play[data-on="0"] .i:last-child{display:block}
+@media (prefers-reduced-motion:reduce){.hc-track{scroll-behavior:auto}.hc-play{display:none}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "LocalBusiness", "@id": "https://www.sunlines.it/#org", "name": "Sun Lines", "legalName": "Sun Lines Elite Service S.r.l.", "slogan": "La Sardegna inizia dal viaggio", "description": "Azienda di trasporto passeggeri con sede a Olbia, attiva da oltre 60 anni: linee di trasporto pubblico locale in Gallura, Airbus Olbia–Sassari–Alghero, noleggio autobus e auto con conducente, parcheggio vicino all'aeroporto di Olbia.", "url": "https://www.sunlines.it/", "logo": "https://www.sunlines.it/sun-lines-logo.svg", "telephone": "+39 0789 50885", "email": "info@sunlines.it", "vatID": "IT00358880904", "address": {"@type": "PostalAddress", "streetAddress": "Via Pozzo 23", "postalCode": "07026", "addressLocality": "Olbia", "addressRegion": "SS", "addressCountry": "IT"}, "founder": {"@type": "Person", "name": "Luca Cassitta"}, "areaServed": [{"@type": "Place", "name": "Olbia"}, {"@type": "Place", "name": "Gallura"}, {"@type": "Place", "name": "Sardegna"}], "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "telephone": "+39 346 320 6740", "email": "info@sunlines.it", "availableLanguage": ["it"]}], "memberOf": [{"@type": "Organization", "name": "ANAV"}, {"@type": "Organization", "name": "CNA"}, {"@type": "Organization", "name": "Confcommercio"}], "sameAs": ["https://www.facebook.com/sunlinesbus", "https://www.instagram.com/sunlinesbus"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.sunlines.it/"}, {"@type": "ListItem", "position": 2, "name": "Accessibilità", "item": "https://www.sunlines.it/accessibilita"}]}]}</script></head><body>
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -469,6 +492,30 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
   b.addEventListener('keydown',function(e){if(e.key==='Escape'&&opener){close()}});
   document.querySelectorAll('[data-cookie-prefs]').forEach(function(x){x.addEventListener('click',function(){open(true,x)})});
   if(!saved)open(false);
+})();
+
+(function(){
+  var c=document.querySelector('.hc');if(!c)return;
+  var t=c.querySelector('.hc-track'),s=[].slice.call(c.querySelectorAll('.hc-slide')),d=[].slice.call(c.querySelectorAll('.hc-dot'));
+  var play=c.querySelector('.hc-play'),cur=0,timer=null,stopped=false,hold=false;
+  var red=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function mark(i){cur=i;d.forEach(function(x,k){x.setAttribute('aria-current',k===i?'true':'false')});
+    s.forEach(function(x,k){var on=k===i;x.setAttribute('aria-hidden',on?'false':'true');x.querySelectorAll('a').forEach(function(a){a.tabIndex=on?0:-1})})}
+  function go(i){i=(i+s.length)%s.length;t.scrollTo({left:i*t.clientWidth,behavior:red?'auto':'smooth'});mark(i)}
+  var raf=null;t.addEventListener('scroll',function(){if(raf)cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){var i=Math.round(t.scrollLeft/Math.max(1,t.clientWidth));if(i!==cur)mark(i)})},{passive:true});
+  function tick(){if(!hold&&!stopped&&!document.hidden)go(cur+1)}
+  function start(){if(red||stopped)return;clearInterval(timer);timer=setInterval(tick,6000);play.dataset.on='1';play.setAttribute('aria-label','Metti in pausa')}
+  function stop(forever){clearInterval(timer);timer=null;if(forever)stopped=true;play.dataset.on='0';play.setAttribute('aria-label','Avvia lo scorrimento automatico')}
+  play.addEventListener('click',function(){if(play.dataset.on==='1'){stop(true)}else{stopped=false;start()}});
+  c.querySelector('.hc-prev').addEventListener('click',function(){stop(true);go(cur-1)});
+  c.querySelector('.hc-next').addEventListener('click',function(){stop(true);go(cur+1)});
+  d.forEach(function(x){x.addEventListener('click',function(){stop(true);go(+x.dataset.i)})});
+  t.addEventListener('pointerdown',function(){stop(true)});t.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY))stop(true)},{passive:true});
+  t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();stop(true);go(cur+1)}else if(e.key==='ArrowLeft'){e.preventDefault();stop(true);go(cur-1)}});
+  c.addEventListener('mouseenter',function(){hold=true});c.addEventListener('mouseleave',function(){hold=false});
+  c.addEventListener('focusin',function(){hold=true});c.addEventListener('focusout',function(){hold=false});
+  window.addEventListener('resize',function(){t.scrollTo({left:cur*t.clientWidth,behavior:'auto'})});
+  mark(0);start();
 })();
 </script>
 </body></html>

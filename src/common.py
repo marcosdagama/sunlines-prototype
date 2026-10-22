@@ -80,6 +80,10 @@ def icon(name, size=20):
         "chev": '<path d="M6 9l6 6 6-6"/>',
         "fb": '<path d="M14 21v-7.5h2.6l.4-3H14V8.6c0-.9.3-1.6 1.6-1.6H17V4.3A19 19 0 0 0 14.9 4C12.6 4 11 5.4 11 8v2.5H8.5v3H11V21"/>',
         "ig": '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/>',
+        "pause": '<path d="M9 5v14M15 5v14"/>',
+        "play": '<path d="M7 4.5v15l12-7.5z"/>',
+        "chevl": '<path d="M15 6l-6 6 6 6"/>',
+        "chevr": '<path d="M9 6l6 6-6 6"/>',
         "up": '<path d="M12 19V5M6 11l6-6 6 6"/>',
         "external": '<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/>',
     }[name]

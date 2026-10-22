@@ -1,4 +1,5 @@
 from layout import *
+from hero_carousel import carousel as hero_carousel
 from sardinia_map import map_section  # map section: remove this line and {map_section()} in home() to drop it
 from faq_data import group_html, destination_table
 
@@ -48,7 +49,7 @@ def home():
     <p class="lead">Da oltre 60 anni colleghiamo Olbia, la Gallura e il nord della Sardegna con servizi di trasporto pubblico e privato. Uniamo aeroporti, porti e le principali destinazioni del territorio, offrendo soluzioni affidabili a residenti e viaggiatori.</p>
     <div class="actions"><a class="btn btn-primary" href="airbus-olbia-sassari-alghero.html#biglietti">{icon("ticket",18)} Biglietti Airbus 90</a><a class="btn btn-outline" href="domande-frequenti.html">{icon("help",18)} Domande rapide</a></div>
   </div>
-  {photo("Autobus Sun Lines al porto di Olbia, accanto alla ruota panoramica", "attuale", "4/3", eager=True, src="bus-olbia-ruota")}
+  {hero_carousel()}
 </div></section>
 <section class="section-tight"><div class="wrap">
   <h2 class="sr-only" style="position:absolute;left:-999px">Scegli il tuo viaggio</h2>

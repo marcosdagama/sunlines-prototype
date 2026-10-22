@@ -14,6 +14,9 @@ from pages_c import noleggio_autobus, transfer, parcheggio, chi_siamo, faq, abbo
 from pages_legal import note_legali, privacy_new as privacy, cookie_policy, diritti, condizioni_trasporto as condizioni, condizioni_vendita, accessibilita, LEGAL_CSS
 layout.CSS += LEGAL_CSS + layout.CK_CSS
 layout.JS += layout.CK_JS
+import hero_carousel
+layout.CSS += hero_carousel.CSS
+layout.JS += hero_carousel.JS
 from common import BASE, EMAIL, PHONE, WA_DISPLAY, PORTAL
 
 HERE = os.path.dirname(os.path.abspath(__file__))

@@ -336,6 +336,29 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
 .ft-legal-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;font-size:14px}
 .ft-legal-links a,.ft-legal-links button{color:var(--on-navy);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer}
 .ft-legal-links a:hover,.ft-legal-links button:hover{color:#fff;text-decoration:underline}
+
+/* hero carousel */
+.hc{position:relative;display:grid;gap:12px;min-width:0}
+.hc-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;border-radius:var(--r-md);scrollbar-width:none;aspect-ratio:4/3;max-width:100%;background:var(--navy)}
+.hc-track::-webkit-scrollbar{display:none}
+.hc-track:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.hc-slide{position:relative;flex:0 0 100%;margin:0;scroll-snap-align:start;scroll-snap-stop:always}
+.hc-slide img{display:block;width:100%;height:100%;object-fit:cover}
+.hc-slide figcaption{position:absolute;left:0;right:0;bottom:0;display:grid;gap:4px;justify-items:start;padding:48px 18px 16px;background:linear-gradient(180deg,rgba(11,37,69,0),rgba(11,37,69,.82))}
+.hc-tag{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--orange);color:var(--navy);padding:3px 8px;border-radius:4px}
+.hc-cap{color:#fff;font-weight:600;font-size:17px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.hc-cap:hover{text-decoration:underline}.hc-cap:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.hc-bar{display:flex;align-items:center;gap:8px}
+.hc-dots{display:flex;gap:2px;margin-right:auto}
+.hc-dot{width:32px;height:44px;border:0;background:none;cursor:pointer;padding:0;display:grid;place-items:center}
+.hc-dot::before{content:"";width:22px;height:4px;border-radius:2px;background:var(--hairline);transition:background .2s,width .2s}
+.hc-dot[aria-current="true"]::before{background:var(--orange);width:28px}
+.hc-dot:hover::before{background:var(--granite)}
+.hc-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--hairline);background:var(--white);color:var(--navy);cursor:pointer;flex:none}
+.hc-btn:hover{border-color:var(--navy)}
+.hc-btn:focus-visible,.hc-dot:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.hc-play .i:last-child{display:none}.hc-play[data-on="0"] .i:first-child{display:none}.hc-play[data-on="0"] .i:last-child{display:block}
+@media (prefers-reduced-motion:reduce){.hc-track{scroll-behavior:auto}.hc-play{display:none}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "LocalBusiness", "@id": "https://www.sunlines.it/#org", "name": "Sun Lines", "legalName": "Sun Lines Elite Service S.r.l.", "slogan": "La Sardegna inizia dal viaggio", "description": "Azienda di trasporto passeggeri con sede a Olbia, attiva da oltre 60 anni: linee di trasporto pubblico locale in Gallura, Airbus Olbia–Sassari–Alghero, noleggio autobus e auto con conducente, parcheggio vicino all'aeroporto di Olbia.", "url": "https://www.sunlines.it/", "logo": "https://www.sunlines.it/sun-lines-logo.svg", "telephone": "+39 0789 50885", "email": "info@sunlines.it", "vatID": "IT00358880904", "address": {"@type": "PostalAddress", "streetAddress": "Via Pozzo 23", "postalCode": "07026", "addressLocality": "Olbia", "addressRegion": "SS", "addressCountry": "IT"}, "founder": {"@type": "Person", "name": "Luca Cassitta"}, "areaServed": [{"@type": "Place", "name": "Olbia"}, {"@type": "Place", "name": "Gallura"}, {"@type": "Place", "name": "Sardegna"}], "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "telephone": "+39 346 320 6740", "email": "info@sunlines.it", "availableLanguage": ["it"]}], "memberOf": [{"@type": "Organization", "name": "ANAV"}, {"@type": "Organization", "name": "CNA"}, {"@type": "Organization", "name": "Confcommercio"}], "sameAs": ["https://www.facebook.com/sunlinesbus", "https://www.instagram.com/sunlinesbus"]}, {"@type": "WebSite", "@id": "https://www.sunlines.it/#website", "url": "https://www.sunlines.it/", "name": "Sun Lines", "inLanguage": "it", "publisher": {"@id": "https://www.sunlines.it/#org"}}, {"@type": "ItemList", "name": "Servizi Sun Lines", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "TPL – Autolinee extraurbane", "url": "https://www.sunlines.it/linee-e-orari"}, {"@type": "ListItem", "position": 2, "name": "Airbus Olbia – Sassari – Alghero", "url": "https://www.sunlines.it/airbus-olbia-sassari-alghero"}, {"@type": "ListItem", "position": 3, "name": "Noleggio autobus con conducente", "url": "https://www.sunlines.it/noleggio-autobus"}, {"@type": "ListItem", "position": 4, "name": "Noleggio auto con conducente", "url": "https://www.sunlines.it/transfer-ncc"}]}]}</script></head><body>
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -370,7 +393,30 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
     <p class="lead">Da oltre 60 anni colleghiamo Olbia, la Gallura e il nord della Sardegna con servizi di trasporto pubblico e privato. Uniamo aeroporti, porti e le principali destinazioni del territorio, offrendo soluzioni affidabili a residenti e viaggiatori.</p>
     <div class="actions"><a class="btn btn-primary" href="airbus-olbia-sassari-alghero.html#biglietti"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M13 7v10"/></svg> Biglietti Airbus 90</a><a class="btn btn-outline" href="domande-frequenti.html"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01"/></svg> Domande rapide</a></div>
   </div>
-  <figure class="pic" style="aspect-ratio:4/3"><img src="img/flotta/bus-olbia-ruota.jpg" alt="Autobus Sun Lines al porto di Olbia, accanto alla ruota panoramica" width="800" height="450" loading="eager" decoding="async"></figure>
+  <section class="hc" aria-roledescription="carousel" aria-label="La flotta Sun Lines">
+  <div class="hc-track" tabindex="0" aria-label="Foto della flotta, scorri per vederle tutte"><figure class="hc-slide" id="hc-s0" role="group" aria-roledescription="slide" aria-label="1 di 5: Noleggio bus">
+  <img src="img/flotta/irizar-blu-costa-smeralda.jpg" alt="Autobus Sun Lines da 50 posti lungo la Costa Smeralda" width="800" height="450" loading="eager" decoding="async" fetchpriority="high">
+  <figcaption><span class="hc-tag">Noleggio bus</span><a class="hc-cap" href="noleggio-autobus.html">Gruppi fino a 50 posti <svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></figcaption>
+</figure><figure class="hc-slide" id="hc-s1" role="group" aria-roledescription="slide" aria-label="2 di 5: Transfer e NCC">
+  <img src="img/flotta/classe-v.jpg" alt="Mercedes Classe V Sun Lines davanti a una villa sul mare" width="800" height="450" loading="lazy" decoding="async">
+  <figcaption><span class="hc-tag">Transfer e NCC</span><a class="hc-cap" href="transfer-ncc.html">Transfer privati con auto e conducente <svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></figcaption>
+</figure><figure class="hc-slide" id="hc-s2" role="group" aria-roledescription="slide" aria-label="3 di 5: Minibus">
+  <img src="img/flotta/sprinter-costa.jpg" alt="Minibus Mercedes Sprinter Sun Lines su una strada costiera" width="800" height="450" loading="lazy" decoding="async">
+  <figcaption><span class="hc-tag">Minibus</span><a class="hc-cap" href="noleggio-autobus.html">Escursioni e transfer fino a 20 posti <svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></figcaption>
+</figure><figure class="hc-slide" id="hc-s3" role="group" aria-roledescription="slide" aria-label="4 di 5: Escursioni">
+  <img src="img/flotta/irizar-verde-tramonto.jpg" alt="Pullman Sun Lines verde sulla costa al tramonto" width="800" height="450" loading="lazy" decoding="async">
+  <figcaption><span class="hc-tag">Escursioni</span><a class="hc-cap" href="noleggio-autobus.html">Tour e gite in tutta la Sardegna <svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></figcaption>
+</figure><figure class="hc-slide" id="hc-s4" role="group" aria-roledescription="slide" aria-label="5 di 5: Linee e Airbus 90">
+  <img src="img/flotta/bus-olbia-ruota.jpg" alt="Autobus Sun Lines al porto di Olbia, accanto alla ruota panoramica" width="800" height="450" loading="lazy" decoding="async">
+  <figcaption><span class="hc-tag">Linee e Airbus 90</span><a class="hc-cap" href="linee-e-orari.html">Da Olbia a Sassari, Alghero e la Gallura <svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></figcaption>
+</figure></div>
+  <div class="hc-bar">
+    <button type="button" class="hc-btn hc-play" aria-label="Metti in pausa" data-on="1"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></button>
+    <div class="hc-dots" role="group" aria-label="Scegli la foto"><button type="button" class="hc-dot" data-i="0" aria-label="Foto 1 di 5: Noleggio bus" aria-current="true"></button><button type="button" class="hc-dot" data-i="1" aria-label="Foto 2 di 5: Transfer e NCC"></button><button type="button" class="hc-dot" data-i="2" aria-label="Foto 3 di 5: Minibus"></button><button type="button" class="hc-dot" data-i="3" aria-label="Foto 4 di 5: Escursioni"></button><button type="button" class="hc-dot" data-i="4" aria-label="Foto 5 di 5: Linee e Airbus 90"></button></div>
+    <button type="button" class="hc-btn hc-prev" aria-label="Foto precedente"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button type="button" class="hc-btn hc-next" aria-label="Foto successiva"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+</section>
 </div></section>
 <section class="section-tight"><div class="wrap">
   <h2 class="sr-only" style="position:absolute;left:-999px">Scegli il tuo viaggio</h2>
@@ -652,6 +698,30 @@ window.addEventListener('resize',layout);apply();
   b.addEventListener('keydown',function(e){if(e.key==='Escape'&&opener){close()}});
   document.querySelectorAll('[data-cookie-prefs]').forEach(function(x){x.addEventListener('click',function(){open(true,x)})});
   if(!saved)open(false);
+})();
+
+(function(){
+  var c=document.querySelector('.hc');if(!c)return;
+  var t=c.querySelector('.hc-track'),s=[].slice.call(c.querySelectorAll('.hc-slide')),d=[].slice.call(c.querySelectorAll('.hc-dot'));
+  var play=c.querySelector('.hc-play'),cur=0,timer=null,stopped=false,hold=false;
+  var red=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function mark(i){cur=i;d.forEach(function(x,k){x.setAttribute('aria-current',k===i?'true':'false')});
+    s.forEach(function(x,k){var on=k===i;x.setAttribute('aria-hidden',on?'false':'true');x.querySelectorAll('a').forEach(function(a){a.tabIndex=on?0:-1})})}
+  function go(i){i=(i+s.length)%s.length;t.scrollTo({left:i*t.clientWidth,behavior:red?'auto':'smooth'});mark(i)}
+  var raf=null;t.addEventListener('scroll',function(){if(raf)cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){var i=Math.round(t.scrollLeft/Math.max(1,t.clientWidth));if(i!==cur)mark(i)})},{passive:true});
+  function tick(){if(!hold&&!stopped&&!document.hidden)go(cur+1)}
+  function start(){if(red||stopped)return;clearInterval(timer);timer=setInterval(tick,6000);play.dataset.on='1';play.setAttribute('aria-label','Metti in pausa')}
+  function stop(forever){clearInterval(timer);timer=null;if(forever)stopped=true;play.dataset.on='0';play.setAttribute('aria-label','Avvia lo scorrimento automatico')}
+  play.addEventListener('click',function(){if(play.dataset.on==='1'){stop(true)}else{stopped=false;start()}});
+  c.querySelector('.hc-prev').addEventListener('click',function(){stop(true);go(cur-1)});
+  c.querySelector('.hc-next').addEventListener('click',function(){stop(true);go(cur+1)});
+  d.forEach(function(x){x.addEventListener('click',function(){stop(true);go(+x.dataset.i)})});
+  t.addEventListener('pointerdown',function(){stop(true)});t.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY))stop(true)},{passive:true});
+  t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();stop(true);go(cur+1)}else if(e.key==='ArrowLeft'){e.preventDefault();stop(true);go(cur-1)}});
+  c.addEventListener('mouseenter',function(){hold=true});c.addEventListener('mouseleave',function(){hold=false});
+  c.addEventListener('focusin',function(){hold=true});c.addEventListener('focusout',function(){hold=false});
+  window.addEventListener('resize',function(){t.scrollTo({left:cur*t.clientWidth,behavior:'auto'})});
+  mark(0);start();
 })();
 </script>
 </body></html>
