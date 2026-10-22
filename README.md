@@ -10,6 +10,7 @@ docs/                 the built site, served by GitHub Pages
   img/destinazioni/   destination photos (Unsplash, free licence)
   img/parcheggio/     car park and camper area photos
   img/README.md       every image: where it is used, source, status
+  fonts/              Barlow 400–700 (woff2, SIL Open Font Licence), served from the site itself
   llms.txt            summary for AI assistants
   sitemap.xml
   robots.txt          preview version: blocks search engines
