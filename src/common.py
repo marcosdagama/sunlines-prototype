@@ -19,6 +19,13 @@ WA = {
     "parking": "https://wa.me/393463206740?text=Ciao%20Sun%20Lines%2C%20vorrei%20informazioni%20sul%20parcheggio.%0ADal%3A%20%0AAl%3A%20%0AVeicolo%20%28auto%20/%20camper%29%3A%20",
 }
 
+# Languages: add one line per language. available=True once its pages exist under /<code>/ ; the menu and hreflang follow this list.
+LANGS = [
+    ("it", "Italiano", True),
+    ("en", "English", False),
+]
+CURRENT_LANG = "it"
+
 NAV = [
     ("transfer-ncc.html", "Transfer e NCC", "transfer"),
     ("noleggio-autobus.html", "Noleggio bus", "bus"),
@@ -69,6 +76,8 @@ def icon(name, size=20):
         "pin": '<path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12"/><circle cx="12" cy="9" r="2.5"/>',
         "check": '<path d="M5 12l4 4 10-10"/>',
         "help": '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01"/>',
+        "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+        "chev": '<path d="M6 9l6 6 6-6"/>',
         "external": '<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/>',
     }[name]
     return f'<svg class="i" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{p}</svg>'

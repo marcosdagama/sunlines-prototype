@@ -63,12 +63,21 @@ p{margin:0}
 .mainnav a:hover{background:var(--sand)}
 .mainnav a[aria-current="page"]{color:var(--blue);box-shadow:inset 0 -3px 0 var(--orange)}
 .hdr-tools{display:flex;align-items:center;gap:10px}
-.lang{display:flex;gap:2px;font-size:14px;font-weight:600}
-.lang a,.lang span{padding:6px 7px;border-radius:var(--r-sm);color:var(--muted);text-decoration:none}
-.lang [aria-current]{color:var(--navy);background:var(--sand)}
-.lang span{color:var(--granite);cursor:not-allowed}
+.langmenu{position:relative}
+.langmenu summary{list-style:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 10px;border:1px solid var(--hairline);border-radius:var(--r-md);font-weight:600;font-size:15px;color:var(--navy);cursor:pointer;background:var(--white)}
+.langmenu summary::-webkit-details-marker{display:none}
+.langmenu summary:hover{border-color:var(--blue)}
+.langmenu[open] summary .i:last-child{transform:rotate(180deg)}
+.langmenu .lang-list{position:absolute;right:0;top:calc(100% + 6px);z-index:70;min-width:220px;background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-md);box-shadow:0 8px 24px rgba(11,37,69,.12);padding:6px}
+.lang-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.lang-list a,.lang-list span{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:10px 12px;border-radius:var(--r-sm);text-decoration:none;color:var(--navy);font-weight:500}
+.lang-list a:hover{background:var(--sand)}
+.lang-list a[aria-current]{font-weight:700;color:var(--blue)}
+.lang-list span{color:var(--muted);cursor:default}
+.lang-list small{font-size:12px;font-weight:600;color:var(--muted);background:var(--sand);border-radius:999px;padding:2px 8px}
+.drawer-lang{display:grid;gap:8px}
 .menu-btn{display:none;margin-left:auto;align-items:center;gap:6px;background:none;border:1px solid var(--hairline);border-radius:var(--r-md);padding:10px 12px;font:600 16px var(--font);color:var(--navy);min-height:44px}
-@media (max-width:1079px){.mainnav,.hdr-tools .lang,.hdr-tools .btn{display:none}.menu-btn{display:inline-flex}.logo img{height:38px}.hdr{min-height:64px}}
+@media (max-width:1079px){.mainnav,.hdr-tools .btn{display:none}.hdr-tools{margin-left:auto}.menu-btn{display:inline-flex;margin-left:0}.hdr{gap:10px}.logo img{height:38px}.hdr{min-height:64px}}
 
 /* drawer */
 .drawer{position:fixed;inset:0;z-index:80;background:rgba(11,37,69,.45)}
@@ -258,7 +267,7 @@ p{margin:0}
   <a class="logo" href="index.html" aria-label="Sun Lines, home"><img src="sun-lines-logo.svg" alt="Sun Lines Elite Service" width="149" height="40"></a>
   <nav class="mainnav" aria-label="Principale"><a href="transfer-ncc.html">Transfer e NCC</a><a href="noleggio-autobus.html">Noleggio bus</a><a href="airbus-olbia-sassari-alghero.html" aria-current="page">Airbus 90</a><a href="linee-e-orari.html">Linee e orari</a><a href="parcheggio-aeroporto-olbia.html">Parcheggio</a></nav>
   <div class="hdr-tools">
-    <div class="lang" aria-label="Lingua"><a href="index.html" aria-current="true" lang="it">IT</a><span lang="en" title="English version in preparation" aria-disabled="true">EN</span><span lang="de" title="Deutsche Version in Vorbereitung" aria-disabled="true">DE</span></div>
+    <details class="langmenu"><summary aria-label="Lingua: Italiano. Cambia lingua"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span>IT</span><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><ul class="lang-list"><li><a href="index.html" lang="it" hreflang="it" aria-current="true">Italiano<svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></a></li><li><span lang="en" aria-disabled="true">English<small>in arrivo</small></span></li></ul></details>
     <a class="btn btn-primary btn-sm" href="airbus-olbia-sassari-alghero.html#biglietti"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M13 7v10"/></svg> Biglietti Airbus</a>
   </div>
   <button class="menu-btn" id="menu-open" type="button" aria-controls="drawer" aria-expanded="false"><svg class="i" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg> Menu</button>
@@ -275,7 +284,7 @@ p{margin:0}
     <a class="btn btn-outline" href="domande-frequenti.html"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01"/></svg> Domande frequenti</a>
     <a class="btn btn-outline" href="assistenza.html">Assistenza</a>
   </div>
-  <div class="lang"><a href="index.html" aria-current="true">Italiano</a><span title="In preparazione">English</span><span title="In Vorbereitung">Deutsch</span></div>
+  <div class="drawer-lang"><p class="label muted">Lingua / Language</p><ul class="lang-list"><li><a href="index.html" lang="it" hreflang="it" aria-current="true">Italiano<svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></a></li><li><span lang="en" aria-disabled="true">English<small>in arrivo</small></span></li></ul></div>
 </div></div>
 <main id="main">
 <section class="page-hero"><div class="wrap hero-grid">
@@ -377,6 +386,9 @@ p{margin:0}
   if(btn){btn.addEventListener('click',open);cl.addEventListener('click',close);
     dr.addEventListener('click',function(e){if(e.target===dr)close()});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!dr.hidden)close()});}
+  var lm=document.querySelector('.langmenu');
+  if(lm){document.addEventListener('click',function(e){if(lm.open&&!lm.contains(e.target))lm.open=false});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lm.open){lm.open=false;lm.querySelector('summary').focus()}});}
   document.querySelectorAll('form[data-proto]').forEach(function(f){
     f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');
       if(!f.checkValidity()){f.reportValidity();return}

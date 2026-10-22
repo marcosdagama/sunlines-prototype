@@ -50,12 +50,21 @@ p{margin:0}
 .mainnav a:hover{background:var(--sand)}
 .mainnav a[aria-current="page"]{color:var(--blue);box-shadow:inset 0 -3px 0 var(--orange)}
 .hdr-tools{display:flex;align-items:center;gap:10px}
-.lang{display:flex;gap:2px;font-size:14px;font-weight:600}
-.lang a,.lang span{padding:6px 7px;border-radius:var(--r-sm);color:var(--muted);text-decoration:none}
-.lang [aria-current]{color:var(--navy);background:var(--sand)}
-.lang span{color:var(--granite);cursor:not-allowed}
+.langmenu{position:relative}
+.langmenu summary{list-style:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 10px;border:1px solid var(--hairline);border-radius:var(--r-md);font-weight:600;font-size:15px;color:var(--navy);cursor:pointer;background:var(--white)}
+.langmenu summary::-webkit-details-marker{display:none}
+.langmenu summary:hover{border-color:var(--blue)}
+.langmenu[open] summary .i:last-child{transform:rotate(180deg)}
+.langmenu .lang-list{position:absolute;right:0;top:calc(100% + 6px);z-index:70;min-width:220px;background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-md);box-shadow:0 8px 24px rgba(11,37,69,.12);padding:6px}
+.lang-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.lang-list a,.lang-list span{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:10px 12px;border-radius:var(--r-sm);text-decoration:none;color:var(--navy);font-weight:500}
+.lang-list a:hover{background:var(--sand)}
+.lang-list a[aria-current]{font-weight:700;color:var(--blue)}
+.lang-list span{color:var(--muted);cursor:default}
+.lang-list small{font-size:12px;font-weight:600;color:var(--muted);background:var(--sand);border-radius:999px;padding:2px 8px}
+.drawer-lang{display:grid;gap:8px}
 .menu-btn{display:none;margin-left:auto;align-items:center;gap:6px;background:none;border:1px solid var(--hairline);border-radius:var(--r-md);padding:10px 12px;font:600 16px var(--font);color:var(--navy);min-height:44px}
-@media (max-width:1079px){.mainnav,.hdr-tools .lang,.hdr-tools .btn{display:none}.menu-btn{display:inline-flex}.logo img{height:38px}.hdr{min-height:64px}}
+@media (max-width:1079px){.mainnav,.hdr-tools .btn{display:none}.hdr-tools{margin-left:auto}.menu-btn{display:inline-flex;margin-left:0}.hdr{gap:10px}.logo img{height:38px}.hdr{min-height:64px}}
 
 /* drawer */
 .drawer{position:fixed;inset:0;z-index:80;background:rgba(11,37,69,.45)}
@@ -245,6 +254,9 @@ JS = r"""
   if(btn){btn.addEventListener('click',open);cl.addEventListener('click',close);
     dr.addEventListener('click',function(e){if(e.target===dr)close()});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!dr.hidden)close()});}
+  var lm=document.querySelector('.langmenu');
+  if(lm){document.addEventListener('click',function(e){if(lm.open&&!lm.contains(e.target))lm.open=false});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lm.open){lm.open=false;lm.querySelector('summary').focus()}});}
   document.querySelectorAll('form[data-proto]').forEach(function(f){
     f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');
       if(!f.checkValidity()){f.reportValidity();return}
@@ -254,6 +266,24 @@ JS = r"""
 """
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap">'
+
+
+def lang_items():
+    out = []
+    for code, name, ok in LANGS:
+        if code == CURRENT_LANG:
+            out.append(f'<li><a href="index.html" lang="{code}" hreflang="{code}" aria-current="true">{name}{icon("check",16)}</a></li>')
+        elif ok:
+            out.append(f'<li><a href="{code}/index.html" lang="{code}" hreflang="{code}">{name}</a></li>')
+        else:
+            out.append(f'<li><span lang="{code}" aria-disabled="true">{name}<small>in arrivo</small></span></li>')
+    return "".join(out)
+
+
+def lang_menu():
+    cur_name = dict((c, n) for c, n, _ in LANGS)[CURRENT_LANG]
+    return (f'<details class="langmenu"><summary aria-label="Lingua: {cur_name}. Cambia lingua">{icon("globe",18)}<span>{CURRENT_LANG.upper()}</span>{icon("chev",16)}</summary>'
+            f'<ul class="lang-list">{lang_items()}</ul></details>')
 
 
 def cur(k, active):
@@ -270,7 +300,7 @@ def header(active):
   <a class="logo" href="index.html" aria-label="Sun Lines, home"><img src="sun-lines-logo.svg" alt="Sun Lines Elite Service" width="149" height="40"></a>
   <nav class="mainnav" aria-label="Principale">{links}</nav>
   <div class="hdr-tools">
-    <div class="lang" aria-label="Lingua"><a href="index.html" aria-current="true" lang="it">IT</a><span lang="en" title="English version in preparation" aria-disabled="true">EN</span><span lang="de" title="Deutsche Version in Vorbereitung" aria-disabled="true">DE</span></div>
+    {lang_menu()}
     <a class="btn btn-primary btn-sm" href="airbus-olbia-sassari-alghero.html#biglietti">{icon("ticket",18)} Biglietti Airbus</a>
   </div>
   <button class="menu-btn" id="menu-open" type="button" aria-controls="drawer" aria-expanded="false">{icon("menu",22)} Menu</button>
@@ -287,7 +317,7 @@ def header(active):
     <a class="btn btn-outline" href="domande-frequenti.html">{icon("help",18)} Domande frequenti</a>
     <a class="btn btn-outline" href="assistenza.html">Assistenza</a>
   </div>
-  <div class="lang"><a href="index.html" aria-current="true">Italiano</a><span title="In preparazione">English</span><span title="In Vorbereitung">Deutsch</span></div>
+  <div class="drawer-lang"><p class="label muted">Lingua / Language</p><ul class="lang-list">{lang_items()}</ul></div>
 </div></div>'''
 
 
@@ -336,14 +366,24 @@ def mbar(cta, wa_key=None):
     return f'<nav class="mbar" aria-label="Azioni rapide">{a}<a class="cta" href="{cta[0]}">{esc(cta[1])}</a></nav>'
 
 
+def hreflang_links(path):
+    # one line per available language; Italian at the root is also x-default
+    out = []
+    for code, _, ok in LANGS:
+        if ok:
+            p = path if code == "it" else f"/{code}" + path
+            out.append(f'<link rel="alternate" hreflang="{code}" href="{BASE + p}">')
+    out.append(f'<link rel="alternate" hreflang="x-default" href="{BASE + path}">')
+    return "\n".join(out)
+
+
 def page(*, slug, title, desc, canonical_path, active, body, ld, cta=None, wa=None, is_index=False, og_type="website"):
     canon = BASE + canonical_path
     meta = f'''<title>{esc(title)}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{canon}">
-<link rel="alternate" hreflang="it" href="{canon}">
-<link rel="alternate" hreflang="x-default" href="{canon}">
+{hreflang_links(canonical_path)}
 <meta property="og:type" content="{og_type}"><meta property="og:site_name" content="Sun Lines"><meta property="og:locale" content="it_IT">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{canon}">
 <meta property="og:image" content="{BASE}/og/{slug}.jpg"><meta name="twitter:card" content="summary_large_image">

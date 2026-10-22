@@ -1,6 +1,6 @@
 # Sun Lines — website prototype
 
-First version of the new sunlines.it: today's content, reorganised navigation, the Sun Lines brand (logo, colours, Barlow type), SEO/GEO markup and a mobile-first layout. Italian only for now; English and German are planned.
+First version of the new sunlines.it: today's content, reorganised navigation, the Sun Lines brand (logo, colours, Barlow type), SEO/GEO markup and a mobile-first layout. Italian for now; English is next, and the language menu is built for 5–10 languages.
 
 ## Structure
 
@@ -23,6 +23,14 @@ src/                  the page generator
   assets/             logo files (SVG)
   robots.production.txt   robots rules for the live site
 ```
+
+## Languages
+
+Languages are listed once, in `LANGS` in `src/common.py`: code, name in its own language, and whether its pages exist. The header menu (visible on desktop and mobile), the menu inside the mobile drawer and the `hreflang` links all read from that list.
+
+- A language marked `False` shows in the menu as "in arrivo" and gets no `hreflang`.
+- To publish one: add its translated pages under `docs/<code>/` (for example `docs/en/`), then set it to `True` and rebuild.
+- Italian stays at the root and is the `x-default`.
 
 ## Rebuild after editing
 
@@ -54,4 +62,4 @@ When on-site ticketing becomes possible, replace the content of that section wit
 - Replace the 800 px prototype images with the original high-resolution files.
 - Rewrite the privacy policy for GDPR: the current text cites Legislative Decree 196/2003 and names another company.
 - Connect the forms (quote, support, complaints, invoice) to email or a form service; in the prototype they validate but do not send.
-- Add English and German pages, then their `hreflang` links.
+- Add the English pages under `docs/en/` and set English to available in `LANGS`.
