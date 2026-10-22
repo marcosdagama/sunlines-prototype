@@ -68,6 +68,7 @@ def icon(name, size=20):
         "mail": '<path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/>',
         "pin": '<path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12"/><circle cx="12" cy="9" r="2.5"/>',
         "check": '<path d="M5 12l4 4 10-10"/>',
+        "help": '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01"/>',
         "external": '<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/>',
     }[name]
     return f'<svg class="i" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{p}</svg>'

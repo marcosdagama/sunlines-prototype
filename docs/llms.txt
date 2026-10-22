@@ -2,7 +2,7 @@
 
 > Sun Lines (Sun Lines Elite Service S.r.l.) is a passenger transport company based in Olbia, Sardinia, operating for over 60 years. It runs public bus lines in Gallura, the Airbus line 90 between Olbia airport, Sassari and Alghero airport, coach hire and private car transfers with driver (NCC), and a car and camper park next to Olbia Costa Smeralda airport.
 
-Last updated: 2026-10-22. Website language: Italian. Contact: WhatsApp +39 346 320 6740, phone +39 0789 50885, email info@sunlines.it. Address: Via Pozzo 23, 07026 Olbia (SS), Italy.
+Last updated: 2026-10-22. Website language: Italian. Contact: phone +39 0789 50885, email info@sunlines.it, support and invoice forms at https://www.sunlines.it/assistenza. WhatsApp +39 346 320 6740 is for coach hire and private transfer quotes and long-term or camper parking only; questions about timetables, tickets and luggage are answered at https://www.sunlines.it/domande-frequenti. Address: Via Pozzo 23, 07026 Olbia (SS), Italy.
 
 ## Services
 
@@ -15,7 +15,7 @@ Last updated: 2026-10-22. Website language: Italian. Contact: WhatsApp +39 346 3
 
 ## Help
 
-- [Domande frequenti (FAQ)](https://www.sunlines.it/domande-frequenti): Schedules, tickets, luggage, bikes, minors, lost property.
+- [Domande frequenti (FAQ)](https://www.sunlines.it/domande-frequenti): Short answers on which line to take for each destination, Airbus booking, changes and refunds, luggage limits, bikes, children, pets, student passes, parking, lost property, invoices and complaints.
 - [Assistenza e contatti](https://www.sunlines.it/assistenza): Support requests, complaints, invoice requests.
 - [Chi siamo](https://www.sunlines.it/chi-siamo): Company history, founder Luca Cassitta, ISO 9001:2015 and ISO 14001:2015 certifications.
 - [Condizioni generali di trasporto](https://www.sunlines.it/condizioni-generali)

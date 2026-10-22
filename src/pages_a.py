@@ -1,4 +1,5 @@
 from layout import *
+from faq_data import group_html, destination_table
 
 PDF20 = BASE + "/pdf/LINEA-20.pdf"
 PDF30 = BASE + "/images/pdf/LINEA-30.pdf"
@@ -44,7 +45,7 @@ def home():
     <span class="stripes" aria-hidden="true"></span>
     <h1 class="display">La Sardegna inizia dal viaggio</h1>
     <p class="lead">Da oltre 60 anni colleghiamo Olbia, la Gallura e il nord della Sardegna con servizi di trasporto pubblico e privato. Uniamo aeroporti, porti e le principali destinazioni del territorio, offrendo soluzioni affidabili a residenti e viaggiatori.</p>
-    <div class="actions"><a class="btn btn-primary" href="airbus-olbia-sassari-alghero.html#biglietti">{icon("ticket",18)} Biglietti Airbus 90</a><a class="btn btn-wa" href="{WA["general"]}">{icon("chat",18)} Scrivici su WhatsApp</a></div>
+    <div class="actions"><a class="btn btn-primary" href="airbus-olbia-sassari-alghero.html#biglietti">{icon("ticket",18)} Biglietti Airbus 90</a><a class="btn btn-outline" href="domande-frequenti.html">{icon("help",18)} Domande rapide</a></div>
   </div>
   {photo("Autobus Sun Lines al porto di Olbia, accanto alla ruota panoramica", "attuale", "4/3", eager=True, src="bus-olbia-ruota")}
 </div></section>
@@ -112,11 +113,9 @@ def airbus():
       <p class="small muted">La vendita online è disponibile fino a un’ora prima dell’orario di partenza previsto oppure fino al raggiungimento della capienza massima disponibile.</p>
       <div class="actions"><a class="btn btn-primary" href="{PORTAL}">{icon("ticket",18)} Prenota il tuo biglietto online</a></div>
     </div>
-    <div class="faq">
-      <details><summary>È possibile acquistare il biglietto a bordo?</summary><div class="ans"><p>L’acquisto del biglietto a bordo può essere possibile con un sovrapprezzo di 5 € rispetto alla tariffa ordinaria. In caso di esaurimento dei posti non è garantito l’accesso all’autobus. Per questo motivo si raccomanda l’acquisto del biglietto online in anticipo.</p></div></details>
-      <details><summary>Posso modificare data o orario o chiedere il rimborso?</summary><div class="ans"><p>Non è possibile modificare la data o l’orario del viaggio dopo l’emissione del biglietto. I biglietti emessi non sono rimborsabili.</p></div></details>
-      <details><summary>Quanti bagagli posso portare?</summary><div class="ans"><p>Il biglietto include 1 bagaglio standard fino a 50x30x25 cm e con peso massimo di 20 kg, oltre a 1 piccolo bagaglio a mano (borsa o zaino) da portare a bordo. Ogni bagaglio aggiuntivo o speciale è soggetto a una tariffa specifica e alle condizioni indicate durante la procedura di acquisto.</p></div></details>
-      <details><summary>Cosa succede se non mi presento alla partenza?</summary><div class="ans"><p>Il passeggero è tenuto a presentarsi alla fermata con adeguato anticipo rispetto all’orario previsto di partenza. In caso di mancata presentazione alla partenza, il biglietto non potrà essere utilizzato e non dà diritto a rimborso.</p></div></details>
+    <div style="display:grid;gap:10px">
+      <h3 class="h3">Domande rapide</h3>
+      {group_html("airbus", ["airbus-bagagli", "airbus-cambi", "airbus-email", "airbus-fermate"])}
       <p class="small"><a href="domande-frequenti.html">Tutte le domande frequenti</a></p>
     </div>
   </div>
@@ -139,7 +138,7 @@ def airbus():
     return page(slug="airbus", title="Airbus Linea 90 – Olbia, Sassari e Alghero | Sun Lines",
                 desc="Collegamento diretto in autobus tra l’aeroporto di Olbia, Sassari e Alghero. Biglietto online, posto garantito. Orari e prenotazione Linea 90.",
                 canonical_path="/airbus-olbia-sassari-alghero", active="airbus", body=body, ld=ld,
-                cta=(PORTAL, "Prenota biglietto"), wa="airbus", og_type="article")
+                cta=(PORTAL, "Prenota biglietto"), og_type="article")
 
 
 def linee():
@@ -172,6 +171,10 @@ def linee():
   <div class="sec-head"><h2 class="h2">Consulta gli orari e le fermate aggiornate di tutte le linee Sun Lines</h2></div>
   <div class="grid grid-2">{items}</div>
 </div></section>
+<section class="section-tight section-white" id="dove"><div class="wrap" style="display:grid;gap:14px">
+  <h2 class="h2">Dove vuoi andare?</h2>
+  {destination_table()}
+</div></section>
 <section class="section" id="biglietti"><div class="wrap grid grid-2" style="align-items:start">
   <div class="prose">
     <p class="label eyebrow">Biglietti</p>
@@ -186,6 +189,7 @@ def linee():
   </div>
   <div style="display:grid;gap:20px">
     <div class="panel"><h2 class="h3">Abbonamenti studenti</h2><p class="small">Sun Lines offre condizioni agevolate per gli studenti pendolari.</p><a class="more" href="abbonamenti-studenti.html">Consulta l’informativa abbonamenti studenti {icon("arrow",18)}</a></div>
+    <div style="display:grid;gap:10px"><h2 class="h3">Domande rapide</h2>{group_html("linee", ["linee-posto", "linee-bagagli", "linee-cambio"])}<p class="small"><a href="domande-frequenti.html">Tutte le domande frequenti</a></p></div>
     <div class="panel"><h2 class="h3">Condizioni di viaggio</h2><p class="small">Per tutte le condizioni di viaggio consulta le <a href="condizioni-generali.html">Condizioni Generali</a> e le <a href="domande-frequenti.html">Domande Frequenti</a>.</p></div>
   </div>
 </div></section>'''
@@ -196,4 +200,4 @@ def linee():
     return page(slug="linee", title="Linee e orari autobus in Gallura | Sun Lines",
                 desc="Autobus da Olbia aeroporto, porto e centro verso Porto Cervo, Cannigione, Porto Torres e Sant’Antonio di Gallura. Orari, fermate e tariffe delle linee 20, 30, 50 e 90.",
                 canonical_path="/linee-e-orari", active="linee", body=body, ld=ld,
-                cta=("#linea-20", "Orari linee"))
+                cta=("#biglietti", "Biglietti"))

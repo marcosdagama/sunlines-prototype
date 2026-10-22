@@ -176,6 +176,24 @@ p{margin:0}
 .faq-group{display:grid;gap:12px}
 .faq-group+.faq-group{margin-top:28px}
 
+/* quick answers */
+.faq .ans .short{font-weight:600;color:var(--navy)}
+.faq details[hidden]{display:none}
+.faq-search{display:flex;align-items:center;gap:10px;background:var(--white);border:2px solid var(--blue);border-radius:var(--r-md);padding:0 14px;max-width:640px;color:var(--blue)}
+.faq-search input{flex:1;min-width:0;border:0;outline:0;font:400 18px var(--font);padding:14px 0;color:var(--navy);background:transparent}
+.faq-search:focus-within{outline:2px solid var(--navy);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border-radius:999px;background:var(--white);border:1px solid var(--hairline);color:var(--navy);text-decoration:none;font-weight:600;font-size:15px}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.dest{overflow-x:auto;border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--white)}
+.dest table{width:100%;border-collapse:collapse;min-width:480px}
+.dest th{text-align:left;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:12px 16px;border-bottom:1px solid var(--hairline)}
+.dest td{padding:12px 16px;border-bottom:1px solid var(--hairline);vertical-align:middle}
+.dest tr:last-child td{border-bottom:0}
+.badge-sm{display:inline-grid;place-items:center;min-width:40px;height:32px;padding:0 8px;border-radius:var(--r-sm);background:var(--navy);color:var(--white);font-weight:700;text-decoration:none;font-variant-numeric:tabular-nums}
+.badge-sm.b90{background:var(--blue)}
+.dest-when{display:none}
+@media (max-width:600px){.dest table{min-width:0}.dest-col{display:none}.dest-when{display:block;font-size:14px;color:var(--muted);margin-top:2px}.dest td,.dest th{padding:12px}}
 /* forms */
 .form{display:grid;gap:16px}
 .field{display:grid;gap:6px}
@@ -252,9 +270,10 @@ p{margin:0}
   <div class="contact-list">
     <p class="label muted">Contatti</p>
     <p><strong>Telefono</strong> <span class="tnum">0789 50885</span></p>
-    <p><strong>WhatsApp</strong> <span class="tnum">346 320 6740</span></p>
     <p><strong>Email</strong> info@sunlines.it</p>
-    <a class="btn btn-wa" href="https://wa.me/393463206740?text=Ciao%20Sun%20Lines%2C%20ho%20una%20domanda%3A%20"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20l1.3-3.9A8 8 0 1 1 7.9 19.7L3 20"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg> Scrivici su WhatsApp</a>
+    <p><strong>WhatsApp</strong> <span class="tnum">346 320 6740</span> <span class="muted small">(solo preventivi e parcheggio)</span></p>
+    <a class="btn btn-outline" href="domande-frequenti.html"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01"/></svg> Domande frequenti</a>
+    <a class="btn btn-outline" href="assistenza.html">Assistenza</a>
   </div>
   <div class="lang"><a href="index.html" aria-current="true">Italiano</a><span title="In preparazione">English</span><span title="In Vorbereitung">Deutsch</span></div>
 </div></div>
@@ -273,7 +292,7 @@ p{margin:0}
   <div class="ft-brand">
     <img src="sun-lines-logo-white.svg" alt="Sun Lines Elite Service" width="173" height="46">
     <p class="fine">Da oltre 60 anni colleghiamo Olbia, la Gallura e il nord della Sardegna.</p>
-    <p>Via Pozzo 23 – 07026 Olbia (SS)<br>Tel. <span class="tnum">(+39) 0789 50885</span><br>WhatsApp <span class="tnum">(+39) 346 320 6740</span><br>info@sunlines.it</p>
+    <p>Via Pozzo 23 – 07026 Olbia (SS)<br>Tel. <span class="tnum">(+39) 0789 50885</span><br>WhatsApp preventivi <span class="tnum">(+39) 346 320 6740</span><br>info@sunlines.it</p>
   </div>
   <div><h2>Servizi</h2><ul>
     <li><a href="transfer-ncc.html">Transfer e auto con conducente</a></li>
@@ -300,10 +319,7 @@ p{margin:0}
 <div class="ft-legal"><p class="fine">Sun Lines Elite Service S.r.l. · P. IVA 00358880904 · Membro di ANAV, CNA e Confcommercio</p>
 <p class="fine"><a href="https://www.facebook.com/sunlinesbus">Facebook</a> · <a href="https://www.instagram.com/sunlinesbus">Instagram</a></p></div>
 </div></footer>
-<nav class="mbar" aria-label="Contatti rapidi">
-<a href="tel:+39078950885"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Chiama</a>
-<a class="wa" href="https://wa.me/393463206740?text=Ciao%20Sun%20Lines%2C%20ho%20una%20domanda%3A%20"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20l1.3-3.9A8 8 0 1 1 7.9 19.7L3 20"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg>WhatsApp</a>
-<a class="cta" href="noleggio-autobus.html#preventivo">Preventivo</a></nav>
+<nav class="mbar" aria-label="Azioni rapide"><a href="linee-e-orari.html"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.5"/></svg>Orari</a><a href="domande-frequenti.html"><svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01"/></svg>Domande</a><a class="cta" href="airbus-olbia-sassari-alghero.html#biglietti">Biglietti Airbus</a></nav>
 <script>
 (function(){
   var btn=document.getElementById('menu-open'),dr=document.getElementById('drawer'),cl=document.getElementById('menu-close');

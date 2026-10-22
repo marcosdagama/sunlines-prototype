@@ -1,4 +1,5 @@
 from pages_b import *
+from faq_data import group_html, destination_table
 
 FAQ = [
  ("Informazioni generali", [
@@ -50,25 +51,55 @@ FAQ = [
 
 
 def faq():
+    from faq_data import FAQ, item, destination_table, faq_schema
     crumbs = [("Home", "index.html"), ("Domande frequenti", "")]
-    nav = " · ".join(f'<a href="#faq-{i}">{esc(g)}</a>' for i, (g, _) in enumerate(FAQ))
-    groups = "".join(f'''<div class="faq-group" id="faq-{i}"><h2 class="h2">{esc(g)}</h2><div class="faq">{"".join(
-        f'<details><summary>{esc(q)}</summary><div class="ans">{"".join(f"<p>{esc(a)}</p>" for a in ans)}</div></details>' for q, ans in qs)}</div></div>'''
-                     for i, (g, qs) in enumerate(FAQ))
+    top = [("airbus-prenotare", "Airbus: devo prenotare?"), ("airbus-bagagli", "Bagagli sull’Airbus"), ("linee-biglietto", "Biglietti linee 20, 30, 50"),
+           ("linee-bagagli", "Valigie e bici"), ("gruppi-parcheggio", "Parcheggio aeroporto"), ("assist-oggetto", "Oggetti dimenticati")]
+    chips = "".join(f'<a class="chip" href="#{i}">{esc(t)}</a>' for i, t in top)
+    groups = "".join(f'''<section class="faq-group" id="faq-{g}" data-group><h2 class="h2">{esc(title)}</h2><div class="faq">{"".join(item(*q) for q in qs)}</div></section>''' for g, title, qs in FAQ)
     body = f'''
-<section class="page-hero"><div class="wrap" style="display:grid;gap:16px">{breadcrumb_html(crumbs)}
+<section class="page-hero"><div class="wrap" style="display:grid;gap:18px">{breadcrumb_html(crumbs)}
   <h1 class="h1">Domande frequenti</h1>
-  <p class="lead">Orari, biglietti, bagagli e condizioni di viaggio su tutte le linee Sun Lines.</p>
-  <p class="small">{nav}</p>
+  <p class="lead">Risposte brevi su Airbus, linee, biglietti, bagagli e parcheggio.</p>
+  <div class="faq-search"><label class="sr-only" for="faq-q">Cerca una risposta</label>{icon("help",20)}
+    <input id="faq-q" type="search" placeholder="Cerca: bagagli, bici, Alghero, rimborso…" autocomplete="off"></div>
+  <p class="small muted" id="faq-count" role="status" aria-live="polite"></p>
+  <div class="chips" aria-label="Domande più frequenti">{chips}</div>
 </div></section>
-<section class="section section-white"><div class="wrap">{groups}
-  <div class="panel" style="margin-top:32px;grid-template-columns:minmax(0,1fr) auto;align-items:center"><div><h2 class="h3">Non trovi la risposta?</h2><p class="small muted">Scrivici: WhatsApp <span class="tnum">{WA_DISPLAY}</span> · {EMAIL}</p></div><a class="btn btn-wa" href="{WA["general"]}">{icon("chat",18)} WhatsApp</a></div>
-</div></section>'''
-    fp = {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": " ".join(ans)}} for _, qs in FAQ for q, ans in qs]}
-    ld = jsonld(ORG, fp, breadcrumb_ld([("Home", "/"), ("Domande frequenti", "/domande-frequenti")]))
-    return page(slug="faq", title="Domande frequenti su linee, biglietti e bagagli | Sun Lines",
-                desc="Risposte su orari, calendario delle linee 20, 30, 50 e 90, biglietti a bordo e online, bagagli, biciclette, minori e oggetti smarriti sui bus Sun Lines.",
-                canonical_path="/domande-frequenti", active=None, body=body, ld=ld)
+<section class="section-tight section-white" id="dove"><div class="wrap" style="display:grid;gap:14px">
+  <h2 class="h2">Dove vuoi andare?</h2>
+  {destination_table()}
+</div></section>
+<section class="section"><div class="wrap">{groups}
+  <p class="faq-empty panel" id="faq-empty" hidden>Nessuna risposta per questa ricerca. Prova un’altra parola o <a href="assistenza.html#assistenza">scrivi all’assistenza</a>.</p>
+  <div class="panel" style="margin-top:32px;grid-template-columns:minmax(0,1fr) auto;align-items:center"><div><h2 class="h3">Non trovi la risposta?</h2><p class="small muted">Scrivici dal modulo di assistenza o a {EMAIL}: ti rispondiamo noi.</p></div><a class="btn btn-primary" href="assistenza.html#assistenza">Assistenza</a></div>
+</div></section>
+<script>{FAQ_JS}</script>'''
+    ld = jsonld(ORG, faq_schema(), breadcrumb_ld([("Home", "/"), ("Domande frequenti", "/domande-frequenti")]))
+    return page(slug="faq", title="Domande frequenti: Airbus, linee, biglietti e bagagli | Sun Lines",
+                desc="Risposte rapide: come andare da Olbia ad Alghero, prenotazione e bagagli dell’Airbus 90, biglietti e bici sulle linee 20, 30 e 50, parcheggio aeroporto e oggetti smarriti.",
+                canonical_path="/domande-frequenti", active=None, body=body, ld=ld, cta=("assistenza.html#assistenza", "Assistenza"))
+
+
+FAQ_JS = r"""
+(function(){
+  var q=document.getElementById('faq-q'),cnt=document.getElementById('faq-count'),empty=document.getElementById('faq-empty');
+  var items=[].slice.call(document.querySelectorAll('[data-group] details'));
+  function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+  items.forEach(function(d){d._t=norm(d.textContent+' '+(d.getAttribute('data-k')||''))});
+  function stem(w){return w.length>5?w.slice(0,w.length-2):w}
+  function run(){
+    var v=norm(q.value.trim()),words=v.split(/\s+/).filter(Boolean).map(stem),n=0;
+    items.forEach(function(d){var ok=words.every(function(w){return d._t.indexOf(w)>-1});d.hidden=!ok;if(ok)n++;d.open=ok&&v.length>2&&n<=3});
+    [].forEach.call(document.querySelectorAll('[data-group]'),function(g){g.hidden=!g.querySelector('details:not([hidden])')});
+    empty.hidden=n>0;cnt.textContent=v?(n+(n===1?' risposta':' risposte')):'';
+    var dv=document.getElementById('dove'),ch=document.querySelector('.chips');if(dv)dv.hidden=!!v;if(ch)ch.hidden=!!v;
+  }
+  q.addEventListener('input',run);
+  function openHash(){var t=location.hash&&document.getElementById(location.hash.slice(1));if(t&&t.tagName==='DETAILS'){t.open=true;t.scrollIntoView({block:'start'})}}
+  window.addEventListener('hashchange',openHash);openHash();
+})();
+"""
 
 
 def abbonamenti():
@@ -142,7 +173,7 @@ def assistenza():
   <h1 class="h1">Assistenza e contatti</h1>
   <p class="lead">Scrivici per assistenza, reclami, oggetti smarriti o per richiedere una fattura.</p>
   <div class="contact-strip">
-    <div class="cbox"><p class="label muted">WhatsApp</p><p class="val tnum">+39 {WA_DISPLAY}</p><a class="more" href="{WA["general"]}">{icon("chat",18)} Apri WhatsApp</a></div>
+    <div class="cbox"><p class="label muted">Risposte immediate</p><p class="val">Domande frequenti</p><a class="more" href="domande-frequenti.html">{icon("help",18)} Cerca una risposta</a></div>
     <div class="cbox"><p class="label muted">Telefono</p><p class="val tnum">+39 {PHONE}</p></div>
     <div class="cbox"><p class="label muted">Email</p><p class="val">{EMAIL}</p></div>
   </div>
@@ -161,7 +192,7 @@ def assistenza():
     ld = jsonld(ORG, cp, breadcrumb_ld([("Home", "/"), ("Assistenza", "/assistenza")]))
     return page(slug="assistenza", title="Assistenza, reclami e richiesta fattura | Sun Lines",
                 desc="Contatta Sun Lines: assistenza su biglietti e abbonamenti, reclami e segnalazioni, oggetti smarriti e richiesta fattura. WhatsApp +39 346 320 6740, tel. 0789 50885.",
-                canonical_path="/assistenza", active=None, body=body, ld=ld, cta=(WA["general"], "Scrivici"))
+                canonical_path="/assistenza", active=None, body=body, ld=ld, cta=("#assistenza", "Scrivici"))
 
 
 def condizioni():
@@ -224,4 +255,4 @@ def lavora():
     ld = jsonld(ORG, job, breadcrumb_ld([("Home", "/"), ("Lavora con noi", "/lavora-con-noi")]))
     return page(slug="lavora", title="Lavora con noi – autisti bus e NCC | Sun Lines",
                 desc="Sun Lines cerca autisti di autobus di linea ed NCC e autisti auto NCC a Olbia. Requisiti, documenti e modalità di candidatura.",
-                canonical_path="/lavora-con-noi", active=None, body=body, ld=ld, cta=("#main", "Candidati"))
+                canonical_path="/lavora-con-noi", active=None, body=body, ld=ld, cta=None)

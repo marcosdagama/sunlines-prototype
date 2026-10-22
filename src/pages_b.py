@@ -160,7 +160,7 @@ def parcheggio():
     ld = jsonld(ORG, fac, breadcrumb_ld([("Home", "/"), ("Parcheggio", "/parcheggio-aeroporto-olbia")]))
     return page(slug="parcheggio", title="Parcheggio aeroporto di Olbia – Promo Parking | Sun Lines",
                 desc="Promo Parking by Sunlines: parcheggio custodito a 3 minuti a piedi dall’aeroporto di Olbia, con videosorveglianza. Area camper attrezzata. Tariffe giornaliere, semestrali e annuali.",
-                canonical_path="/parcheggio-aeroporto-olbia", active="parking", body=body, ld=ld, cta=(WA["parking"], "Tariffe"), wa="parking")
+                canonical_path="/parcheggio-aeroporto-olbia", active="parking", body=body, ld=ld, cta=("#auto", "Prenota online"), wa="parking")
 
 
 def chi_siamo():

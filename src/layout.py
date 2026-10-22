@@ -163,6 +163,24 @@ p{margin:0}
 .faq-group{display:grid;gap:12px}
 .faq-group+.faq-group{margin-top:28px}
 
+/* quick answers */
+.faq .ans .short{font-weight:600;color:var(--navy)}
+.faq details[hidden]{display:none}
+.faq-search{display:flex;align-items:center;gap:10px;background:var(--white);border:2px solid var(--blue);border-radius:var(--r-md);padding:0 14px;max-width:640px;color:var(--blue)}
+.faq-search input{flex:1;min-width:0;border:0;outline:0;font:400 18px var(--font);padding:14px 0;color:var(--navy);background:transparent}
+.faq-search:focus-within{outline:2px solid var(--navy);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border-radius:999px;background:var(--white);border:1px solid var(--hairline);color:var(--navy);text-decoration:none;font-weight:600;font-size:15px}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.dest{overflow-x:auto;border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--white)}
+.dest table{width:100%;border-collapse:collapse;min-width:480px}
+.dest th{text-align:left;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:12px 16px;border-bottom:1px solid var(--hairline)}
+.dest td{padding:12px 16px;border-bottom:1px solid var(--hairline);vertical-align:middle}
+.dest tr:last-child td{border-bottom:0}
+.badge-sm{display:inline-grid;place-items:center;min-width:40px;height:32px;padding:0 8px;border-radius:var(--r-sm);background:var(--navy);color:var(--white);font-weight:700;text-decoration:none;font-variant-numeric:tabular-nums}
+.badge-sm.b90{background:var(--blue)}
+.dest-when{display:none}
+@media (max-width:600px){.dest table{min-width:0}.dest-col{display:none}.dest-when{display:block;font-size:14px;color:var(--muted);margin-top:2px}.dest td,.dest th{padding:12px}}
 /* forms */
 .form{display:grid;gap:16px}
 .field{display:grid;gap:6px}
@@ -264,9 +282,10 @@ def header(active):
   <div class="contact-list">
     <p class="label muted">Contatti</p>
     <p><strong>Telefono</strong> <span class="tnum">{PHONE}</span></p>
-    <p><strong>WhatsApp</strong> <span class="tnum">{WA_DISPLAY}</span></p>
     <p><strong>Email</strong> {EMAIL}</p>
-    <a class="btn btn-wa" href="{WA["general"]}">{icon("chat",18)} Scrivici su WhatsApp</a>
+    <p><strong>WhatsApp</strong> <span class="tnum">{WA_DISPLAY}</span> <span class="muted small">(solo preventivi e parcheggio)</span></p>
+    <a class="btn btn-outline" href="domande-frequenti.html">{icon("help",18)} Domande frequenti</a>
+    <a class="btn btn-outline" href="assistenza.html">Assistenza</a>
   </div>
   <div class="lang"><a href="index.html" aria-current="true">Italiano</a><span title="In preparazione">English</span><span title="In Vorbereitung">Deutsch</span></div>
 </div></div>'''
@@ -278,7 +297,7 @@ def footer():
   <div class="ft-brand">
     <img src="sun-lines-logo-white.svg" alt="Sun Lines Elite Service" width="173" height="46">
     <p class="fine">Da oltre 60 anni colleghiamo Olbia, la Gallura e il nord della Sardegna.</p>
-    <p>Via Pozzo 23 – 07026 Olbia (SS)<br>Tel. <span class="tnum">(+39) {PHONE}</span><br>WhatsApp <span class="tnum">(+39) {WA_DISPLAY}</span><br>{EMAIL}</p>
+    <p>Via Pozzo 23 – 07026 Olbia (SS)<br>Tel. <span class="tnum">(+39) {PHONE}</span><br>WhatsApp preventivi <span class="tnum">(+39) {WA_DISPLAY}</span><br>{EMAIL}</p>
   </div>
   <div><h2>Servizi</h2><ul>
     <li><a href="transfer-ncc.html">Transfer e auto con conducente</a></li>
@@ -307,14 +326,17 @@ def footer():
 </div></footer>'''
 
 
-def mbar(cta_href, cta_label, wa_key="general"):
-    return f'''<nav class="mbar" aria-label="Contatti rapidi">
-<a href="tel:{PHONE_INTL}">{icon("phone",20)}Chiama</a>
-<a class="wa" href="{WA[wa_key]}">{icon("chat",20)}WhatsApp</a>
-<a class="cta" href="{cta_href}">{esc(cta_label)}</a></nav>'''
+def mbar(cta, wa_key=None):
+    """Sales pages (wa_key set): Call, WhatsApp, quote. All other pages: timetables, FAQ, main action."""
+    cta = cta or ("airbus-olbia-sassari-alghero.html#biglietti", "Biglietti Airbus")
+    if wa_key:
+        a = f'<a href="tel:{PHONE_INTL}">{icon("phone",20)}Chiama</a><a class="wa" href="{WA[wa_key]}">{icon("chat",20)}WhatsApp</a>'
+    else:
+        a = f'<a href="linee-e-orari.html">{icon("route",20)}Orari</a><a href="domande-frequenti.html">{icon("help",20)}Domande</a>'
+    return f'<nav class="mbar" aria-label="Azioni rapide">{a}<a class="cta" href="{cta[0]}">{esc(cta[1])}</a></nav>'
 
 
-def page(*, slug, title, desc, canonical_path, active, body, ld, cta=("noleggio-autobus.html#preventivo", "Preventivo"), wa="general", is_index=False, og_type="website"):
+def page(*, slug, title, desc, canonical_path, active, body, ld, cta=None, wa=None, is_index=False, og_type="website"):
     canon = BASE + canonical_path
     meta = f'''<title>{esc(title)}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -332,7 +354,7 @@ def page(*, slug, title, desc, canonical_path, active, body, ld, cta=("noleggio-
     content = f'''{header(active)}
 <main id="main">{body}</main>
 {footer()}
-{mbar(cta[0], cta[1], wa)}
+{mbar(cta, wa)}
 <script>{JS}</script>'''
     if is_index:
         return meta + "\n" + content
