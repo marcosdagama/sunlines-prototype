@@ -254,14 +254,14 @@ p{margin:0}
 .ft-social{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.ft-social a{white-space:nowrap}
 .ft-social a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);color:var(--white)}
 .ft-social a:hover{border-color:var(--orange);color:var(--orange)}
-.ft-social .ft-sn{min-height:44px;border:1px solid rgba(255,255,255,.2);color:var(--white);width:auto;display:inline-flex;gap:6px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none}
-.ft-social .ft-sn .i{opacity:.7}
+.ft-social .ft-sn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(255,255,255,.22);color:var(--white);padding:0}
+.ft-social .ft-sn:hover{color:var(--orange);border-color:var(--orange)}
 .ft-social .ft-up{width:auto;display:inline-flex;gap:6px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none}
 .site-footer a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
 @media (min-width:600px){.ft-assoc{flex-wrap:nowrap}.ft-assoc ul{flex-wrap:nowrap;gap:clamp(14px,2.5vw,36px)}.ft-assoc img{height:clamp(30px,4.2vw,52px)}.ft-assoc p{white-space:nowrap}.ft-social-top{flex-wrap:nowrap;flex:none}}
 @media (max-width:959px){.ft-top{grid-template-columns:1fr;gap:32px}}
 @media (max-width:599px){.ft-stripes{margin-bottom:40px}.ft-contact{grid-template-columns:1fr}.ft-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}.ft-links .ft-col:last-child{grid-column:1/-1}
-  .ft-legal{flex-direction:column;align-items:flex-start}.ft-social-top{margin-left:0}
+  .ft-legal{flex-direction:column;align-items:flex-start}.ft-assoc{display:grid;gap:16px;justify-items:start}.ft-social-top{margin-left:0}
 .ft-assoc ul{gap:16px 28px}.ft-assoc img{height:42px}.ft-sun{width:300px;height:300px;right:-110px;bottom:40px}}
 
 /* mobile contact bar */
@@ -353,6 +353,14 @@ def header(active):
 </div></div>'''
 
 
+def brand(name, size=22):
+    """Official brand glyphs (Simple Icons, CC0) for links to Sun Lines' own social profiles."""
+    import os, re
+    svg = open(os.path.join(os.path.dirname(__file__), "assets", "social", name + ".svg")).read()
+    path = re.search(r'<path d="([^"]+)"', svg).group(1)
+    return f'<svg class="i" width="{size}" height="{size}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="{path}"/></svg>'
+
+
 def footer():
     groups = [
         ("Servizi", [("transfer-ncc.html", "Transfer e NCC"), ("noleggio-autobus.html", "Noleggio autobus"),
@@ -394,7 +402,7 @@ def footer():
       <li><img src="img/associazioni/cna.png" alt="CNA – Confederazione Nazionale dell’Artigianato" width="110" height="111"></li>
       <li><img src="img/associazioni/confcommercio.png" alt="Confcommercio – Imprese per l’Italia" width="255" height="110"></li>
     </ul>
-    <div class="ft-social ft-social-top" aria-label="Sun Lines sui social"><a class="ft-sn" href="{FB}">Facebook {icon("external", 14)}</a><a class="ft-sn" href="{IG}">Instagram {icon("external", 14)}</a></div>
+    <div class="ft-social ft-social-top" aria-label="Sun Lines sui social"><a class="ft-sn" href="{FB}" aria-label="Sun Lines su Facebook">{brand("facebook")}</a><a class="ft-sn" href="{IG}" aria-label="Sun Lines su Instagram">{brand("instagram")}</a></div>
   </div>
   <div class="ft-legal">
     <div class="ft-company">
