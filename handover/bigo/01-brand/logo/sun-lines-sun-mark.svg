@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84" width="84" height="84">
-<title>Sun Lines</title>
-<defs><clipPath id="sun"><circle cx="42" cy="42" r="42"/></clipPath></defs>
-<g fill="#F68221" clip-path="url(#sun)"><rect x="0" y="0.00" width="84" height="30.15"/><rect x="0" y="31.65" width="84" height="3.08"/><rect x="0" y="36.23" width="84" height="4.02"/><rect x="0" y="41.75" width="84" height="5.55"/><rect x="0" y="48.80" width="84" height="6.45"/><rect x="0" y="56.75" width="84" height="8.26"/><rect x="0" y="66.51" width="84" height="10.57"/><rect x="0" y="78.58" width="84" height="5.42"/></g>
-</svg>
