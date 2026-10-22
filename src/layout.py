@@ -246,6 +246,10 @@ p{margin:0}
 .ft-assoc{display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px;padding-block:28px;border-top:1px solid rgba(255,255,255,.12)}
 .ft-assoc p{margin:0;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--on-navy)}
 .ft-social-top{margin-left:auto}
+.ft-certs{list-style:none;margin:0;padding:0 0 0 clamp(14px,2.5vw,32px);display:flex;gap:10px;border-left:1px solid rgba(255,255,255,.18)}
+.cert{display:grid;justify-items:center;gap:1px;padding:7px 12px;border:1.5px solid rgba(255,255,255,.7);border-radius:6px;color:#fff;text-decoration:none;line-height:1.1;opacity:.85;transition:opacity .2s}
+.cert:hover{opacity:1;border-color:#fff}.cert:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.cert-n{font-weight:700;font-size:15px;letter-spacing:.02em;white-space:nowrap}.cert-s{font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--on-navy)}
 .ft-assoc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:20px 36px}
 .ft-assoc img{display:block;height:52px;width:auto;opacity:.82;transition:opacity .2s}
 .ft-assoc li:hover img{opacity:1}
@@ -261,7 +265,7 @@ p{margin:0}
 @media (min-width:600px){.ft-assoc{flex-wrap:nowrap}.ft-assoc ul{flex-wrap:nowrap;gap:clamp(14px,2.5vw,36px)}.ft-assoc img{height:clamp(30px,4.2vw,52px)}.ft-assoc p{white-space:nowrap}.ft-social-top{flex-wrap:nowrap;flex:none}}
 @media (max-width:959px){.ft-top{grid-template-columns:1fr;gap:32px}}
 @media (max-width:599px){.ft-stripes{margin-bottom:40px}.ft-contact{grid-template-columns:1fr}.ft-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}.ft-links .ft-col:last-child{grid-column:1/-1}
-  .ft-legal{flex-direction:column;align-items:flex-start}.ft-assoc{display:grid;gap:16px;justify-items:start}.ft-social-top{margin-left:0}
+  .ft-legal{flex-direction:column;align-items:flex-start}.ft-assoc{display:grid;gap:16px;justify-items:start}.ft-certs{border-left:0;padding-left:0}.ft-social-top{margin-left:0}
 .ft-assoc ul{gap:16px 28px}.ft-assoc img{height:42px}.ft-sun{width:300px;height:300px;right:-110px;bottom:40px}}
 
 /* mobile contact bar */
@@ -396,11 +400,15 @@ def footer():
   </div>
   <div class="ft-links">{cols}</div>
   <div class="ft-assoc">
-    <p>Associati a</p>
+    <p>Associati e certificati</p>
     <ul>
       <li><img src="img/associazioni/anav.png" alt="ANAV – Associazione Nazionale Autotrasporto Viaggiatori" width="255" height="111"></li>
       <li><img src="img/associazioni/cna.png" alt="CNA – Confederazione Nazionale dell’Artigianato" width="110" height="111"></li>
       <li><img src="img/associazioni/confcommercio.png" alt="Confcommercio – Imprese per l’Italia" width="255" height="110"></li>
+    </ul>
+    <ul class="ft-certs" aria-label="Certificazioni">
+      <li><a class="cert" href="{BASE}/pdf/certificazione-ISO-9001-2015.pdf" title="Certificato n. 0806298-AMM24, valido fino al 7 giugno 2027 (PDF)"><span class="cert-n">ISO 9001</span><span class="cert-s">2015 · Qualità</span></a></li>
+      <li><a class="cert" href="{BASE}/pdf/certificazione-ISO-14001-2015.pdf" title="Certificato n. 09010283-AMM24, valido fino all’8 gennaio 2027 (PDF)"><span class="cert-n">ISO 14001</span><span class="cert-s">2015 · Ambiente</span></a></li>
     </ul>
     <div class="ft-social ft-social-top" aria-label="Sun Lines sui social"><a class="ft-sn" href="{FB}" aria-label="Sun Lines su Facebook">{brand("facebook")}</a><a class="ft-sn" href="{IG}" aria-label="Sun Lines su Instagram">{brand("instagram")}</a></div>
   </div>
