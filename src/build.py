@@ -14,7 +14,19 @@ from pages_c import noleggio_autobus, transfer, parcheggio, chi_siamo, faq, abbo
 from pages_legal import note_legali, privacy_new as privacy, cookie_policy, diritti, condizioni_trasporto as condizioni, condizioni_vendita, accessibilita, LEGAL_CSS
 layout.CSS += LEGAL_CSS + layout.CK_CSS
 layout.JS += layout.CK_JS
-import hero_carousel
+import hero_carousel, parking_map
+layout.CSS += parking_map.CSS + """
+.partner-btns{display:grid;gap:10px}
+.partner-btn{display:flex;align-items:center;gap:14px;min-height:64px;padding:10px 14px;border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--white);color:var(--navy);text-decoration:none}
+.partner-btn:hover{border-color:var(--navy);box-shadow:0 2px 8px rgba(11,37,69,.08)}
+.partner-btn img{width:40px;height:40px;border-radius:10px;object-fit:contain;flex:none;background:#fff;border:1px solid var(--hairline)}
+.partner-btn span{display:grid;flex:1;min-width:0}.partner-btn small{color:var(--muted);font-size:14px}
+.partner-btn .i{color:var(--muted);flex:none}
+.store-badges{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.store-badges img{display:block;height:46px;width:auto}
+.store-badges a:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+"""
+layout.JS += parking_map.JS
 layout.CSS += hero_carousel.CSS
 layout.JS += hero_carousel.JS
 from common import BASE, EMAIL, PHONE, WA_DISPLAY, PORTAL

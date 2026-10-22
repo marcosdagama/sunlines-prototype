@@ -56,7 +56,7 @@ FAQ = [
    "A bordo o prima, sull’app Around Sardinia.",
    ["A bordo si paga in contanti (con carta dove possibile) con un sovrapprezzo. Porta contanti: in alcune zone la rete è debole e la carta può non funzionare.",
     "Con l’app compri prima e convalidi quando sali. Screenshot, stampe e fotocopie non sono validi.",
-    f"{a('https://apps.apple.com/it/app/openmove/id945799463', 'App Store')} · {a('https://play.google.com/store/apps/details?id=com.openmove', 'Google Play')}"]),
+    f"{a('https://apps.apple.com/it/app/around-sardinia/id1629824982', 'App Store')} · {a('https://play.google.com/store/apps/details?id=com.openmove.sardegna', 'Google Play')}"]),
   ("linee-posto", "Posso prenotare il posto?",
    "No, sulle linee 20, 30 e 50 non si prenota: si sale alla fermata.",
    ["Il posto a sedere non è garantito in anticipo."]),

@@ -341,6 +341,49 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
 .ft-legal-links a,.ft-legal-links button{color:var(--on-navy);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer}
 .ft-legal-links a:hover,.ft-legal-links button:hover{color:#fff;text-decoration:underline}
 
+/* parking location map */
+.pm .mp-chips{display:flex;flex-wrap:wrap;gap:8px}
+.pm .mp-chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border-radius:999px;border:1px solid var(--hairline);background:var(--white);font:600 15px var(--font);color:var(--muted);cursor:pointer}
+.pm .mp-chip[aria-pressed="true"]{color:var(--navy);border-color:var(--navy);background:var(--sand)}
+.pm .mp-chip:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.pm-grid{display:grid;gap:28px}
+@media (min-width:960px){.pm-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center;gap:40px}}
+.pm-info{display:grid;gap:14px;align-content:start}
+.pm-info h2,.pm-addr{margin:0}
+.pm-facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+.pm-facts li{display:flex;gap:8px;align-items:center;font-size:15px}.pm-facts .i{color:var(--emerald-ink,#0F6E6C);flex:none}
+@media (max-width:420px){.pm-facts{grid-template-columns:1fr}}
+.pm-steps{margin:0;padding-left:1.2em;display:grid;gap:8px;font-size:15px}
+.pm-sw{width:18px;height:4px;border-radius:2px;flex:none;opacity:.35}.mp-chip[aria-pressed="true"] .pm-sw{opacity:1}
+.pm-sw-auto{background:#1A75BB}.pm-sw-piedi{background:repeating-linear-gradient(90deg,#F68221 0 4px,transparent 4px 7px)}
+.pm-fig{margin:0}
+.pm-svg{display:block;width:100%;height:auto;border-radius:var(--r-md);border:1px solid var(--hairline);font-family:var(--font)}
+.pm-road{fill:none;stroke:#fff;stroke-width:12;stroke-linecap:round}
+.pm-road-major{stroke:#fff;stroke-width:18}
+.pm-road-minor{stroke-width:7}
+.pm-svg .pm-road{filter:drop-shadow(0 0 0.6px #B9C6D3)}
+.pm-rbt{fill:#F7F4EE;stroke:#fff;stroke-width:8}
+.pm-route{fill:none;stroke-linecap:round;stroke-linejoin:round;transition:opacity .2s}
+.pm-route-auto{stroke:#1A75BB;stroke-width:5}
+.pm-route-piedi{stroke:#F68221;stroke-width:4;stroke-dasharray:2 7}
+.pm-lbl{font-size:14px;font-weight:600;fill:#0B2545}
+.pm-small{font-size:11.5px;font-weight:500}
+.pm-lbl-road{font-size:12px;font-weight:600;fill:#4F5B6B;paint-order:stroke;stroke:#F7F4EE;stroke-width:4px;stroke-linejoin:round}
+.pm-lbl-inv{fill:#fff}.pm-lbl-muted{fill:#4F5B6B;font-weight:500}
+.pm-walk{font-size:13px;fill:#9A4A06;paint-order:stroke;stroke:#fff;stroke-width:4px}
+.pm-p{font-size:22px;font-weight:700;fill:#0B2545}
+.pm [data-off]{display:none}
+
+.partner-btns{display:grid;gap:10px}
+.partner-btn{display:flex;align-items:center;gap:14px;min-height:64px;padding:10px 14px;border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--white);color:var(--navy);text-decoration:none}
+.partner-btn:hover{border-color:var(--navy);box-shadow:0 2px 8px rgba(11,37,69,.08)}
+.partner-btn img{width:40px;height:40px;border-radius:10px;object-fit:contain;flex:none;background:#fff;border:1px solid var(--hairline)}
+.partner-btn span{display:grid;flex:1;min-width:0}.partner-btn small{color:var(--muted);font-size:14px}
+.partner-btn .i{color:var(--muted);flex:none}
+.store-badges{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.store-badges img{display:block;height:46px;width:auto}
+.store-badges a:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+
 /* hero carousel */
 .hc{position:relative;display:grid;gap:12px;min-width:0}
 .hc-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;border-radius:var(--r-md);scrollbar-width:none;aspect-ratio:4/3;max-width:100%;background:var(--navy)}
@@ -364,7 +407,7 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
 .hc-play .i:last-child{display:none}.hc-play[data-on="0"] .i:first-child{display:none}.hc-play[data-on="0"] .i:last-child{display:block}
 @media (prefers-reduced-motion:reduce){.hc-track{scroll-behavior:auto}.hc-play{display:none}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "LocalBusiness", "@id": "https://www.sunlines.it/#org", "name": "Sun Lines", "legalName": "Sun Lines Elite Service S.r.l.", "slogan": "La Sardegna inizia dal viaggio", "description": "Azienda di trasporto passeggeri con sede a Olbia, attiva da oltre 60 anni: linee di trasporto pubblico locale in Gallura, Airbus Olbia–Sassari–Alghero, noleggio autobus e auto con conducente, parcheggio vicino all'aeroporto di Olbia.", "url": "https://www.sunlines.it/", "logo": "https://www.sunlines.it/sun-lines-logo.svg", "telephone": "+39 0789 50885", "email": "info@sunlines.it", "vatID": "IT00358880904", "address": {"@type": "PostalAddress", "streetAddress": "Via Pozzo 23", "postalCode": "07026", "addressLocality": "Olbia", "addressRegion": "SS", "addressCountry": "IT"}, "founder": {"@type": "Person", "name": "Luca Cassitta"}, "areaServed": [{"@type": "Place", "name": "Olbia"}, {"@type": "Place", "name": "Gallura"}, {"@type": "Place", "name": "Sardegna"}], "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "telephone": "+39 346 320 6740", "email": "info@sunlines.it", "availableLanguage": ["it"]}], "memberOf": [{"@type": "Organization", "name": "ANAV"}, {"@type": "Organization", "name": "CNA"}, {"@type": "Organization", "name": "Confcommercio"}], "sameAs": ["https://www.facebook.com/sunlinesbus", "https://www.instagram.com/sunlinesbus"]}, {"@type": "ParkingFacility", "name": "Promo Parking by Sunlines", "description": "Parcheggio custodito e videosorvegliato a 3 minuti a piedi dall’aeroporto di Olbia Costa Smeralda, con passaggio pedonale diretto per il terminal. Area camper attrezzata con allaccio elettrico, acqua e bagno pubblico.", "address": {"@type": "PostalAddress", "addressLocality": "Olbia", "addressRegion": "SS", "addressCountry": "IT"}, "telephone": "+39 346 320 6740", "parentOrganization": {"@id": "https://www.sunlines.it/#org"}, "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Custodito", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Videosorveglianza", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Area camper", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Allaccio elettrico camper", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Acqua", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Bagno pubblico", "value": true}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.sunlines.it/"}, {"@type": "ListItem", "position": 2, "name": "Parcheggio", "item": "https://www.sunlines.it/parcheggio-aeroporto-olbia"}]}]}</script></head><body>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "LocalBusiness", "@id": "https://www.sunlines.it/#org", "name": "Sun Lines", "legalName": "Sun Lines Elite Service S.r.l.", "slogan": "La Sardegna inizia dal viaggio", "description": "Azienda di trasporto passeggeri con sede a Olbia, attiva da oltre 60 anni: linee di trasporto pubblico locale in Gallura, Airbus Olbia–Sassari–Alghero, noleggio autobus e auto con conducente, parcheggio vicino all'aeroporto di Olbia.", "url": "https://www.sunlines.it/", "logo": "https://www.sunlines.it/sun-lines-logo.svg", "telephone": "+39 0789 50885", "email": "info@sunlines.it", "vatID": "IT00358880904", "address": {"@type": "PostalAddress", "streetAddress": "Via Pozzo 23", "postalCode": "07026", "addressLocality": "Olbia", "addressRegion": "SS", "addressCountry": "IT"}, "founder": {"@type": "Person", "name": "Luca Cassitta"}, "areaServed": [{"@type": "Place", "name": "Olbia"}, {"@type": "Place", "name": "Gallura"}, {"@type": "Place", "name": "Sardegna"}], "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "telephone": "+39 346 320 6740", "email": "info@sunlines.it", "availableLanguage": ["it"]}], "memberOf": [{"@type": "Organization", "name": "ANAV"}, {"@type": "Organization", "name": "CNA"}, {"@type": "Organization", "name": "Confcommercio"}], "sameAs": ["https://www.facebook.com/sunlinesbus", "https://www.instagram.com/sunlinesbus"]}, {"@type": "ParkingFacility", "name": "Promo Parking by Sunlines", "description": "Parcheggio custodito e videosorvegliato a 3 minuti a piedi dall’aeroporto di Olbia Costa Smeralda, con passaggio pedonale diretto per il terminal. Area camper attrezzata con allaccio elettrico, acqua e bagno pubblico.", "address": {"@type": "PostalAddress", "streetAddress": "Via dei Fornai 5", "postalCode": "07026", "addressLocality": "Olbia", "addressRegion": "SS", "addressCountry": "IT"}, "openingHours": "Mo-Su 00:00-23:59", "telephone": "+39 346 320 6740", "parentOrganization": {"@id": "https://www.sunlines.it/#org"}, "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Custodito", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Videosorveglianza", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Area camper", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Allaccio elettrico camper", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Acqua", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Bagno pubblico", "value": true}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.sunlines.it/"}, {"@type": "ListItem", "position": 2, "name": "Parcheggio", "item": "https://www.sunlines.it/parcheggio-aeroporto-olbia"}]}]}</script></head><body>
 <a class="skip" href="#main">Vai al contenuto</a>
 <header class="site-header"><div class="wrap hdr">
   <a class="logo" href="index.html" aria-label="Sun Lines, home"><img src="sun-lines-logo.svg" alt="Sun Lines Elite Service" width="149" height="40"></a>
@@ -404,7 +447,11 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
     <h2 class="h2">Parcheggio auto</h2>
     <p>Il parcheggio è custodito e dotato di videosorveglianza.</p>
     <p>Offriamo tariffe giornaliere tramite i principali portali di prenotazione, a prezzi competitivi:</p>
-    <div class="actions"><a class="btn btn-outline btn-sm" href="https://www.parkingmycar.it/">Parkingmycar <svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg></a><a class="btn btn-outline btn-sm" href="https://parkos.it/">Parkos <svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg></a><a class="btn btn-outline btn-sm" href="https://www.myparking.it/">Myparking <svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg></a></div>
+    <div class="partner-btns">
+      <a class="partner-btn" href="https://www.parkingmycar.it/parcheggio-aeroporto-olbia-costa-smeralda/promo-parking-sun-lines-0"><img src="img/parcheggio-partner/parkingmycar.svg" alt="" width="40" height="40"><span><strong>ParkingMyCar</strong><small>Prenota su parkingmycar.it</small></span><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg></a>
+      <a class="partner-btn" href="https://parkos.it/"><img src="img/parcheggio-partner/parkos.png" alt="" width="40" height="40"><span><strong>Parkos</strong><small>Prenota su parkos.it</small></span><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg></a>
+      <a class="partner-btn" href="https://www.myparking.it/"><img src="img/parcheggio-partner/myparking.png" alt="" width="40" height="40"><span><strong>MyParking</strong><small>Prenota su myparking.it</small></span><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg></a>
+    </div>
     <p>Sono disponibili anche formule semestrali e annuali: contattaci su WhatsApp al <strong class="tnum">(+39) 346 320 6740</strong> per tariffe e disponibilità.</p>
   </article>
   <article class="panel" id="camper">
@@ -416,6 +463,67 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
 <section class="section"><div class="wrap">
   <div class="sec-head"><h2 class="h2">Le foto della struttura</h2></div>
   <div class="grid grid-3"><figure class="pic" style="aspect-ratio:16/9"><img src="img/parcheggio/parcheggio-2.jpg" alt="Promo Parking e area camper, foto 2" width="800" height="450" loading="lazy" decoding="async"></figure><figure class="pic" style="aspect-ratio:16/9"><img src="img/parcheggio/parcheggio-3.jpg" alt="Promo Parking e area camper, foto 3" width="800" height="450" loading="lazy" decoding="async"></figure><figure class="pic" style="aspect-ratio:16/9"><img src="img/parcheggio/parcheggio-4.jpg" alt="Promo Parking e area camper, foto 4" width="800" height="450" loading="lazy" decoding="async"></figure><figure class="pic" style="aspect-ratio:16/9"><img src="img/parcheggio/parcheggio-5.jpg" alt="Promo Parking e area camper, foto 5" width="800" height="450" loading="lazy" decoding="async"></figure><figure class="pic" style="aspect-ratio:16/9"><img src="img/parcheggio/parcheggio-1.jpg" alt="Promo Parking e area camper, foto 1" width="800" height="450" loading="lazy" decoding="async"></figure><figure class="ph ph-shoot" style="aspect-ratio:16/9" role="img" aria-label="Foto da scattare: Area camper con camper in sosta"><span class="ph-sun" aria-hidden="true"></span><figcaption><span class="ph-tag"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg> Foto da scattare</span><span class="ph-cap">Area camper con camper in sosta</span></figcaption></figure></div>
+</div></section>
+
+<section class="section section-white pm" id="dove-siamo" aria-labelledby="pm-h">
+<div class="wrap pm-grid">
+  <div class="pm-info">
+    <p class="label eyebrow">Dove siamo</p>
+    <h2 class="h2" id="pm-h">Accanto al terminal, a 3 minuti a piedi</h2>
+    <p class="pm-addr"><strong>Promo Parking by Sun Lines</strong><br>Via dei Fornai 5, 07026 Olbia (SS)</p>
+    <ul class="pm-facts">
+      <li><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg> Aperto 24 ore su 24</li>
+      <li><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg> Custodito e videosorvegliato</li>
+      <li><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg> Posti coperti e scoperti</li>
+      <li><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg> Circa 200 m dal terminal</li>
+    </ul>
+    <div class="mp-chips" role="group" aria-label="Percorsi sulla mappa"><button type="button" class="mp-chip" data-pm="auto" aria-pressed="true"><span class="pm-sw pm-sw-auto" aria-hidden="true"></span>In auto</button><button type="button" class="mp-chip" data-pm="piedi" aria-pressed="true"><span class="pm-sw pm-sw-piedi" aria-hidden="true"></span>A piedi</button></div>
+    <ol class="pm-steps">
+      <li data-pm="auto"><strong>In auto</strong> — dalla SS729 o dalla SP24 segui le indicazioni per l’aeroporto; alla rotatoria prendi Via degli Aviatori verso il terminal e svolta per Via dei Fornai, dove si trova l’ingresso del parcheggio.</li>
+      <li data-pm="piedi"><strong>A piedi</strong> — dal parcheggio al terminal dell’aeroporto sono circa 200 metri, 3 minuti, con passaggio pedonale diretto.</li>
+    </ol>
+    <div class="actions"><a class="btn btn-outline btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=Via+dei+Fornai+5,+07026+Olbia+SS">Google Maps <svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg></a><a class="btn btn-outline btn-sm" href="https://maps.apple.com/?q=Promo+Parking+Sun+Lines&amp;address=Via+dei+Fornai+5,+07026+Olbia+SS">Apple Mappe <svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg></a><a class="btn btn-outline btn-sm" href="https://waze.com/ul?q=Via+dei+Fornai+5,+07026+Olbia+SS&amp;navigate=yes">Waze <svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg></a></div>
+  </div>
+  <figure class="pm-fig">
+    <svg class="pm-svg" viewBox="0 0 640 440" role="img" aria-labelledby="pm-t pm-d" xmlns="http://www.w3.org/2000/svg">
+      <title id="pm-t">Come arrivare a Promo Parking by Sun Lines</title>
+      <desc id="pm-d">Mappa schematica dell’area dell’aeroporto di Olbia Costa Smeralda, non in scala. Il parcheggio Promo Parking by Sun Lines, segnato con una P arancione, si trova in Via dei Fornai 5, a ovest del terminal, accanto a Via degli Aviatori. In auto: dalla SS729 o dalla SP24 segui le indicazioni per l’aeroporto; alla rotatoria prendi Via degli Aviatori verso il terminal e svolta per Via dei Fornai, dove si trova l’ingresso del parcheggio. A piedi: dal parcheggio al terminal dell’aeroporto sono circa 200 metri, 3 minuti, con passaggio pedonale diretto.</desc>
+      <defs><pattern id="pm-stripes" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#E3ECF4"/><rect width="10" height="3" fill="#D6E3EE"/></pattern></defs>
+      <rect width="640" height="440" fill="#F7F4EE"/>
+      <!-- airport grounds -->
+      <path d="M400 150 L640 90 L640 440 L330 440 Z" fill="url(#pm-stripes)"/>
+      <path d="M410 440 L640 262 L640 314 L478 440 Z" fill="#C9D6E2"/>
+      <text class="pm-lbl pm-lbl-muted" x="560" y="372" text-anchor="middle" transform="rotate(-37 560 372)">Pista</text>
+      <!-- roads -->
+      <path class="pm-road pm-road-major" d="M-10 60 L120 62 C200 64 280 40 360 -10"/>
+      <text class="pm-lbl pm-lbl-road" x="14" y="44">SS729 · Olbia centro, Sassari</text>
+      <path class="pm-road" d="M120 62 C130 150 150 230 172 282"/>
+      <text class="pm-lbl pm-lbl-road" x="112" y="190" text-anchor="end">SP24</text>
+      <path class="pm-road" d="M60 440 C100 390 140 330 168 300"/>
+      <circle class="pm-rbt" cx="180" cy="290" r="16"/>
+      <path class="pm-road" d="M196 288 C250 276 300 266 330 258 C370 248 400 240 418 236"/>
+      <circle class="pm-rbt" cx="428" cy="234" r="10"/>
+      <path class="pm-road pm-road-minor" d="M330 258 L324 210"/>
+      <text class="pm-lbl pm-lbl-road" x="236" y="306" transform="rotate(-12 236 306)">Via degli Aviatori</text>
+      <text class="pm-lbl pm-lbl-road pm-small" x="340" y="244">Via dei Fornai</text>
+      <!-- terminal -->
+      <rect x="436" y="186" width="196" height="60" rx="6" fill="#0B2545"/>
+      <text class="pm-lbl pm-lbl-inv" x="534" y="211" text-anchor="middle">Terminal</text>
+      <text class="pm-lbl pm-lbl-inv pm-small" x="534" y="230" text-anchor="middle">Aeroporto Olbia Costa Smeralda</text>
+      <!-- routes -->
+      <path class="pm-route pm-route-auto" data-pm="auto" d="M-10 60 L120 62 C130 150 150 230 172 282 Q180 296 196 292 C250 278 300 266 330 258 L325 214"/>
+      <path class="pm-route pm-route-piedi" data-pm="piedi" d="M336 204 C376 204 406 210 436 214"/>
+      <text class="pm-lbl pm-walk" data-pm="piedi" x="388" y="196" text-anchor="middle">3 min · 200 m</text>
+      <!-- parking pin -->
+      <g class="pm-pin" transform="translate(324 210)">
+        <path d="M0 0 C-16 -18 -22 -28 -22 -40 A22 22 0 1 1 22 -40 C22 -28 16 -18 0 0 Z" fill="#F68221" stroke="#0B2545" stroke-width="2"/>
+        <text x="0" y="-32" text-anchor="middle" class="pm-p">P</text>
+      </g>
+      <g class="pm-callout"><rect x="128" y="150" width="166" height="42" rx="6" fill="#fff" stroke="#0B2545" stroke-width="1.5"/>
+        <text class="pm-lbl" x="140" y="168">Promo Parking</text><text class="pm-lbl pm-small" x="140" y="184">by Sun Lines · Via dei Fornai 5</text></g>
+      <text class="pm-lbl pm-lbl-muted pm-small" x="630" y="430" text-anchor="end">Mappa schematica, non in scala</text>
+    </svg>
+  </figure>
 </div></section></main>
 <footer class="site-footer">
 <div class="ft-stripes" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -515,6 +623,15 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
   b.addEventListener('keydown',function(e){if(e.key==='Escape'&&opener){close()}});
   document.querySelectorAll('[data-cookie-prefs]').forEach(function(x){x.addEventListener('click',function(){open(true,x)})});
   if(!saved)open(false);
+})();
+
+(function(){
+  var r=document.querySelector('.pm');if(!r)return;
+  var on={auto:true,piedi:true},d=r.querySelector('#pm-d'),base=d.textContent.split(' In auto:')[0];
+  var txt={auto:'In auto: '+r.querySelector('li[data-pm="auto"]').textContent.split(' — ')[1],piedi:'A piedi: '+r.querySelector('li[data-pm="piedi"]').textContent.split(' — ')[1]};
+  r.querySelectorAll('.mp-chip[data-pm]').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.pm;on[k]=!on[k];b.setAttribute('aria-pressed',on[k]);
+    r.querySelectorAll('svg [data-pm="'+k+'"]').forEach(function(el){if(on[k])el.removeAttribute('data-off');else el.setAttribute('data-off','')});
+    d.textContent=base+' '+['auto','piedi'].filter(function(x){return on[x]}).map(function(x){return txt[x]}).join(' ')})});
 })();
 
 (function(){

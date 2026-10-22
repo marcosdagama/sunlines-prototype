@@ -184,8 +184,12 @@ def linee():
     <p>Per i titoli acquistati tramite app, il biglietto va acquistato in anticipo e validato al momento della salita a bordo ed esibito in originale nel caso il personale addetto alla controlleria lo richieda, tramite l’app utilizzata per l’acquisto, che dovrà essere usata anche per validare il titolo stesso.</p>
     <p><strong>Attenzione: non sono validi gli screenshot, stampe cartacee di abbonamenti digitali o fotocopie di titoli cartacei. In caso di smarrimento o distruzione non potrà essere rilasciato nessun duplicato.</strong></p>
     <p>Scarica l'app Around Sardinia per info sulla mobilità e acquisto biglietti dallo smartphone.</p>
-    <div class="actions"><a class="btn btn-outline btn-sm" href="https://apps.apple.com/it/app/openmove/id945799463">App Store</a><a class="btn btn-outline btn-sm" href="https://play.google.com/store/apps/details?id=com.openmove">Google Play</a><a class="btn btn-outline btn-sm" href="https://sardegna.openmove.com">Versione web</a></div>
-    <p class="small">Per maggiori informazioni e per dettagli e istruzioni sull'utilizzo del servizio, visita il sito <a href="https://www.openmove.com/it/app/guida/progetto-around-sardinia/">Sardegna Mobilità</a>.</p>
+    <div class="store-badges">
+      <a href="https://apps.apple.com/it/app/around-sardinia/id1629824982"><img src="img/app/app-store-it.png" alt="Scarica Around Sardinia su App Store" width="135" height="46"></a>
+      <a href="https://play.google.com/store/apps/details?id=com.openmove.sardegna"><img src="img/app/google-play-it.png" alt="Disponibile su Google Play: Around Sardinia" width="150" height="46"></a>
+      <a class="btn btn-outline btn-sm store-web" href="https://www.sardegnamobilita.it/">Versione web {icon("external",16)}</a>
+    </div>
+    <p class="small">Istruzioni e dettagli del servizio sul portale regionale <a href="https://www.sardegnamobilita.it/sistema-di-bigliettazione-aroundsardinia">Sardegna Mobilità</a>.</p>
   </div>
   <div style="display:grid;gap:20px">
     <div class="panel"><h2 class="h3">Abbonamenti studenti</h2><p class="small">Sun Lines offre condizioni agevolate per gli studenti pendolari.</p><a class="more" href="abbonamenti-studenti.html">Consulta l’informativa abbonamenti studenti {icon("arrow",18)}</a></div>

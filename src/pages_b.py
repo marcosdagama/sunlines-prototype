@@ -1,4 +1,5 @@
 from layout import *
+from parking_map import parking_map
 
 
 def form(fid, fields, submit="Invia richiesta", notice="finalita", marketing=False):
@@ -142,7 +143,11 @@ def parcheggio():
     <h2 class="h2">Parcheggio auto</h2>
     <p>Il parcheggio è custodito e dotato di videosorveglianza.</p>
     <p>Offriamo tariffe giornaliere tramite i principali portali di prenotazione, a prezzi competitivi:</p>
-    <div class="actions"><a class="btn btn-outline btn-sm" href="https://www.parkingmycar.it/">Parkingmycar {icon("external",16)}</a><a class="btn btn-outline btn-sm" href="https://parkos.it/">Parkos {icon("external",16)}</a><a class="btn btn-outline btn-sm" href="https://www.myparking.it/">Myparking {icon("external",16)}</a></div>
+    <div class="partner-btns">
+      <a class="partner-btn" href="https://www.parkingmycar.it/parcheggio-aeroporto-olbia-costa-smeralda/promo-parking-sun-lines-0"><img src="img/parcheggio-partner/parkingmycar.svg" alt="" width="40" height="40"><span><strong>ParkingMyCar</strong><small>Prenota su parkingmycar.it</small></span>{icon("external",16)}</a>
+      <a class="partner-btn" href="https://parkos.it/"><img src="img/parcheggio-partner/parkos.png" alt="" width="40" height="40"><span><strong>Parkos</strong><small>Prenota su parkos.it</small></span>{icon("external",16)}</a>
+      <a class="partner-btn" href="https://www.myparking.it/"><img src="img/parcheggio-partner/myparking.png" alt="" width="40" height="40"><span><strong>MyParking</strong><small>Prenota su myparking.it</small></span>{icon("external",16)}</a>
+    </div>
     <p>Sono disponibili anche formule semestrali e annuali: contattaci su WhatsApp al <strong class="tnum">(+39) {WA_DISPLAY}</strong> per tariffe e disponibilità.</p>
   </article>
   <article class="panel" id="camper">
@@ -154,10 +159,11 @@ def parcheggio():
 <section class="section"><div class="wrap">
   <div class="sec-head"><h2 class="h2">Le foto della struttura</h2></div>
   <div class="grid grid-3">{"".join(photo(f"Promo Parking e area camper, foto {n}", "attuale", "16/9", src=f"parcheggio-{n}") for n in (2,3,4,5,1))}{photo("Area camper con camper in sosta", "scattare", "16/9")}</div>
-</div></section>'''
+</div></section>
+{parking_map()}'''
     fac = {"@type": "ParkingFacility", "name": "Promo Parking by Sunlines", "description": "Parcheggio custodito e videosorvegliato a 3 minuti a piedi dall’aeroporto di Olbia Costa Smeralda, con passaggio pedonale diretto per il terminal. Area camper attrezzata con allaccio elettrico, acqua e bagno pubblico.",
-           "address": {"@type": "PostalAddress", "addressLocality": "Olbia", "addressRegion": "SS", "addressCountry": "IT"},
-           "telephone": "+39 346 320 6740", "parentOrganization": {"@id": BASE + "/#org"},
+           "address": {"@type": "PostalAddress", "streetAddress": "Via dei Fornai 5", "postalCode": "07026", "addressLocality": "Olbia", "addressRegion": "SS", "addressCountry": "IT"},
+           "openingHours": "Mo-Su 00:00-23:59", "telephone": "+39 346 320 6740", "parentOrganization": {"@id": BASE + "/#org"},
            "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": n, "value": True} for n in ["Custodito", "Videosorveglianza", "Area camper", "Allaccio elettrico camper", "Acqua", "Bagno pubblico"]]}
     ld = jsonld(ORG, fac, breadcrumb_ld([("Home", "/"), ("Parcheggio", "/parcheggio-aeroporto-olbia")]))
     return page(slug="parcheggio", title="Parcheggio aeroporto di Olbia – Promo Parking | Sun Lines",

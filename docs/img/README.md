@@ -30,3 +30,12 @@ Captions on the site credit the photographer only ("Foto: name"). The Unsplash L
 | File | Used in | Source | Status |
 |---|---|---|---|
 | associazioni/anav.png, cna.png, confcommercio.png | Footer, "Associati a" | Taken from the partner image on the current sunlines.it, converted to one-colour white | Low resolution: ask each association for its official logo files (SVG) before going live |
+
+## Ticket apps and parking partners
+
+| File | Used in | Source | Status |
+|---|---|---|---|
+| app/app-store-it.png | Linee e orari, Biglietti | Apple official Italian badge "Scarica su App Store" (Apple marketing tools), rendered and trimmed | Replace with Apple's SVG download before launch |
+| app/google-play-it.png | Linee e orari, Biglietti | Google official Italian badge "Disponibile su Google Play" | Replace with Google's high-resolution file before launch |
+| parcheggio-partner/parkingmycar.svg | Parcheggio | ParkingMyCar pictogram from parkingmycar.it | Partner brand; confirm use with partner |
+| parcheggio-partner/parkos.png, myparking.png | Parcheggio | App icons from parkos.it and myparking.it | Partner brands; confirm use with partners |
