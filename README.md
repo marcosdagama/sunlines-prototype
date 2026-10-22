@@ -41,6 +41,12 @@ Put the new file in the same folder with the same name (for example `docs/img/fl
 
 Repository Settings → Pages → Build and deployment → Deploy from a branch → `main`, folder `/docs`.
 
+## Tickets: today and later
+
+Today tickets are sold on the external Sun Lines sales portal (sites.bigosolutions.it for the Airbus 90, shop.bigosolutions.it for student passes), exactly as on the current sunlines.it. Every ticket button in the site leads to the "Biglietti" section of the Airbus page (`airbus-olbia-sassari-alghero.html#biglietti`) or straight to the portal, and is marked as an external link.
+
+When on-site ticketing becomes possible, replace the content of that section with the booking widget or checkout. Navigation, the header button and the mobile bar already point there, so nothing else needs to change.
+
 ## Before going live
 
 - Rebuild with `PREVIEW=0` so search engines and AI assistants can index the site.
