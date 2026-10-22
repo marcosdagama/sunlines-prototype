@@ -1,0 +1,3 @@
+# Preview copy: not for search engines. The live rules are in src/robots.production.txt
+User-agent: *
+Disallow: /

@@ -1,0 +1,344 @@
+from common import *
+
+CSS = r"""
+/* Layout: sticky white header, sand page, white cards, one navy footer; mobile gets a fixed contact bar. Single light look, like the real operator site. */
+:root{
+  --blue:#1A75BB; --link:#0E5F96; --orange:#F68221; --navy:#0B2545; --sand:#F2F6F9;
+  --white:#FFFFFF; --muted:#4F5B6B; --emerald:#1FA3A0; --emerald-ink:#0F6E6C; --terracotta:#B5462F;
+  --macchia:#4F6B3A; --granite:#7D8794; --hairline:#DCE3EA; --wa:#25D366; --on-navy:#C9D3E0;
+  --font:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --r-sm:4px; --r-md:10px;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--sand);color:var(--navy);font-family:var(--font);font-size:17px;line-height:1.53;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--white)}
+a{color:var(--link)}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--navy);outline-offset:2px;border-radius:2px}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-0.005em}
+p{margin:0}
+.wrap{max-width:1200px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.skip{position:absolute;left:-999px;top:8px;background:var(--navy);color:var(--white);padding:8px 12px;z-index:100}
+.skip:focus{left:16px}
+.i{flex:none}
+
+/* type scale */
+.display{font-size:clamp(36px,6vw,52px);line-height:1.06;font-weight:700;letter-spacing:-0.01em}
+.h1{font-size:clamp(30px,4.6vw,38px);line-height:1.12;font-weight:700}
+.h2{font-size:clamp(24px,3.4vw,28px);line-height:1.2;font-weight:700}
+.h3{font-size:20px;line-height:1.3;font-weight:600}
+.lead{font-size:clamp(18px,2.2vw,20px);line-height:1.5;color:var(--navy);max-width:62ch}
+.small{font-size:15px;line-height:1.45}
+.muted{color:var(--muted)}
+.label{font-size:13px;line-height:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.prose{display:grid;gap:14px;max-width:68ch}
+.prose ul,.prose ol{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.prose h3{margin-top:10px}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* header */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--white);border-bottom:1px solid var(--hairline)}
+.hdr{display:flex;align-items:center;gap:24px;min-height:72px}
+.logo{display:block;flex:none}
+.logo img{height:44px;width:auto}
+.mainnav{display:flex;gap:4px;margin-left:auto}
+.mainnav a{color:var(--navy);text-decoration:none;font-weight:600;font-size:16px;padding:10px 12px;border-radius:var(--r-sm)}
+.mainnav a:hover{background:var(--sand)}
+.mainnav a[aria-current="page"]{color:var(--blue);box-shadow:inset 0 -3px 0 var(--orange)}
+.hdr-tools{display:flex;align-items:center;gap:10px}
+.lang{display:flex;gap:2px;font-size:14px;font-weight:600}
+.lang a,.lang span{padding:6px 7px;border-radius:var(--r-sm);color:var(--muted);text-decoration:none}
+.lang [aria-current]{color:var(--navy);background:var(--sand)}
+.lang span{color:var(--granite);cursor:not-allowed}
+.menu-btn{display:none;margin-left:auto;align-items:center;gap:6px;background:none;border:1px solid var(--hairline);border-radius:var(--r-md);padding:10px 12px;font:600 16px var(--font);color:var(--navy);min-height:44px}
+@media (max-width:1079px){.mainnav,.hdr-tools .lang,.hdr-tools .btn{display:none}.menu-btn{display:inline-flex}.logo img{height:38px}.hdr{min-height:64px}}
+
+/* drawer */
+.drawer{position:fixed;inset:0;z-index:80;background:rgba(11,37,69,.45)}
+.drawer-panel{position:absolute;top:0;right:0;bottom:0;width:min(360px,100%);background:var(--white);display:flex;flex-direction:column;gap:20px;
+  padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));padding-left:24px;padding-right:max(24px,env(safe-area-inset-right,0px));overflow-y:auto}
+.drawer-top{display:flex;justify-content:space-between;align-items:center}
+.drawer nav{display:grid}
+.drawer nav a{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--hairline);color:var(--navy);text-decoration:none;font-size:20px;font-weight:600}
+.drawer nav a[aria-current="page"]{color:var(--blue)}
+.drawer .contact-list{display:grid;gap:10px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 20px;border-radius:var(--r-md);font:600 16px/1.2 var(--font);text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn-primary{background:var(--blue);color:var(--white)}
+.btn-primary:hover{background:#155f99}
+.btn-outline{background:var(--white);color:var(--link);border-color:var(--blue)}
+.btn-outline:hover{background:var(--sand)}
+.btn-wa{background:var(--wa);color:var(--navy);border-radius:999px}
+.btn-wa:hover{background:#1fbe5b}
+.btn-sm{min-height:40px;padding:8px 14px;font-size:15px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+
+/* stripes: the logo's sun bands, one per screen at most */
+.stripes{display:block;width:72px;height:30px;background:repeating-linear-gradient(to bottom,var(--orange) 0 6px,transparent 6px 12px)}
+
+/* sections */
+.section{padding-block:56px}
+.section-tight{padding-block:36px}
+.section-white{background:var(--white)}
+.sec-head{display:grid;gap:10px;margin-bottom:28px;max-width:70ch}
+.eyebrow{color:var(--terracotta)}
+@media (max-width:767px){.section{padding-block:40px}}
+
+/* hero */
+.hero{padding-block:48px 56px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-copy{display:grid;gap:18px}
+@media (max-width:899px){.hero-grid{grid-template-columns:1fr}.hero{padding-block:28px 40px}}
+.page-hero{padding-block:28px 40px}
+.page-hero .hero-grid{align-items:end}
+
+/* audience doors */
+.doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:899px){.doors{grid-template-columns:1fr}}
+.door{display:grid;gap:10px;align-content:start;background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-md);padding:20px;text-decoration:none;color:var(--navy)}
+.door:hover{border-color:var(--blue)}
+.door .door-ic{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;background:var(--sand);color:var(--blue)}
+.door .links{display:grid;gap:6px;margin-top:4px}
+.door .links a{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:600;text-decoration:none;color:var(--link);padding:6px 0;border-top:1px solid var(--hairline)}
+
+/* cards */
+.grid{display:grid;gap:20px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1079px){.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:899px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+.card{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-md);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card-body{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card-body .btn,.card-body .more{margin-top:auto}
+.more{display:inline-flex;align-items:center;gap:6px;font-weight:600;text-decoration:none;color:var(--link)}
+.panel{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-md);padding:24px;display:grid;gap:14px;min-width:0}
+
+/* photo placeholder */
+.ph{position:relative;margin:0;width:100%;max-width:100%;background:var(--navy);overflow:hidden;display:flex;align-items:flex-start;color:var(--white)}
+.card .ph{border-radius:0}
+.hero .ph,.page-hero .ph,.ph.rounded{border-radius:var(--r-md)}
+.ph-sun{position:absolute;right:8%;bottom:-30%;width:42%;aspect-ratio:1;border-radius:50%;
+  background:repeating-linear-gradient(to bottom,var(--orange) 0 14%,transparent 14% 17%);opacity:.9}
+.ph-shoot{background:#24364F}
+.ph-shoot .ph-sun{opacity:.35}
+.ph figcaption{position:relative;display:grid;gap:4px;padding:14px 16px;max-width:88%}
+.ph-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--white)}
+.ph-shoot .ph-tag{color:var(--orange)}
+.ph-cap{font-size:15px;line-height:1.3;color:var(--on-navy)}
+
+.pic{position:relative;margin:0;width:100%;max-width:100%;overflow:hidden;background:var(--sand)}
+.pic img{width:100%;height:100%;object-fit:cover}
+.hero .pic,.page-hero .pic,.prose .pic,.grid>.pic,.panel .pic{border-radius:var(--r-md)}
+.pic .credit{position:absolute;right:8px;bottom:8px;font-size:11px;line-height:1.3;background:rgba(11,37,69,.72);color:var(--white);padding:2px 6px;border-radius:3px}
+/* alerts */
+.alerts{display:grid;gap:16px}
+.alert{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-md);padding:18px 20px}
+.alert-ic{width:36px;height:36px;border-radius:999px;display:grid;place-items:center;background:var(--terracotta);color:var(--white)}
+.alert-ic.info{background:var(--blue)}
+.alert h3{font-size:18px;font-weight:600;margin-bottom:4px}
+
+/* line badges */
+.line{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.badge{min-width:52px;height:52px;padding:0 8px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--navy);color:var(--white);font-weight:700;font-size:22px;font-variant-numeric:tabular-nums}
+.badge.b90{background:var(--blue)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--sand);color:var(--navy)}
+.pill.season{background:#E3F1F0;color:var(--emerald-ink);border-radius:var(--r-sm)}
+.stops{color:var(--muted);font-size:15px}
+
+/* faq */
+.faq{display:grid;gap:10px}
+.faq details{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-md)}
+.faq summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;font-weight:600;font-size:17px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:20px;top:12px;font-size:24px;font-weight:400;color:var(--blue)}
+.faq details[open] summary::after{content:"–"}
+.faq .ans{padding:0 20px 18px;display:grid;gap:10px;max-width:72ch}
+.faq-group{display:grid;gap:12px}
+.faq-group+.faq-group{margin-top:28px}
+
+/* forms */
+.form{display:grid;gap:16px}
+.field{display:grid;gap:6px}
+.field label{font-size:14px;font-weight:500}
+.field input,.field textarea,.field select{font:400 17px var(--font);color:var(--navy);background:var(--white);border:1px solid var(--granite);border-radius:var(--r-sm);padding:12px 14px;min-height:48px;width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:2px solid var(--navy);outline-offset:1px;border-color:var(--navy)}
+.field-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.field-row{grid-template-columns:1fr}}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.check input{width:20px;height:20px;margin-top:2px;flex:none}
+.req{color:var(--terracotta)}
+.form-note{font-size:15px;color:var(--macchia);font-weight:600}
+.proto-note{font-size:14px;color:var(--muted)}
+
+/* breadcrumbs */
+.crumbs ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;font-size:14px;color:var(--muted)}
+.crumbs li+li::before{content:"/";margin-right:6px;color:var(--granite)}
+.crumbs a{color:var(--muted)}
+
+/* contact strip */
+.contact-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:899px){.contact-strip{grid-template-columns:1fr}}
+.cbox{display:grid;gap:6px;background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-md);padding:18px 20px}
+.cbox .val{font-size:20px;font-weight:700;user-select:all}
+
+/* partners */
+.partners{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.partner{border:1px solid var(--hairline);border-radius:var(--r-sm);padding:10px 16px;font-weight:700;letter-spacing:.04em;color:var(--muted);background:var(--white)}
+
+/* footer */
+.site-footer{background:var(--navy);color:var(--white);padding-block:48px 32px}
+.ft-grid{display:grid;grid-template-columns:1.3fr repeat(3,minmax(0,1fr));gap:32px}
+@media (max-width:899px){.ft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.ft-grid{grid-template-columns:1fr}}
+.site-footer h2{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.site-footer a{color:var(--white);text-decoration:none}
+.site-footer a:hover{text-decoration:underline}
+.site-footer .fine{color:var(--on-navy);font-size:14px}
+.ft-brand{display:grid;gap:14px;align-content:start}
+.ft-brand img{height:46px;width:auto}
+.ft-legal{border-top:1px solid rgba(255,255,255,.18);margin-top:36px;padding-top:20px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+
+/* mobile contact bar */
+.mbar{display:none}
+@media (max-width:767px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--white);border-top:1px solid var(--hairline);
+    padding-top:8px;padding-bottom:calc(8px + env(safe-area-inset-bottom,0px));padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+  .mbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;border-radius:var(--r-md);text-decoration:none;font-weight:600;font-size:14px;color:var(--navy);background:var(--sand)}
+  .mbar a.wa{background:var(--wa)}
+  .mbar a.cta{background:var(--blue);color:var(--white);flex-direction:row;gap:8px;font-size:16px}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+}
+"""
+
+JS = r"""
+(function(){
+  var btn=document.getElementById('menu-open'),dr=document.getElementById('drawer'),cl=document.getElementById('menu-close');
+  function open(){dr.hidden=false;btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';cl.focus()}
+  function close(){dr.hidden=true;btn.setAttribute('aria-expanded','false');document.body.style.overflow='';btn.focus()}
+  if(btn){btn.addEventListener('click',open);cl.addEventListener('click',close);
+    dr.addEventListener('click',function(e){if(e.target===dr)close()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!dr.hidden)close()});}
+  document.querySelectorAll('form[data-proto]').forEach(function(f){
+    f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');
+      if(!f.checkValidity()){f.reportValidity();return}
+      n.hidden=false;n.textContent='Prototipo: il modulo funziona come esempio e non invia dati.';});
+  });
+})();
+"""
+
+FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap">'
+
+
+def cur(k, active):
+    return ' aria-current="page"' if k == active else ''
+
+
+def header(active):
+    links = "".join(
+        f'<a href="{h}"{cur(k, active)}>{esc(t)}</a>' for h, t, k in NAV)
+    dlinks = "".join(
+        f'<a href="{h}"{cur(k, active)}>{esc(t)}{icon("arrow",18)}</a>' for h, t, k in NAV)
+    return f'''<a class="skip" href="#main">Vai al contenuto</a>
+<header class="site-header"><div class="wrap hdr">
+  <a class="logo" href="index.html" aria-label="Sun Lines, home"><img src="sun-lines-logo.svg" alt="Sun Lines Elite Service" width="149" height="40"></a>
+  <nav class="mainnav" aria-label="Principale">{links}</nav>
+  <div class="hdr-tools">
+    <div class="lang" aria-label="Lingua"><a href="index.html" aria-current="true" lang="it">IT</a><span lang="en" title="English version in preparation" aria-disabled="true">EN</span><span lang="de" title="Deutsche Version in Vorbereitung" aria-disabled="true">DE</span></div>
+    <a class="btn btn-primary btn-sm" href="airbus-olbia-sassari-alghero.html#biglietti">{icon("ticket",18)} Biglietti Airbus</a>
+  </div>
+  <button class="menu-btn" id="menu-open" type="button" aria-controls="drawer" aria-expanded="false">{icon("menu",22)} Menu</button>
+</div></header>
+<div class="drawer" id="drawer" hidden><div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="drawer-top"><img src="sun-lines-logo.svg" alt="Sun Lines" height="34" style="height:34px;width:auto"><button class="menu-btn" style="display:inline-flex;margin:0" id="menu-close" type="button">{icon("close",22)} Chiudi</button></div>
+  <nav aria-label="Principale">{dlinks}</nav>
+  <a class="btn btn-primary" href="airbus-olbia-sassari-alghero.html#biglietti">{icon("ticket",18)} Biglietti Airbus 90</a>
+  <div class="contact-list">
+    <p class="label muted">Contatti</p>
+    <p><strong>Telefono</strong> <span class="tnum">{PHONE}</span></p>
+    <p><strong>WhatsApp</strong> <span class="tnum">{WA_DISPLAY}</span></p>
+    <p><strong>Email</strong> {EMAIL}</p>
+    <a class="btn btn-wa" href="{WA["general"]}">{icon("chat",18)} Scrivici su WhatsApp</a>
+  </div>
+  <div class="lang"><a href="index.html" aria-current="true">Italiano</a><span title="In preparazione">English</span><span title="In Vorbereitung">Deutsch</span></div>
+</div></div>'''
+
+
+def footer():
+    return f'''<footer class="site-footer"><div class="wrap">
+<div class="ft-grid">
+  <div class="ft-brand">
+    <img src="sun-lines-logo-white.svg" alt="Sun Lines Elite Service" width="173" height="46">
+    <p class="fine">Da oltre 60 anni colleghiamo Olbia, la Gallura e il nord della Sardegna.</p>
+    <p>Via Pozzo 23 – 07026 Olbia (SS)<br>Tel. <span class="tnum">(+39) {PHONE}</span><br>WhatsApp <span class="tnum">(+39) {WA_DISPLAY}</span><br>{EMAIL}</p>
+  </div>
+  <div><h2>Servizi</h2><ul>
+    <li><a href="transfer-ncc.html">Transfer e auto con conducente</a></li>
+    <li><a href="noleggio-autobus.html">Noleggio autobus con conducente</a></li>
+    <li><a href="airbus-olbia-sassari-alghero.html">Airbus Olbia – Sassari – Alghero</a></li>
+    <li><a href="linee-e-orari.html">Linee e orari TPL</a></li>
+    <li><a href="parcheggio-aeroporto-olbia.html">Parcheggio aeroporto Olbia</a></li>
+  </ul></div>
+  <div><h2>Informazioni</h2><ul>
+    <li><a href="chi-siamo.html">Chi siamo</a></li>
+    <li><a href="domande-frequenti.html">Domande frequenti</a></li>
+    <li><a href="abbonamenti-studenti.html">Abbonamenti studenti</a></li>
+    <li><a href="lavora-con-noi.html">Lavora con noi</a></li>
+    <li><a href="{BASE}/customer-satisfaction.html?view=question&amp;id=1">Questionario soddisfazione TPL</a></li>
+  </ul></div>
+  <div><h2>Assistenza</h2><ul>
+    <li><a href="assistenza.html#assistenza">Richiesta di assistenza</a></li>
+    <li><a href="assistenza.html#reclami">Reclami e segnalazioni</a></li>
+    <li><a href="assistenza.html#fattura">Richiesta fattura</a></li>
+    <li><a href="condizioni-generali.html">Condizioni generali di trasporto</a></li>
+    <li><a href="privacy.html">Informativa privacy</a></li>
+  </ul></div>
+</div>
+<div class="ft-legal"><p class="fine">Sun Lines Elite Service S.r.l. · P. IVA 00358880904 · Membro di ANAV, CNA e Confcommercio</p>
+<p class="fine"><a href="{FB}">Facebook</a> · <a href="{IG}">Instagram</a></p></div>
+</div></footer>'''
+
+
+def mbar(cta_href, cta_label, wa_key="general"):
+    return f'''<nav class="mbar" aria-label="Contatti rapidi">
+<a href="tel:{PHONE_INTL}">{icon("phone",20)}Chiama</a>
+<a class="wa" href="{WA[wa_key]}">{icon("chat",20)}WhatsApp</a>
+<a class="cta" href="{cta_href}">{esc(cta_label)}</a></nav>'''
+
+
+def page(*, slug, title, desc, canonical_path, active, body, ld, cta=("noleggio-autobus.html#preventivo", "Preventivo"), wa="general", is_index=False, og_type="website"):
+    canon = BASE + canonical_path
+    meta = f'''<title>{esc(title)}</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{canon}">
+<link rel="alternate" hreflang="it" href="{canon}">
+<link rel="alternate" hreflang="x-default" href="{canon}">
+<meta property="og:type" content="{og_type}"><meta property="og:site_name" content="Sun Lines"><meta property="og:locale" content="it_IT">
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{canon}">
+<meta property="og:image" content="{BASE}/og/{slug}.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="sun-lines-sun-mark.svg" type="image/svg+xml">
+{FONTS}
+<style>{CSS}</style>
+{ld}'''
+    content = f'''{header(active)}
+<main id="main">{body}</main>
+{footer()}
+{mbar(cta[0], cta[1], wa)}
+<script>{JS}</script>'''
+    if is_index:
+        return meta + "\n" + content
+    return f'''<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}}body{{margin:0}}[hidden]{{display:none!important}}</style>
+{meta}</head><body>
+{content}
+</body></html>'''
