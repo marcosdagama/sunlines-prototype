@@ -14,11 +14,13 @@ Each subfolder holds one kind of picture. To replace a photo, keep the **same fi
 | flotta/abbonamenti-studenti.jpg | Abbonamenti studenti | sunlines.it | Looks AI-generated: replace |
 | flotta/setra-mare.jpg | (spare) | sunlines.it | Looks AI-generated |
 | parcheggio/parcheggio-1…5.jpg | Parcheggio | sunlines.it | Real photos |
-| destinazioni/alghero.jpg | Airbus 90, Linea 90 | Unsplash, Monika | Free licence |
-| destinazioni/costa-smeralda.jpg | Linea 20 | Unsplash, Nicolò Canu | Free licence |
-| destinazioni/castelsardo.jpg | Linea 30 | Unsplash, Daniel Dorfer | Free licence |
-| destinazioni/gallura-granito.jpg | Linea 50 | Unsplash, Massimo Virgilio | Free licence |
+| destinazioni/alghero.jpg | Airbus 90, Linea 90 | Unsplash, Domenico Adornato — beach near Alghero (unsplash.com/photos/WnL2Vf0zTRw) | Unsplash License |
+| destinazioni/costa-smeralda.jpg | Linea 20 | Unsplash, Nicolò Canu | Unsplash License |
+| destinazioni/castelsardo.jpg | Linea 30 | Unsplash, Daniel Dorfer | Unsplash License |
+| destinazioni/gallura-mare.jpg | Linea 50 | Unsplash, Massimo Virgilio — Valle dell’Erica, Santa Teresa Gallura (unsplash.com/photos/frZJaDT-9DA) | Unsplash License |
 
 Still missing (shown as "Foto da scattare" placeholders): founder or archive photo (Chi siamo), driver portrait (Lavora con noi), camper area with campers (Parcheggio).
 
 Current files are 800 px wide, captured for the prototype. Replace them with the original high-resolution files before launch.
+
+Captions on the site credit the photographer only ("Foto: name"). The Unsplash License does not require attribution; the source is kept here.

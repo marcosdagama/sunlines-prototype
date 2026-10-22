@@ -82,7 +82,7 @@ def icon(name, size=20):
     }[name]
     return f'<svg class="i" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{p}</svg>'
 
-IMGDIR = {'bus-olbia-ruota': 'flotta', 'setra-costa': 'flotta', 'sprinter-costa': 'flotta', 'classe-v': 'flotta', 'irizar-blu-costa-smeralda': 'flotta', 'irizar-verde-tramonto': 'flotta', 'airbus-setra-citta': 'flotta', 'setra-mare': 'flotta', 'abbonamenti-studenti': 'flotta', 'alghero': 'destinazioni', 'costa-smeralda': 'destinazioni', 'castelsardo': 'destinazioni', 'gallura-granito': 'destinazioni', 'parcheggio-1': 'parcheggio', 'parcheggio-2': 'parcheggio', 'parcheggio-3': 'parcheggio', 'parcheggio-4': 'parcheggio', 'parcheggio-5': 'parcheggio'}
+IMGDIR = {'bus-olbia-ruota': 'flotta', 'setra-costa': 'flotta', 'sprinter-costa': 'flotta', 'classe-v': 'flotta', 'irizar-blu-costa-smeralda': 'flotta', 'irizar-verde-tramonto': 'flotta', 'airbus-setra-citta': 'flotta', 'setra-mare': 'flotta', 'abbonamenti-studenti': 'flotta', 'alghero': 'destinazioni', 'costa-smeralda': 'destinazioni', 'castelsardo': 'destinazioni', 'gallura-mare': 'destinazioni', 'parcheggio-1': 'parcheggio', 'parcheggio-2': 'parcheggio', 'parcheggio-3': 'parcheggio', 'parcheggio-4': 'parcheggio', 'parcheggio-5': 'parcheggio'}
 
 def photo(caption, kind="attuale", ratio="16/10", eager=False, src=None, credit=None):
     if src:

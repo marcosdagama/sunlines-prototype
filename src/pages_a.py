@@ -97,7 +97,7 @@ def airbus():
     <p>La linea collega il Porto di Olbia Isola Bianca, il centro città e l’Aeroporto di Olbia Costa Smeralda con Sassari, l’Aeroporto di Alghero Fertilia e il centro di Alghero, offrendo una soluzione pratica per chi arriva in Sardegna o deve spostarsi tra la costa nord-est e il nord-ovest dell’isola.</p>
     <p>Il collegamento diretto tra l’Aeroporto di Olbia Costa Smeralda e l’Aeroporto di Alghero Fertilia permette di viaggiare comodamente in meno di 2 ore.</p>
     <p>Il servizio è disponibile su prenotazione, con biglietto acquistabile comodamente online, per organizzare il proprio viaggio in modo semplice e sicuro.</p>
-    {photo("Alghero, le mura sul mare", ratio="16/9", src="alghero", credit="Monika / Unsplash")}
+    {photo("Spiaggia vicino ad Alghero in estate", ratio="16/9", src="alghero", credit="Domenico Adornato")}
   </div>
   <div class="panel">
     <p class="label muted">In breve</p>
@@ -156,8 +156,8 @@ def linee():
         ("90", "Airbus Olbia – Sassari – Alghero", "Dal 15 aprile al 18 ottobre, domeniche e festivi compresi.",
          "Servizio su prenotazione con biglietto online. Collega porto, centro e aeroporto di Olbia con Sassari, l’aeroporto di Alghero Fertilia e il centro di Alghero.", PDF90, "b90"),
     ]
-    LIMG = {"20": ("Costa Smeralda dall’alto", "costa-smeralda", "Nicolò Canu / Unsplash"), "30": ("Castelsardo", "castelsardo", "Daniel Dorfer / Unsplash"),
-            "50": ("Granito e macchia della Gallura", "gallura-granito", "Massimo Virgilio / Unsplash"), "90": ("Alghero, le mura sul mare", "alghero", "Monika / Unsplash")}
+    LIMG = {"20": ("Costa Smeralda dall’alto", "costa-smeralda", "Nicolò Canu"), "30": ("Castelsardo", "castelsardo", "Daniel Dorfer"),
+            "50": ("Mare e graniti della Gallura, Valle dell’Erica", "gallura-mare", "Massimo Virgilio"), "90": ("Spiaggia vicino ad Alghero in estate", "alghero", "Domenico Adornato")}
     items = "".join(f'''<article class="card" id="linea-{n}">{photo(LIMG[n][0], ratio="16/8", src=LIMG[n][1], credit=LIMG[n][2])}<div class="card-body"><div class="line"><span class="badge {c}">{n}</span><div style="display:grid;gap:8px">
 <h3 class="h3">Linea {n} — {esc(name)}</h3><p><span class="pill season">{esc(season)}</span></p><p class="small">{esc(text)}</p>
 <div class="actions"><a class="btn btn-outline btn-sm" href="{pdf}">{icon("file",16)} Scarica orari e fermate</a>{'<a class="btn btn-primary btn-sm" href="airbus-olbia-sassari-alghero.html">Pagina Airbus 90</a>' if n=="90" else ""}</div></div></div></div></article>''' for n, name, season, text, pdf, c in lines)
