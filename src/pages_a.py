@@ -65,10 +65,6 @@ def home():
 <section class="section" id="avvisi"><div class="wrap">
   <div class="sec-head"><p class="label eyebrow">Avvisi</p><h2 class="h1">Consulta gli avvisi</h2><p class="muted">Linea 90 (Olbia – Sassari – Alghero)</p></div>
   {ALERTS}
-</div></section>
-<section class="section-tight section-white"><div class="wrap" style="display:grid;gap:16px">
-  <p class="label muted">Associazioni di categoria</p>
-  <div class="partners"><span class="partner">ANAV · Associazione Nazionale Autotrasporto Viaggiatori</span><span class="partner">CNA</span><span class="partner">Confcommercio</span></div>
 </div></section>'''
     ld = jsonld(ORG, {"@type": "WebSite", "@id": BASE + "/#website", "url": BASE + "/", "name": "Sun Lines", "inLanguage": "it", "publisher": {"@id": BASE + "/#org"}},
                 {"@type": "ItemList", "name": "Servizi Sun Lines", "itemListElement": [
