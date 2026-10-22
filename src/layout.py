@@ -392,7 +392,7 @@ def footer():
   </div>
   <div class="ft-legal">
     <div class="ft-company">
-      <p>© {COMPANY["name"]} · Sede legale {co("sede_legale", "sede legale")} · {co("registro", "Registro Imprese")}, REA {co("rea", "REA")} · Capitale sociale {co("capitale", "capitale sociale")} · P. IVA {COMPANY["piva"]}</p>
+      <p>© {COMPANY["name"]} · Sede legale {co("sede_legale", "sede legale")} · {co("registro", "Registro Imprese")}, REA {co("rea", "REA")} · P. IVA {COMPANY["piva"]}</p>
       <ul class="ft-legal-links"><li><a href="note-legali.html">Note legali</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="cookie-policy.html">Cookie policy</a></li>{'<li><button type="button" data-cookie-prefs>Preferenze cookie</button></li>' if COOKIE_BANNER else ''}<li><a href="accessibilita.html">Accessibilità</a></li></ul>
     </div>
     <div class="ft-social">
