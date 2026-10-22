@@ -24,3 +24,9 @@ Still missing (shown as "Foto da scattare" placeholders): founder or archive pho
 Current files are 800 px wide, captured for the prototype. Replace them with the original high-resolution files before launch.
 
 Captions on the site credit the photographer only ("Foto: name"). The Unsplash License does not require attribution; the source is kept here.
+
+## Associations (footer)
+
+| File | Used in | Source | Status |
+|---|---|---|---|
+| associazioni/anav.png, cna.png, confcommercio.png | Footer, "Associati a" | Taken from the partner image on the current sunlines.it, converted to one-colour white | Low resolution: ask each association for its official logo files (SVG) before going live |

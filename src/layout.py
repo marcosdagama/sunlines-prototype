@@ -242,6 +242,11 @@ p{margin:0}
 .ft-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .ft-col a{color:var(--white);text-decoration:none;font-size:16px;background:linear-gradient(var(--orange),var(--orange)) 0 100%/0 1.5px no-repeat;transition:background-size .25s;padding-bottom:2px}
 .ft-col a:hover,.ft-col a:focus-visible{background-size:100% 1.5px}
+.ft-assoc{display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px;padding-block:28px;border-top:1px solid rgba(255,255,255,.12)}
+.ft-assoc p{margin:0;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--on-navy)}
+.ft-assoc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:20px 36px}
+.ft-assoc img{display:block;height:52px;width:auto;opacity:.82;transition:opacity .2s}
+.ft-assoc li:hover img{opacity:1}
 .ft-legal{display:flex;flex-wrap:wrap;gap:16px 24px;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
 .ft-legal p{margin:0;font-size:14px;color:var(--on-navy)}.ft-br{display:none}
 .ft-social{display:flex;gap:8px;align-items:center}
@@ -251,7 +256,7 @@ p{margin:0}
 .site-footer a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
 @media (max-width:959px){.ft-top{grid-template-columns:1fr;gap:32px}}
 @media (max-width:599px){.ft-stripes{margin-bottom:40px}.ft-contact{grid-template-columns:1fr}.ft-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}.ft-links .ft-col:last-child{grid-column:1/-1}
-  .ft-legal{flex-direction:column;align-items:flex-start}.ft-br{display:inline}.ft-sep{display:none}.ft-sun{width:300px;height:300px;right:-110px;bottom:40px}}
+  .ft-legal{flex-direction:column;align-items:flex-start}.ft-assoc ul{gap:16px 28px}.ft-assoc img{height:42px}.ft-sun{width:300px;height:300px;right:-110px;bottom:40px}}
 
 /* mobile contact bar */
 .mbar{display:none}
@@ -374,8 +379,16 @@ def footer():
     <ul class="ft-contact">{rows}</ul>
   </div>
   <div class="ft-links">{cols}</div>
+  <div class="ft-assoc">
+    <p>Associati a</p>
+    <ul>
+      <li><img src="img/associazioni/anav.png" alt="ANAV – Associazione Nazionale Autotrasporto Viaggiatori" width="255" height="111" loading="lazy"></li>
+      <li><img src="img/associazioni/cna.png" alt="CNA – Confederazione Nazionale dell’Artigianato" width="110" height="111" loading="lazy"></li>
+      <li><img src="img/associazioni/confcommercio.png" alt="Confcommercio – Imprese per l’Italia" width="255" height="110" loading="lazy"></li>
+    </ul>
+  </div>
   <div class="ft-legal">
-    <p>© Sun Lines Elite Service S.r.l. · P. IVA 00358880904<span class="ft-sep"> · </span><br class="ft-br">Membro di ANAV, CNA e Confcommercio</p>
+    <p>© Sun Lines Elite Service S.r.l. · P. IVA 00358880904</p>
     <div class="ft-social">
       <a href="{FB}" aria-label="Sun Lines su Facebook">{icon("fb", 18)}</a><a href="{IG}" aria-label="Sun Lines su Instagram">{icon("ig", 18)}</a>
       <a class="ft-up" href="#main">{icon("up", 16)} Torna su</a>
