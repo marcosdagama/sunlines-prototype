@@ -527,7 +527,7 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
     if(!v){try{v=JSON.parse(localStorage.getItem(NAME))}catch(e){}}
     if(!v||v.v!==VER||!v.ts||Date.now()-v.ts>MAX)return null;return v}
   function write(c){var v={v:VER,ts:Date.now(),c:c},s=encodeURIComponent(JSON.stringify(v));
-    try{document.cookie=NAME+'='+s+'; Max-Age='+(180*24*3600)+'; Path=/; SameSite=Lax'+(location.protocol==='https:'?'; Secure':'')}catch(e){}
+    try{var dom=/(^|\.)sunlines\.it$/.test(location.hostname)?'; Domain=.sunlines.it':'';document.cookie=NAME+'='+s+'; Max-Age='+(180*24*3600)+'; Path=/'+dom+'; SameSite=Lax'+(location.protocol==='https:'?'; Secure':'')}catch(e){}
     try{localStorage.setItem(NAME,JSON.stringify(v))}catch(e){}
     window.slConsent=c;try{document.dispatchEvent(new CustomEvent('sl:consent',{detail:c}))}catch(e){}}
   var saved=read();window.slConsent=saved?saved.c:{necessari:true};

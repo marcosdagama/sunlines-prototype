@@ -1,0 +1,118 @@
+/* Sun Lines — tema per il portale di vendita Bigo
+   Classi con prefisso sl- per evitare conflitti con gli stili esistenti del portale.
+   Le classi possono essere mappate sui componenti Bigo esistenti (vedi 04-specifiche/mappatura-componenti.md).
+   Richiede sunlines-tokens.css. */
+@import url("sunlines-tokens.css");
+
+*,*::before,*::after{box-sizing:border-box}
+body.sl{margin:0;background:var(--sl-mist);color:var(--sl-navy);font-family:var(--sl-font);font-size:var(--sl-fs-body);line-height:var(--sl-lh-body);-webkit-font-smoothing:antialiased}
+.sl a{color:var(--sl-link)}
+.sl :focus-visible{outline:2px solid var(--sl-navy);outline-offset:2px}
+.sl h1,.sl h2,.sl h3,.sl p{margin:0}
+.sl-wrap>*{min-width:0}
+.sl-wrap{max-width:var(--sl-maxw);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sl-h1{font-size:var(--sl-fs-h1);line-height:1.12;font-weight:700}
+.sl-h2{font-size:var(--sl-fs-h2);line-height:1.2;font-weight:700}
+.sl-h3{font-size:var(--sl-fs-h3);line-height:1.3;font-weight:600}
+.sl-label{font-size:var(--sl-fs-label);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.sl-muted{color:var(--sl-muted)}.sl-small{font-size:var(--sl-fs-small)}
+.sl-tnum{font-variant-numeric:tabular-nums}
+.sl-stripes{display:block;width:72px;height:30px;background:repeating-linear-gradient(180deg,var(--sl-orange) 0 6px,transparent 6px 12px)}
+
+/* Header: logo a sinistra (link al sito), ritorno al sito, lingua */
+.sl-header{position:sticky;top:0;z-index:50;background:var(--sl-white);border-bottom:1px solid var(--sl-hairline)}
+.sl-header .sl-wrap{display:flex;align-items:center;gap:16px;min-height:72px}
+.sl-logo img{height:44px;width:auto;display:block}
+.sl-header nav{margin-left:auto;display:flex;align-items:center;gap:8px}
+.sl-header nav a{color:var(--sl-navy);font-weight:600;text-decoration:none;padding:10px 12px;border-radius:var(--sl-r-md);min-height:var(--sl-touch);display:inline-flex;align-items:center;gap:6px}
+.sl-header nav a:hover{background:var(--sl-mist)}
+.sl-lang{border:1px solid var(--sl-hairline)}
+@media (max-width:640px){.sl-header .sl-wrap{min-height:64px}.sl-logo img{height:36px}.sl-hide-sm,.sl-header nav a.sl-hide-sm{display:none}}
+
+/* Avanzamento */
+.sl-steps{display:flex;flex-wrap:wrap;gap:6px 6px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:600;color:var(--sl-muted)}
+.sl-steps li{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.sl-steps li+li::before{content:"";width:18px;height:2px;background:var(--sl-hairline)}
+.sl-steps .n{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:2px solid var(--sl-hairline);font-size:13px}
+.sl-steps [aria-current="step"]{color:var(--sl-navy)}.sl-steps [aria-current="step"] .n{border-color:var(--sl-orange);background:var(--sl-orange);color:var(--sl-navy)}
+.sl-steps .done .n{border-color:var(--sl-blue);background:var(--sl-blue);color:#fff}
+
+/* Card e pannelli */
+.sl-card{background:var(--sl-white);border:1px solid var(--sl-hairline);border-radius:var(--sl-r-md);padding:24px;display:grid;gap:16px;min-width:0}
+
+/* Pulsanti */
+.sl-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:var(--sl-r-md);font:600 16px/1.2 var(--sl-font);text-decoration:none;border:2px solid transparent;cursor:pointer}
+.sl-btn-primary,.sl a.sl-btn-primary{background:var(--sl-blue);color:#fff}.sl-btn-primary:hover{background:#155f99}
+.sl-btn-secondary,.sl a.sl-btn-secondary{background:#fff;color:var(--sl-link);border-color:var(--sl-blue)}.sl-btn-secondary:hover{background:var(--sl-mist)}
+.sl-btn-block{width:100%}
+.sl-btn[disabled]{background:var(--sl-hairline);color:var(--sl-muted);cursor:not-allowed;border-color:transparent}
+
+/* Campi */
+.sl-field{display:grid;gap:6px;min-width:0}
+.sl-field label,.sl-field .lab{font-size:14px;font-weight:500}
+.sl-input,.sl-select{font:400 17px var(--sl-font);color:var(--sl-navy);background:#fff;border:1px solid var(--sl-granite);border-radius:var(--sl-r-sm);padding:12px 14px;min-height:48px;width:100%}
+.sl-input:focus,.sl-select:focus{outline:2px solid var(--sl-navy);outline-offset:1px;border-color:var(--sl-navy)}
+.sl-field.err .sl-input{border-color:var(--sl-terracotta)}
+.sl-err{color:var(--sl-terracotta);font-size:14px;font-weight:600}
+.sl-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.sl-row{grid-template-columns:1fr}}
+.sl-req{color:var(--sl-terracotta)}
+
+/* Selettore numerico passeggeri */
+.sl-stepper{display:inline-grid;grid-template-columns:48px 56px 48px;align-items:center;border:1px solid var(--sl-granite);border-radius:var(--sl-r-sm);background:#fff;min-height:48px}
+.sl-stepper button{height:46px;border:0;background:none;font:600 22px var(--sl-font);color:var(--sl-blue);cursor:pointer}
+.sl-stepper output{text-align:center;font-weight:600}
+
+/* Interruttore andata / andata e ritorno */
+.sl-seg{display:inline-flex;width:max-content;max-width:100%;border:1px solid var(--sl-hairline);border-radius:var(--sl-r-md);padding:3px;background:#fff}
+.sl-seg button{min-height:40px;padding:6px 16px;border:0;border-radius:7px;background:none;font:600 15px var(--sl-font);color:var(--sl-muted);cursor:pointer}
+.sl-seg [aria-pressed="true"]{background:var(--sl-navy);color:#fff}
+
+/* Barra delle date */
+.sl-dates{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.sl-date{flex:none;display:grid;justify-items:center;gap:2px;min-width:84px;padding:10px 12px;border:1px solid var(--sl-hairline);border-radius:var(--sl-r-md);background:#fff;color:var(--sl-navy);font:500 14px var(--sl-font);cursor:pointer}
+.sl-date b{font-size:20px}.sl-date small{color:var(--sl-muted)}
+.sl-date[aria-current="date"]{border:2px solid var(--sl-blue);background:#E8F1F9}
+.sl-date[disabled]{opacity:.5;cursor:not-allowed}
+
+/* Corsa nei risultati */
+.sl-trip{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;background:#fff;border:1px solid var(--sl-hairline);border-radius:var(--sl-r-md);padding:18px 20px}
+.sl-trip:hover{border-color:var(--sl-blue);box-shadow:var(--sl-shadow)}
+.sl-times{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.sl-times .line{flex:1;max-width:120px;height:2px;background:var(--sl-hairline);position:relative}
+.sl-times .line::after{content:"";position:absolute;right:0;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--sl-orange)}
+.sl-stops{font-size:15px;color:var(--sl-muted)}
+.sl-badge{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:var(--sl-r-sm);font-size:13px;font-weight:700}
+.sl-badge-line{background:var(--sl-blue);color:#fff}
+.sl-badge-warn{background:#FBEDEA;color:var(--sl-terracotta)}
+.sl-badge-ok{background:#EDF3E8;color:var(--sl-macchia)}
+.sl-price{text-align:right;display:grid;gap:6px;justify-items:end}
+.sl-price b{font-size:24px;font-variant-numeric:tabular-nums}
+.sl-trip.full{background:var(--sl-mist)}.sl-trip.full .sl-times,.sl-trip.full .sl-price b{color:var(--sl-muted)}.sl-trip.full:hover{border-color:var(--sl-hairline);box-shadow:none}
+@media (max-width:640px){.sl-trip{grid-template-columns:1fr}.sl-price{justify-items:stretch;text-align:left;grid-template-columns:1fr auto;align-items:center}}
+
+/* Avvisi */
+.sl-alert{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;padding:14px 16px;border-radius:var(--sl-r-md);border:1px solid var(--sl-hairline);background:#fff}
+.sl-alert-warn{border-left:4px solid var(--sl-terracotta)}
+.sl-alert-info{border-left:4px solid var(--sl-blue)}
+.sl-alert-ok{border-left:4px solid var(--sl-macchia)}
+
+/* Riepilogo */
+.sl-summary dl{display:grid;grid-template-columns:1fr auto;gap:8px 16px;margin:0}
+.sl-summary dt{color:var(--sl-muted)}.sl-summary dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.sl-summary .tot{border-top:1px solid var(--sl-hairline);padding-top:10px;font-weight:700;font-size:20px}
+
+/* Biglietto */
+.sl-ticket{display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:20px;background:#fff;border:1px solid var(--sl-hairline);border-radius:var(--sl-r-md);overflow:hidden}
+.sl-ticket .body{padding:22px;display:grid;gap:10px}
+.sl-ticket .qr{background:var(--sl-mist);display:grid;place-items:center;border-left:2px dashed var(--sl-hairline);padding:16px}
+@media (max-width:640px){.sl-ticket{grid-template-columns:1fr}.sl-ticket .qr{border-left:0;border-top:2px dashed var(--sl-hairline)}}
+
+/* Footer: corto, collega il sito */
+.sl-footer{background:var(--sl-navy);color:#fff;margin-top:56px}
+.sl-footer::before{content:"";display:block;height:6px;background:var(--sl-orange);box-shadow:0 5px 0 rgba(246,130,33,.6)}
+.sl-footer .sl-wrap{display:grid;gap:14px;padding-block:32px 28px}
+.sl-footer a{color:#C9D3E0;text-decoration:none}.sl-footer a:hover{color:#fff;text-decoration:underline}
+.sl-footer .links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;list-style:none;margin:0;padding:0}
+.sl-footer .legal{font-size:14px;color:#C9D3E0}
+@media (prefers-reduced-motion:reduce){.sl *{transition:none!important;animation:none!important}}

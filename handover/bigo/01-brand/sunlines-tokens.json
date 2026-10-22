@@ -1,0 +1,268 @@
+{
+  "name": "Sun Lines",
+  "version": 1,
+  "color": {
+    "themes": [
+      {
+        "id": "light",
+        "name": "Light"
+      }
+    ],
+    "tokens": [
+      {
+        "name": "brand-blue",
+        "value": "#1A75BB",
+        "usage": "Primary. Sampled from the master logo's lettering. Primary buttons, header bar, links on white. White text on it reads at 4.9:1. Not for small text on mist (4.1:1): use link there."
+      },
+      {
+        "name": "sunset-orange",
+        "value": "#F68221",
+        "usage": "Primary. Sampled from the master logo's sun. Accent only, about a tenth of any page: the stripe motif, highlights, 'from' prices in large type, icon accents. Text on it is night-navy (5.9:1), never white (2.6:1)."
+      },
+      {
+        "name": "night-navy",
+        "value": "#0B2545",
+        "usage": "Primary. Body text and headings on mist and white (12.9:1 on mist), footer and dark bands, text on sunset-orange and whatsapp. Sunset-orange text reads on it at 5.9:1."
+      },
+      {
+        "name": "mist",
+        "value": "#F2F6F9",
+        "usage": "Primary. A very light sea-mist tint. Page background and alternating sections; `white` sections and cards sit on it. Replaced the earlier sand, which read as dated. In print, use white paper."
+      },
+      {
+        "name": "white",
+        "value": "#FFFFFF",
+        "usage": "Raised surfaces on mist: cards, forms, timetable tables. Text colour on brand-blue, terracotta and macchia-green."
+      },
+      {
+        "name": "ink",
+        "value": "{night-navy}",
+        "usage": "Default text colour on mist and white."
+      },
+      {
+        "name": "ink-muted",
+        "value": "#4F5B6B",
+        "usage": "Secondary text, captions and metadata on mist (6.4:1) and white."
+      },
+      {
+        "name": "link",
+        "value": "#0E5F96",
+        "usage": "Links and blue text on mist (5.7:1) and white. A deeper step of brand-blue for text only."
+      },
+      {
+        "name": "emerald-sea",
+        "value": "#1FA3A0",
+        "usage": "Secondary. The north-east coast's water. Route lines, map overlays, line badges, info icons. Not for text: 2.8:1 on white."
+      },
+      {
+        "name": "emerald-sea-text",
+        "value": "#0F6E6C",
+        "usage": "Emerald text on mist (5.1:1) and white (6.0:1), e.g. route names and info labels."
+      },
+      {
+        "name": "terracotta",
+        "value": "#B5462F",
+        "usage": "Secondary. Rooftops and Alghero coral. Service alerts and disruption notices, always with an icon and a word. White text on it 5.4:1; as text on mist 4.6:1."
+      },
+      {
+        "name": "macchia-green",
+        "value": "#4F6B3A",
+        "usage": "Secondary. The myrtle and lentisk scrub. Confirmations and nature-tour accents, always with an icon or a word. White text on it 6.2:1; as text on mist 5.1:1."
+      },
+      {
+        "name": "granite",
+        "value": "#7D8794",
+        "usage": "Secondary. A cool granite grey. Borders, input outlines, inactive icons (3.3:1 on mist, enough for marks, not for text)."
+      },
+      {
+        "name": "hairline",
+        "value": "#DCE3EA",
+        "usage": "Decorative dividers and card edges where no meaning is carried."
+      },
+      {
+        "name": "whatsapp",
+        "value": "#25D366",
+        "usage": "WhatsApp buttons and links only, so the channel stays recognisable. Label in night-navy (7.7:1), never white."
+      },
+      {
+        "name": "focus-ring",
+        "value": "{night-navy}",
+        "usage": "Keyboard focus: a 2px solid outline with 2px offset on every interactive element, on mist, white and blue alike."
+      }
+    ]
+  },
+  "type": {
+    "fonts": [],
+    "families": {
+      "sans": "\"Barlow\", \"Helvetica Neue\", Arial, sans-serif"
+    },
+    "groups": [
+      {
+        "name": "Headings",
+        "family": "sans",
+        "styles": [
+          {
+            "name": "display",
+            "fontSize": "52px",
+            "lineHeight": "56px",
+            "fontWeight": 700,
+            "letterSpacing": "-0.01em",
+            "sample": "La Sardegna inizia dal viaggio",
+            "usage": "Hero headline, one per page."
+          },
+          {
+            "name": "heading-1",
+            "fontSize": "38px",
+            "lineHeight": "44px",
+            "fontWeight": 700,
+            "letterSpacing": "-0.005em",
+            "sample": "Noleggio autobus con conducente",
+            "usage": "Page titles."
+          },
+          {
+            "name": "heading-2",
+            "fontSize": "28px",
+            "lineHeight": "34px",
+            "fontWeight": 700,
+            "sample": "Airbus Olbia – Sassari – Alghero",
+            "usage": "Section titles."
+          },
+          {
+            "name": "heading-3",
+            "fontSize": "20px",
+            "lineHeight": "26px",
+            "fontWeight": 600,
+            "sample": "Partenze di oggi",
+            "usage": "Card titles, form section titles."
+          },
+          {
+            "name": "price",
+            "fontSize": "40px",
+            "lineHeight": "44px",
+            "fontWeight": 700,
+            "sample": "da €9",
+            "usage": "Prices and big numbers in offers and service cards."
+          },
+          {
+            "name": "label",
+            "fontSize": "13px",
+            "lineHeight": "16px",
+            "fontWeight": 700,
+            "letterSpacing": "0.06em",
+            "sample": "LINEA 90",
+            "usage": "Eyebrows above headings, line badges. The only style set in capitals."
+          }
+        ]
+      },
+      {
+        "name": "Text",
+        "family": "sans",
+        "styles": [
+          {
+            "name": "body",
+            "fontSize": "17px",
+            "lineHeight": "26px",
+            "fontWeight": 400,
+            "sample": "Da oltre 60 anni colleghiamo Olbia, la Gallura e il nord della Sardegna.",
+            "usage": "All running text."
+          },
+          {
+            "name": "body-small",
+            "fontSize": "15px",
+            "lineHeight": "22px",
+            "fontWeight": 400,
+            "sample": "Prenota online o scrivici su WhatsApp.",
+            "usage": "Captions, helper text, footer."
+          },
+          {
+            "name": "timetable",
+            "fontSize": "16px",
+            "lineHeight": "22px",
+            "fontWeight": 500,
+            "sample": "14:45  Olbia Aeroporto → Sassari 16:00",
+            "usage": "Times and fares. Turn on tabular figures (font-variant-numeric: tabular-nums) so columns align."
+          },
+          {
+            "name": "button",
+            "fontSize": "16px",
+            "lineHeight": "20px",
+            "fontWeight": 600,
+            "sample": "Richiedi preventivo",
+            "usage": "Buttons and the mobile contact bar."
+          },
+          {
+            "name": "form-label",
+            "fontSize": "14px",
+            "lineHeight": "18px",
+            "fontWeight": 500,
+            "sample": "Numero di persone",
+            "usage": "Form field labels."
+          }
+        ]
+      }
+    ]
+  },
+  "spacing": {
+    "tokens": [
+      {
+        "name": "space-1",
+        "value": "4px",
+        "usage": "Icon to label, tight inline gaps."
+      },
+      {
+        "name": "space-2",
+        "value": "8px",
+        "usage": "Between related controls, chip padding."
+      },
+      {
+        "name": "space-3",
+        "value": "16px",
+        "usage": "Card and button padding, mobile side gutter."
+      },
+      {
+        "name": "space-4",
+        "value": "24px",
+        "usage": "Between cards, form groups."
+      },
+      {
+        "name": "space-5",
+        "value": "40px",
+        "usage": "Between page sections on mobile."
+      },
+      {
+        "name": "space-6",
+        "value": "64px",
+        "usage": "Between page sections on desktop."
+      },
+      {
+        "name": "stripe-height",
+        "value": "6px",
+        "usage": "Height of one band in the sun-stripe motif at web scale."
+      },
+      {
+        "name": "stripe-gap",
+        "value": "6px",
+        "usage": "Gap between bands in the sun-stripe motif; the ground shows through."
+      }
+    ]
+  },
+  "radius": {
+    "tokens": [
+      {
+        "name": "radius-sm",
+        "value": "4px",
+        "usage": "Inputs, timetable cells, line badges."
+      },
+      {
+        "name": "radius-md",
+        "value": "10px",
+        "usage": "Buttons, cards, photos."
+      },
+      {
+        "name": "radius-full",
+        "value": "9999px",
+        "usage": "The sun disc, pills, the WhatsApp button, avatar crops."
+      }
+    ]
+  }
+}
