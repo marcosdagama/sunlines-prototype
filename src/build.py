@@ -1,4 +1,4 @@
-import os, shutil, sys
+import os, shutil, sys, json
 sys.path.insert(0, os.path.dirname(__file__))
 import layout
 layout.CSS += """
@@ -61,6 +61,8 @@ for f in ["sun-lines-logo.svg", "sun-lines-logo-white.svg", "sun-lines-sun-mark.
 paths = ["/", "/transfer-ncc", "/noleggio-autobus", "/airbus-olbia-sassari-alghero", "/linee-e-orari", "/parcheggio-aeroporto-olbia",
          "/abbonamenti-studenti", "/chi-siamo", "/domande-frequenti", "/assistenza", "/condizioni-generali", "/privacy", "/lavora-con-noi",
          "/condizioni-di-vendita", "/diritti-dei-passeggeri", "/note-legali", "/cookie-policy", "/accessibilita"]
+from common import LANGS as _LANGS
+paths = paths + [f"/{c}" + p for c, _, ok in _LANGS if ok and c != "it" for p in paths]
 open(os.path.join(OUT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     "".join(f"  <url><loc>{BASE}{p}</loc><lastmod>2026-10-22</lastmod></url>\n" for p in paths) + "</urlset>\n")
 
@@ -94,7 +96,7 @@ open(os.path.join(OUT, "llms.txt"), "w").write(f"""# Sun Lines
 
 > Sun Lines (Sun Lines Elite Service S.r.l.) is a passenger transport company based in Olbia, Sardinia, operating for over 60 years. It runs public bus lines in Gallura, the Airbus line 90 between Olbia airport, Sassari and Alghero airport, coach hire and private car transfers with driver (NCC), and a car and camper park next to Olbia Costa Smeralda airport.
 
-Last updated: 2026-10-22. Website language: Italian. Contact: phone +39 {PHONE}, email {EMAIL}, support and invoice forms at {BASE}/assistenza. WhatsApp +39 {WA_DISPLAY} is for coach hire and private transfer quotes and long-term or camper parking only; questions about timetables, tickets and luggage are answered at {BASE}/domande-frequenti. Address: Via Pozzo 23, 07026 Olbia (SS), Italy.
+Last updated: 2026-10-22. Website languages: Italian, with an English version at {BASE}/en/. Contact: phone +39 {PHONE}, email {EMAIL}, support and invoice forms at {BASE}/assistenza. WhatsApp +39 {WA_DISPLAY} is for coach hire and private transfer quotes and long-term or camper parking only; questions about timetables, tickets and luggage are answered at {BASE}/domande-frequenti. Address: Via Pozzo 23, 07026 Olbia (SS), Italy.
 
 ## Services
 
@@ -112,4 +114,17 @@ Last updated: 2026-10-22. Website language: Italian. Contact: phone +39 {PHONE},
 - [Chi siamo]({BASE}/chi-siamo): Company history, founder Luca Cassitta, ISO 9001:2015 and ISO 14001:2015 certifications.
 - [Condizioni generali di trasporto]({BASE}/condizioni-generali)
 """)
+# ---- other languages: translate the built Italian pages (src/i18n.py)
+import i18n
+from common import LANGS
+i18n.fix_italian_lang_menu(LANGS)
+for code, _, ok in LANGS:
+    if code == "it" or not ok:
+        continue
+    if not os.path.exists(os.path.join(HERE, "i18n", f"{code}.json")):
+        print(f"  {code}: no dictionary yet (src/i18n/{code}.json), skipped"); continue
+    missing = i18n.render(code, LANGS)
+    if missing:
+        json.dump({k: sorted(v) for k, v in missing.items()}, open(os.path.join(HERE, "i18n", f"missing-{code}.json"), "w"), ensure_ascii=False, indent=1)
+    print(f"  {code}: {len(PAGES)} pages, {len(missing)} strings still in Italian")
 print("built", len(PAGES), "pages into docs/ (preview mode)" if PREVIEW else "pages into docs/ (live mode)")

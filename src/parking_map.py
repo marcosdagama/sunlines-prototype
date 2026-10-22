@@ -43,6 +43,7 @@ def parking_map():
       <li data-pm="piedi"><strong>A piedi</strong> — {esc(DESC["piedi"].split(": ",1)[1])}</li>
     </ol>
     <div class="actions">{links}</div>
+    <div hidden><span data-pm-text="base">{esc(desc.split(" In auto:")[0])}</span><span data-pm-text="auto">{esc(DESC["auto"])}</span><span data-pm-text="piedi">{esc(DESC["piedi"])}</span></div>
   </div>
   <figure class="pm-fig">
     <svg class="pm-svg" viewBox="0 0 640 440" role="img" aria-labelledby="pm-t pm-d" xmlns="http://www.w3.org/2000/svg">
@@ -125,10 +126,10 @@ CSS = """
 JS = r"""
 (function(){
   var r=document.querySelector('.pm');if(!r)return;
-  var on={auto:true,piedi:true},d=r.querySelector('#pm-d'),base=d.textContent.split(' In auto:')[0];
-  var txt={auto:'In auto: '+r.querySelector('li[data-pm="auto"]').textContent.split(' — ')[1],piedi:'A piedi: '+r.querySelector('li[data-pm="piedi"]').textContent.split(' — ')[1]};
+  var on={auto:true,piedi:true},d=r.querySelector('#pm-d');
+  function t(k){var e=r.querySelector('[data-pm-text="'+k+'"]');return e?e.textContent:''}
   r.querySelectorAll('.mp-chip[data-pm]').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.pm;on[k]=!on[k];b.setAttribute('aria-pressed',on[k]);
     r.querySelectorAll('svg [data-pm="'+k+'"]').forEach(function(el){if(on[k])el.removeAttribute('data-off');else el.setAttribute('data-off','')});
-    d.textContent=base+' '+['auto','piedi'].filter(function(x){return on[x]}).map(function(x){return txt[x]}).join(' ')})});
+    d.textContent=t('base')+' '+['auto','piedi'].filter(function(x){return on[x]}).map(function(x){return t(x)}).join(' ')})});
 })();
 """

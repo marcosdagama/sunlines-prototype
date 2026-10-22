@@ -1,6 +1,6 @@
 # Sun Lines — website prototype
 
-First version of the new sunlines.it: today's content, reorganised navigation, the Sun Lines brand (logo, colours, Barlow type), SEO/GEO markup and a mobile-first layout. Italian for now; English is next, and the language menu is built for 5–10 languages.
+First version of the new sunlines.it: today's content, reorganised navigation, the Sun Lines brand (logo, colours, Barlow type), SEO/GEO markup and a mobile-first layout. Italian and English; the language menu and translation layer are built for 5–10 languages.
 
 ## Structure
 
@@ -30,6 +30,10 @@ src/                  the page generator
 ```
 
 ## Languages
+
+The site is written in Italian; other languages are produced by `src/i18n.py` from a dictionary per language (`src/i18n/en.json`). `src/i18n/segments.json` lists every translatable string (about 1,050). To add a language: translate that list into `src/i18n/<code>.json`, set the language to `True` in `LANGS` (`src/common.py`) and rebuild. The pages appear in `docs/<code>/` with the language menu, `hreflang` tags, canonical URLs and sitemap updated. Strings without a translation stay in Italian and are listed in `src/i18n/missing-<code>.json`. After editing Italian text, run `python3 src/i18n.py` to refresh the list and translate the new strings.
+
+### Language menu
 
 Languages are listed once, in `LANGS` in `src/common.py`: code, name in its own language, and whether its pages exist. The header menu (visible on desktop and mobile), the menu inside the mobile drawer and the `hreflang` links all read from that list.
 

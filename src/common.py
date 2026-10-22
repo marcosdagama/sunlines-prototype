@@ -22,7 +22,7 @@ WA = {
 # Languages: add one line per language. available=True once its pages exist under /<code>/ ; the menu and hreflang follow this list.
 LANGS = [
     ("it", "Italiano", True),
-    ("en", "English", False),
+    ("en", "English", True),
 ]
 CURRENT_LANG = "it"
 

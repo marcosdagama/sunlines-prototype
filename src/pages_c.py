@@ -178,7 +178,7 @@ def assistenza():
     <div class="cbox"><p class="label muted">Telefono</p><p class="val tnum">+39 {PHONE}</p></div>
     <div class="cbox"><p class="label muted">Email</p><p class="val">{EMAIL}</p></div>
   </div>
-  <p class="small"><a href="#assistenza">Richiesta di assistenza</a> · <a href="#reclami">Reclami e segnalazioni</a> · <a href="#fattura">Richiesta fattura</a> · <a href="domande-frequenti.html#faq-4">Oggetti smarriti</a></p>
+  <p class="small"><a href="#assistenza">Richiesta di assistenza</a> · <a href="#reclami">Reclami e segnalazioni</a> · <a href="#fattura">Richiesta fattura</a> · <a href="domande-frequenti.html#assist-oggetto">Oggetti smarriti</a></p>
 </div></section>
 <section class="section section-white" id="assistenza"><div class="wrap grid grid-2" style="align-items:start">
   <div class="prose"><h2 class="h1">Richiesta di assistenza</h2><p>Problemi con un biglietto, un abbonamento o una prenotazione? Descrivi la richiesta e ti ricontattiamo.</p></div>
