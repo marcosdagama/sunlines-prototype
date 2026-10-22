@@ -245,6 +245,7 @@ p{margin:0}
 .ft-col a:hover,.ft-col a:focus-visible{background-size:100% 1.5px}
 .ft-assoc{display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px;padding-block:28px;border-top:1px solid rgba(255,255,255,.12)}
 .ft-assoc p{margin:0;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--on-navy)}
+.ft-social-top{margin-left:auto}
 .ft-assoc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:20px 36px}
 .ft-assoc img{display:block;height:52px;width:auto;opacity:.82;transition:opacity .2s}
 .ft-assoc li:hover img{opacity:1}
@@ -253,13 +254,14 @@ p{margin:0}
 .ft-social{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.ft-social a{white-space:nowrap}
 .ft-social a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);color:var(--white)}
 .ft-social a:hover{border-color:var(--orange);color:var(--orange)}
-.ft-social .ft-sn{width:auto;display:inline-flex;gap:6px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none}
+.ft-social .ft-sn{min-height:44px;border:1px solid rgba(255,255,255,.2);color:var(--white);width:auto;display:inline-flex;gap:6px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none}
 .ft-social .ft-sn .i{opacity:.7}
 .ft-social .ft-up{width:auto;display:inline-flex;gap:6px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none}
 .site-footer a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
 @media (max-width:959px){.ft-top{grid-template-columns:1fr;gap:32px}}
 @media (max-width:599px){.ft-stripes{margin-bottom:40px}.ft-contact{grid-template-columns:1fr}.ft-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}.ft-links .ft-col:last-child{grid-column:1/-1}
-  .ft-legal{flex-direction:column;align-items:flex-start}.ft-assoc ul{gap:16px 28px}.ft-assoc img{height:42px}.ft-sun{width:300px;height:300px;right:-110px;bottom:40px}}
+  .ft-legal{flex-direction:column;align-items:flex-start}.ft-social-top{margin-left:0}
+.ft-assoc ul{gap:16px 28px}.ft-assoc img{height:42px}.ft-sun{width:300px;height:300px;right:-110px;bottom:40px}}
 
 /* mobile contact bar */
 .mbar{display:none}
@@ -387,10 +389,11 @@ def footer():
   <div class="ft-assoc">
     <p>Associati a</p>
     <ul>
-      <li><img src="img/associazioni/anav.png" alt="ANAV – Associazione Nazionale Autotrasporto Viaggiatori" width="255" height="111" loading="lazy"></li>
-      <li><img src="img/associazioni/cna.png" alt="CNA – Confederazione Nazionale dell’Artigianato" width="110" height="111" loading="lazy"></li>
-      <li><img src="img/associazioni/confcommercio.png" alt="Confcommercio – Imprese per l’Italia" width="255" height="110" loading="lazy"></li>
+      <li><img src="img/associazioni/anav.png" alt="ANAV – Associazione Nazionale Autotrasporto Viaggiatori" width="255" height="111"></li>
+      <li><img src="img/associazioni/cna.png" alt="CNA – Confederazione Nazionale dell’Artigianato" width="110" height="111"></li>
+      <li><img src="img/associazioni/confcommercio.png" alt="Confcommercio – Imprese per l’Italia" width="255" height="110"></li>
     </ul>
+    <div class="ft-social ft-social-top" aria-label="Sun Lines sui social"><a class="ft-sn" href="{FB}">Facebook {icon("external", 14)}</a><a class="ft-sn" href="{IG}">Instagram {icon("external", 14)}</a></div>
   </div>
   <div class="ft-legal">
     <div class="ft-company">
@@ -398,7 +401,6 @@ def footer():
       <ul class="ft-legal-links"><li><a href="note-legali.html">Note legali</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="cookie-policy.html">Cookie policy</a></li>{'<li><button type="button" data-cookie-prefs>Preferenze cookie</button></li>' if COOKIE_BANNER else ''}<li><a href="accessibilita.html">Accessibilità</a></li></ul>
     </div>
     <div class="ft-social">
-      <a class="ft-sn" href="{FB}">Facebook {icon("external", 14)}</a><a class="ft-sn" href="{IG}">Instagram {icon("external", 14)}</a>
       <a class="ft-up" href="#main">{icon("up", 16)} Torna su</a>
     </div>
   </div>
