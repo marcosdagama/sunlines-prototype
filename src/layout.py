@@ -221,18 +221,37 @@ p{margin:0}
 .partner{border:1px solid var(--hairline);border-radius:var(--r-sm);padding:10px 16px;font-weight:700;letter-spacing:.04em;color:var(--muted);background:var(--white)}
 
 /* footer */
-.site-footer{background:var(--navy);color:var(--white);padding-block:48px 32px}
-.ft-grid{display:grid;grid-template-columns:1.3fr repeat(3,minmax(0,1fr));gap:32px}
-@media (max-width:899px){.ft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.ft-grid{grid-template-columns:1fr}}
-.site-footer h2{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
-.site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.site-footer a{color:var(--white);text-decoration:none}
-.site-footer a:hover{text-decoration:underline}
-.site-footer .fine{color:var(--on-navy);font-size:14px}
-.ft-brand{display:grid;gap:14px;align-content:start}
+.site-footer{position:relative;overflow:hidden;background:var(--navy);color:var(--white);padding-block:0 28px}
+.ft-stripes{display:grid;gap:3px;margin-bottom:56px}
+.ft-stripes i{display:block;background:var(--orange)}.ft-stripes i:nth-child(1){height:6px}.ft-stripes i:nth-child(2){height:3px;opacity:.75}.ft-stripes i:nth-child(3){height:1.5px;opacity:.5}
+.ft-sun{position:absolute;right:-90px;bottom:-110px;width:420px;height:420px;opacity:.07;pointer-events:none}
+.site-footer .wrap{position:relative}
+.ft-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px;align-items:start;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.12)}
+.ft-brand{display:grid;gap:16px;align-content:start;max-width:440px}
 .ft-brand img{height:46px;width:auto}
-.ft-legal{border-top:1px solid rgba(255,255,255,.18);margin-top:36px;padding-top:20px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+.ft-claim{margin:8px 0 0;font-size:clamp(26px,3vw,34px);line-height:1.15;font-weight:500;letter-spacing:-.01em}
+.ft-sub{margin:0;color:var(--on-navy);font-size:16px}
+.ft-contact{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ft-contact a{display:flex;gap:12px;align-items:center;min-height:64px;padding:12px 14px;border:1px solid rgba(255,255,255,.12);border-radius:var(--r-md);color:var(--white);text-decoration:none;background:rgba(255,255,255,.03);transition:background .2s,border-color .2s}
+.ft-contact a:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28)}
+.ft-contact small{display:block;font-size:13px;color:var(--on-navy);margin-bottom:2px}
+.ft-contact a>span:last-child{font-weight:600;min-width:0;overflow-wrap:anywhere}
+.ft-ic{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgba(246,130,33,.14);color:var(--orange)}
+.ft-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding-block:40px}
+.site-footer h2{margin:0 0 14px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--on-navy)}
+.ft-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ft-col a{color:var(--white);text-decoration:none;font-size:16px;background:linear-gradient(var(--orange),var(--orange)) 0 100%/0 1.5px no-repeat;transition:background-size .25s;padding-bottom:2px}
+.ft-col a:hover,.ft-col a:focus-visible{background-size:100% 1.5px}
+.ft-legal{display:flex;flex-wrap:wrap;gap:16px 24px;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
+.ft-legal p{margin:0;font-size:14px;color:var(--on-navy)}.ft-br{display:none}
+.ft-social{display:flex;gap:8px;align-items:center}
+.ft-social a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);color:var(--white)}
+.ft-social a:hover{border-color:var(--orange);color:var(--orange)}
+.ft-social .ft-up{width:auto;display:inline-flex;gap:6px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;margin-left:8px}
+.site-footer a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+@media (max-width:959px){.ft-top{grid-template-columns:1fr;gap:32px}}
+@media (max-width:599px){.ft-stripes{margin-bottom:40px}.ft-contact{grid-template-columns:1fr}.ft-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}.ft-links .ft-col:last-child{grid-column:1/-1}
+  .ft-legal{flex-direction:column;align-items:flex-start}.ft-br{display:inline}.ft-sep{display:none}.ft-sun{width:300px;height:300px;right:-110px;bottom:40px}}
 
 /* mobile contact bar */
 .mbar{display:none}
@@ -322,38 +341,47 @@ def header(active):
 
 
 def footer():
-    return f'''<footer class="site-footer"><div class="wrap">
-<div class="ft-grid">
-  <div class="ft-brand">
-    <img src="sun-lines-logo-white.svg" alt="Sun Lines Elite Service" width="173" height="46">
-    <p class="fine">Da oltre 60 anni colleghiamo Olbia, la Gallura e il nord della Sardegna.</p>
-    <p>Via Pozzo 23 – 07026 Olbia (SS)<br>Tel. <span class="tnum">(+39) {PHONE}</span><br>WhatsApp preventivi <span class="tnum">(+39) {WA_DISPLAY}</span><br>{EMAIL}</p>
+    groups = [
+        ("Servizi", [("transfer-ncc.html", "Transfer e NCC"), ("noleggio-autobus.html", "Noleggio autobus"),
+                     ("airbus-olbia-sassari-alghero.html", "Airbus Olbia – Alghero"), ("linee-e-orari.html", "Linee e orari"),
+                     ("parcheggio-aeroporto-olbia.html", "Parcheggio aeroporto")]),
+        ("Sun Lines", [("chi-siamo.html", "Chi siamo"), ("domande-frequenti.html", "Domande frequenti"),
+                       ("abbonamenti-studenti.html", "Abbonamenti studenti"), ("lavora-con-noi.html", "Lavora con noi"),
+                       (BASE + "/customer-satisfaction.html?view=question&amp;id=1", "Questionario TPL")]),
+        ("Assistenza", [("assistenza.html#assistenza", "Richiesta di assistenza"), ("assistenza.html#reclami", "Reclami e segnalazioni"),
+                        ("assistenza.html#fattura", "Richiesta fattura"), ("condizioni-generali.html", "Condizioni di trasporto"),
+                        ("privacy.html", "Privacy")]),
+    ]
+    cols = "".join(f'<nav class="ft-col" aria-label="{t}"><h2>{t}</h2><ul>' + "".join(f'<li><a href="{h}">{n}</a></li>' for h, n in links) + '</ul></nav>'
+                   for t, links in groups)
+    contact = [
+        (f"tel:{PHONE_INTL}", "phone", "Telefono", f'<span class="tnum">{PHONE}</span>'),
+        (f"mailto:{EMAIL}", "mail", "Email", EMAIL),
+        ("https://wa.me/" + WA_NUM, "chat", "WhatsApp preventivi", f'<span class="tnum">{WA_DISPLAY}</span>'),
+        ("https://www.google.com/maps/search/?api=1&amp;query=Via+Pozzo+23+07026+Olbia", "pin", "Sede", "Via Pozzo 23, Olbia"),
+    ]
+    rows = "".join(f'<li><a href="{h}"><span class="ft-ic">{icon(ic, 18)}</span><span><small>{lab}</small>{val}</span></a></li>' for h, ic, lab, val in contact)
+    return f"""<footer class="site-footer">
+<div class="ft-stripes" aria-hidden="true"><i></i><i></i><i></i></div>
+<img class="ft-sun" src="sun-lines-sun-mark.svg" alt="" aria-hidden="true" width="84" height="84">
+<div class="wrap">
+  <div class="ft-top">
+    <div class="ft-brand">
+      <img src="sun-lines-logo-white.svg" alt="Sun Lines Elite Service" width="173" height="46">
+      <p class="ft-claim">La Sardegna inizia dal viaggio.</p>
+      <p class="ft-sub">Da oltre 60 anni colleghiamo Olbia, la Gallura e il nord della Sardegna.</p>
+    </div>
+    <ul class="ft-contact">{rows}</ul>
   </div>
-  <div><h2>Servizi</h2><ul>
-    <li><a href="transfer-ncc.html">Transfer e auto con conducente</a></li>
-    <li><a href="noleggio-autobus.html">Noleggio autobus con conducente</a></li>
-    <li><a href="airbus-olbia-sassari-alghero.html">Airbus Olbia – Sassari – Alghero</a></li>
-    <li><a href="linee-e-orari.html">Linee e orari TPL</a></li>
-    <li><a href="parcheggio-aeroporto-olbia.html">Parcheggio aeroporto Olbia</a></li>
-  </ul></div>
-  <div><h2>Informazioni</h2><ul>
-    <li><a href="chi-siamo.html">Chi siamo</a></li>
-    <li><a href="domande-frequenti.html">Domande frequenti</a></li>
-    <li><a href="abbonamenti-studenti.html">Abbonamenti studenti</a></li>
-    <li><a href="lavora-con-noi.html">Lavora con noi</a></li>
-    <li><a href="{BASE}/customer-satisfaction.html?view=question&amp;id=1">Questionario soddisfazione TPL</a></li>
-  </ul></div>
-  <div><h2>Assistenza</h2><ul>
-    <li><a href="assistenza.html#assistenza">Richiesta di assistenza</a></li>
-    <li><a href="assistenza.html#reclami">Reclami e segnalazioni</a></li>
-    <li><a href="assistenza.html#fattura">Richiesta fattura</a></li>
-    <li><a href="condizioni-generali.html">Condizioni generali di trasporto</a></li>
-    <li><a href="privacy.html">Informativa privacy</a></li>
-  </ul></div>
-</div>
-<div class="ft-legal"><p class="fine">Sun Lines Elite Service S.r.l. · P. IVA 00358880904 · Membro di ANAV, CNA e Confcommercio</p>
-<p class="fine"><a href="{FB}">Facebook</a> · <a href="{IG}">Instagram</a></p></div>
-</div></footer>'''
+  <div class="ft-links">{cols}</div>
+  <div class="ft-legal">
+    <p>© Sun Lines Elite Service S.r.l. · P. IVA 00358880904<span class="ft-sep"> · </span><br class="ft-br">Membro di ANAV, CNA e Confcommercio</p>
+    <div class="ft-social">
+      <a href="{FB}" aria-label="Sun Lines su Facebook">{icon("fb", 18)}</a><a href="{IG}" aria-label="Sun Lines su Instagram">{icon("ig", 18)}</a>
+      <a class="ft-up" href="#main">{icon("up", 16)} Torna su</a>
+    </div>
+  </div>
+</div></footer>"""
 
 
 def mbar(cta, wa_key=None):
