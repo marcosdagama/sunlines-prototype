@@ -1,4 +1,5 @@
 from layout import *
+from sardinia_map import map_section  # map section: remove this line and {map_section()} in home() to drop it
 from faq_data import group_html, destination_table
 
 PDF20 = BASE + "/pdf/LINEA-20.pdf"
@@ -60,6 +61,7 @@ def home():
     <div><h3 class="h3">Parcheggio</h3><p class="small muted">Promo Parking by Sunlines, custodito e con videosorveglianza, a 3 minuti a piedi dall’aeroporto di Olbia.</p></div>
     <a class="btn btn-outline" href="parcheggio-aeroporto-olbia.html">Scopri il parcheggio</a></div>
 </div></section>
+{map_section()}
 <section class="section" id="avvisi"><div class="wrap">
   <div class="sec-head"><p class="label eyebrow">Avvisi</p><h2 class="h1">Consulta gli avvisi</h2><p class="muted">Linea 90 (Olbia – Sassari – Alghero)</p></div>
   {ALERTS}

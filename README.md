@@ -20,6 +20,8 @@ src/                  the page generator
   pages_a.py          Home, Airbus 90, Linee e orari
   pages_b.py          Noleggio bus, Transfer e NCC, Parcheggio, Chi siamo
   pages_c.py          FAQ, Abbonamenti studenti, Assistenza, legal pages, Lavora con noi
+  sardinia_map.py     "Dove andiamo" interactive map on the home page (self-contained)
+  sardinia_coast.txt  Sardinia coastline for the map (Natural Earth, public domain)
   assets/             logo files (SVG)
   robots.production.txt   robots rules for the live site
 ```
@@ -31,6 +33,14 @@ Languages are listed once, in `LANGS` in `src/common.py`: code, name in its own 
 - A language marked `False` shows in the menu as "in arrivo" and gets no `hreflang`.
 - To publish one: add its translated pages under `docs/<code>/` (for example `docs/en/`), then set it to `True` and rebuild.
 - Italian stays at the root and is the `x-default`.
+
+## Map section
+
+The home page has a "Dove andiamo" map with switchable layers (Airbus 90, lines 20/30/50, bus hire and NCC, parking) and a north / whole-island view. Its markup, styles, script and data all live in `src/sardinia_map.py`.
+
+- **Remove it:** delete `{map_section()}` in `home()` and the `from sardinia_map import map_section` line in `src/pages_a.py`, then rebuild.
+- **Alt text:** the map's description for screen readers is rebuilt from the layers that are switched on (`LAYER_DESC` in the same file). The list beside the map carries the same information as text.
+- **Stop positions** are approximate; ask Sun Lines to confirm them (Priatu especially) before going live.
 
 ## Rebuild after editing
 
