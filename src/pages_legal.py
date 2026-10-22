@@ -97,7 +97,8 @@ def privacy_new():
         ("minori", "Minori", "<p>Gli abbonamenti studenti possono riguardare minorenni. Per i minori di 14 anni la richiesta e il consenso, quando necessario, sono dati dal genitore o tutore, che riceve questa informativa.</p>"),
         ("destinatari", "A chi comunichiamo i dati", f'''<p>I dati non sono diffusi né venduti. Possono riceverli, solo per le finalità indicate:</p>
 <ul><li><strong>{PORTAL_PROVIDER}</strong>, che gestisce il portale di vendita di biglietti e abbonamenti {todo("indicare se responsabile del trattamento o titolare autonomo")};</li>
-<li>il fornitore di hosting del sito e il servizio che invia i moduli {todo("nomi dei fornitori")};</li>
+<li>FormSubmit (formsubmit.co), il servizio che inoltra i moduli del sito via email a {EMAIL} {todo("verificare sede del fornitore e garanzie per eventuali trasferimenti fuori dall’UE")};</li>
+<li>il fornitore di hosting del sito {todo("nome del fornitore di hosting")};</li>
 <li><strong>Meta Platforms Ireland Ltd.</strong>, per i messaggi WhatsApp;</li>
 <li>il consulente fiscale e la banca, per fatture e pagamenti;</li>
 <li>la Regione Sardegna e gli enti competenti, per le agevolazioni sugli abbonamenti;</li>

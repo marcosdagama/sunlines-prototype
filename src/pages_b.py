@@ -1,43 +1,6 @@
 from layout import *
 from parking_map import parking_map
-
-
-def form(fid, fields, submit="Invia richiesta", notice="finalita", marketing=False):
-    """fields: list of (id, label, type, required) ; type in text,email,tel,number,date,textarea,file"""
-    rows = []
-    pending = []
-    def render(f):
-        i, label, typ, req = f
-        star = ' <span class="req" aria-hidden="true">*</span>' if req else ''
-        r = ' required' if req else ''
-        ac = {"email": ' autocomplete="email"', "tel": ' autocomplete="tel"'}.get(typ, '')
-        if i.endswith("nome") and typ == "text":
-            ac = ' autocomplete="name"'
-        if typ == "textarea":
-            ctl = f'<textarea id="{fid}-{i}" name="{i}"{r}></textarea>'
-        else:
-            ctl = f'<input id="{fid}-{i}" name="{i}" type="{typ}"{r}{ac}>'
-        return f'<div class="field"><label for="{fid}-{i}">{esc(label)}{star}</label>{ctl}</div>'
-    for f in fields:
-        if f[2] in ("textarea", "file"):
-            if pending:
-                rows.append('<div class="field-row">' + "".join(render(p) for p in pending) + '</div>'); pending = []
-            rows.append(render(f))
-        else:
-            pending.append(f)
-            if len(pending) == 2:
-                rows.append('<div class="field-row">' + "".join(render(p) for p in pending) + '</div>'); pending = []
-    if pending:
-        rows.append('<div class="field-row">' + "".join(render(p) for p in pending) + '</div>')
-    mk = (f'<label class="check" for="{fid}-mkt"><input id="{fid}-mkt" name="marketing" type="checkbox"> <span>Facoltativo: voglio ricevere offerte e novità di Sun Lines via email. Posso revocare il consenso in ogni momento.</span></label>' if marketing else "")
-    return f'''<form class="form" id="{fid}" data-proto novalidate>
-{"".join(rows)}
-{mk}
-<p class="form-privacy small">I dati servono solo a rispondere a questa richiesta. Leggi come li trattiamo nell’<a href="privacy.html#{notice}">informativa privacy</a>.</p>
-<div class="actions"><button class="btn btn-primary" type="submit">{esc(submit)}</button></div>
-<p class="form-note" role="status" hidden></p>
-<p class="proto-note"><span class="req">*</span> Campi obbligatori. Il controllo anti-spam “Rispondi prima di inviare” del sito attuale andrà sostituito da un controllo invisibile.</p>
-</form>'''
+from forms import form
 
 
 QUOTE_FIELDS = [("nome", "Nome e cognome", "text", True), ("email", "E-mail", "email", True), ("telefono", "Telefono", "tel", False),

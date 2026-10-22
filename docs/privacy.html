@@ -341,6 +341,21 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
 .ft-legal-links a,.ft-legal-links button{color:var(--on-navy);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer}
 .ft-legal-links a:hover,.ft-legal-links button:hover{color:#fff;text-decoration:underline}
 
+/* forms: sending states */
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.field input,.field textarea,.form-msg{scroll-margin-top:110px}
+.field-hint{margin:0;font-size:14px;color:var(--muted)}
+.field input[type=file]{padding:10px;background:var(--white)}
+.field.err input,.field.err textarea{border-color:var(--terracotta)}
+.field-err{margin:0;font-size:14px;font-weight:600;color:var(--terracotta)}
+.form button[aria-busy="true"]{opacity:.75;cursor:progress}
+.form-msg{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;padding:14px 16px;border-radius:var(--r-md);border:1px solid var(--hairline);background:var(--white)}
+.form-msg:focus{outline:2px solid var(--navy);outline-offset:2px}
+.form-msg.ok{border-left:4px solid var(--macchia)}.form-msg.ok .i{color:var(--macchia)}
+.form-msg.ko{border-left:4px solid var(--terracotta)}.form-msg.ko .i{color:var(--terracotta)}
+.form-msg p{margin:0}
+.form-req{margin:0}
+
 /* parking location map */
 .pm .mp-chips{display:flex;flex-wrap:wrap;gap:8px}
 .pm .mp-chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border-radius:999px;border:1px solid var(--hairline);background:var(--white);font:600 15px var(--font);color:var(--muted);cursor:pointer}
@@ -442,7 +457,8 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
 <thead><tr><th scope="col">Attività</th><th scope="col">Dati</th><th scope="col">Base giuridica</th><th scope="col">Conservazione</th></tr></thead><tbody><tr id="t-preventivi"><th scope="row">Richieste di preventivo (noleggio bus, transfer e NCC)</th><td>Nome, email, telefono, dettagli del viaggio</td><td>Misure precontrattuali richieste da te (art. 6.1.b GDPR)</td><td>12 mesi dalla richiesta se non segue un contratto <mark class="todo" title="Da completare prima della pubblicazione">[da completare: confermare durata]</mark></td></tr><tr id="t-assistenza"><th scope="row">Assistenza, reclami e segnalazioni</th><td>Nome, contatti, dati del viaggio, contenuto della richiesta</td><td>Esecuzione del contratto di trasporto e obblighi di legge sulla gestione dei reclami (art. 6.1.b e 6.1.c; Reg. UE 181/2011)</td><td>24 mesi dalla chiusura della pratica <mark class="todo" title="Da completare prima della pubblicazione">[da completare: confermare durata]</mark></td></tr><tr id="t-fattura"><th scope="row">Richiesta fattura</th><td>Dati di fatturazione, partita IVA, codice SDI, dati e copia del biglietto</td><td>Obblighi fiscali (art. 6.1.c)</td><td>10 anni, come previsto per le scritture contabili (art. 2220 c.c.)</td></tr><tr id="t-biglietti"><th scope="row">Biglietti e abbonamenti acquistati online</th><td>Dati del passeggero e della prenotazione</td><td>Esecuzione del contratto di trasporto (art. 6.1.b) e obblighi fiscali (art. 6.1.c)</td><td>Per la durata del contratto e poi 10 anni per gli obblighi fiscali</td></tr><tr id="t-studenti"><th scope="row">Abbonamenti studenti</th><td>Dati dello studente e del genitore o tutore, certificato di iscrizione, ISEE se richiesto</td><td>Esecuzione del contratto (art. 6.1.b) e regole regionali sulle agevolazioni (art. 6.1.c)</td><td>Durata dell’abbonamento più 10 anni per gli obblighi fiscali <mark class="todo" title="Da completare prima della pubblicazione">[da completare: confermare]</mark></td></tr><tr id="t-parcheggio"><th scope="row">Prenotazione del parcheggio</th><td>Nome, contatti, targa, date di sosta</td><td>Esecuzione del contratto (art. 6.1.b)</td><td>Durata della sosta più 10 anni per gli obblighi fiscali <mark class="todo" title="Da completare prima della pubblicazione">[da completare: confermare]</mark></td></tr><tr id="t-whatsapp"><th scope="row">Messaggi WhatsApp (solo preventivi e parcheggio)</th><td>Numero di telefono, nome del profilo, contenuto dei messaggi</td><td>Misure precontrattuali richieste da te (art. 6.1.b)</td><td>12 mesi dall’ultimo messaggio <mark class="todo" title="Da completare prima della pubblicazione">[da completare: confermare durata]</mark></td></tr><tr id="t-candidature"><th scope="row">Candidature di lavoro</th><td>Curriculum, documenti di guida e di identità, contatti</td><td>Valutazione della candidatura su tua richiesta (art. 6.1.b e art. 111-bis D.Lgs. 196/2003)</td><td>12 mesi dalla ricezione <mark class="todo" title="Da completare prima della pubblicazione">[da completare: confermare durata]</mark></td></tr><tr id="t-marketing"><th scope="row">Offerte e novità (solo se acconsenti)</th><td>Nome ed email</td><td>Consenso, facoltativo e revocabile in ogni momento (art. 6.1.a)</td><td>Fino alla revoca del consenso</td></tr><tr id="t-navigazione"><th scope="row">Navigazione del sito</th><td>Indirizzo IP e dati tecnici registrati dal server</td><td>Legittimo interesse alla sicurezza e al funzionamento del sito (art. 6.1.f)</td><td>Massimo 30 giorni <mark class="todo" title="Da completare prima della pubblicazione">[da completare: confermare con il fornitore di hosting]</mark></td></tr></tbody></table></div>
 <p>Se non fornisci i dati obbligatori dei moduli non possiamo rispondere alla richiesta. I dati facoltativi sono indicati come tali.</p></section><section id="particolari" class="legal-sec"><h2 class="h2">Dati sulla salute e persone a mobilità ridotta</h2><p>Se chiedi assistenza per una disabilità o per mobilità ridotta, potremmo ricevere informazioni sulla tua salute. Le usiamo solo per organizzare l’assistenza, chiediamo il minimo indispensabile e le cancelliamo al termine del viaggio, salvo che servano per un reclamo. La base giuridica è il tuo consenso esplicito (art. 9.2.a GDPR).</p></section><section id="minori" class="legal-sec"><h2 class="h2">Minori</h2><p>Gli abbonamenti studenti possono riguardare minorenni. Per i minori di 14 anni la richiesta e il consenso, quando necessario, sono dati dal genitore o tutore, che riceve questa informativa.</p></section><section id="destinatari" class="legal-sec"><h2 class="h2">A chi comunichiamo i dati</h2><p>I dati non sono diffusi né venduti. Possono riceverli, solo per le finalità indicate:</p>
 <ul><li><strong>Bigo Solutions</strong>, che gestisce il portale di vendita di biglietti e abbonamenti <mark class="todo" title="Da completare prima della pubblicazione">[da completare: indicare se responsabile del trattamento o titolare autonomo]</mark>;</li>
-<li>il fornitore di hosting del sito e il servizio che invia i moduli <mark class="todo" title="Da completare prima della pubblicazione">[da completare: nomi dei fornitori]</mark>;</li>
+<li>FormSubmit (formsubmit.co), il servizio che inoltra i moduli del sito via email a info@sunlines.it <mark class="todo" title="Da completare prima della pubblicazione">[da completare: verificare sede del fornitore e garanzie per eventuali trasferimenti fuori dall’UE]</mark>;</li>
+<li>il fornitore di hosting del sito <mark class="todo" title="Da completare prima della pubblicazione">[da completare: nome del fornitore di hosting]</mark>;</li>
 <li><strong>Meta Platforms Ireland Ltd.</strong>, per i messaggi WhatsApp;</li>
 <li>il consulente fiscale e la banca, per fatture e pagamenti;</li>
 <li>la Regione Sardegna e gli enti competenti, per le agevolazioni sugli abbonamenti;</li>
@@ -513,11 +529,6 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
   var lm=document.querySelector('.langmenu');
   if(lm){document.addEventListener('click',function(e){if(lm.open&&!lm.contains(e.target))lm.open=false});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lm.open){lm.open=false;lm.querySelector('summary').focus()}});}
-  document.querySelectorAll('form[data-proto]').forEach(function(f){
-    f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');
-      if(!f.checkValidity()){f.reportValidity();return}
-      n.hidden=false;n.textContent='Prototipo: il modulo funziona come esempio e non invia dati.';});
-  });
 })();
 
 (function(){
@@ -548,6 +559,48 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
   b.addEventListener('keydown',function(e){if(e.key==='Escape'&&opener){close()}});
   document.querySelectorAll('[data-cookie-prefs]').forEach(function(x){x.addEventListener('click',function(){open(true,x)})});
   if(!saved)open(false);
+})();
+
+(function(){
+  var OK='<svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>';
+  var KO='<svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>';
+  var MAX=5*1024*1024;
+  function clearErrs(f){f.querySelectorAll('.field.err').forEach(function(x){x.classList.remove('err');var m=x.querySelector('.field-err');if(m)m.remove();var c=x.querySelector('input,textarea');if(c){c.removeAttribute('aria-invalid');var d=(c.getAttribute('aria-describedby')||'').split(' ').filter(function(t){return t&&t.indexOf('-e')!==t.length-2}).join(' ');if(d)c.setAttribute('aria-describedby',d);else c.removeAttribute('aria-describedby')}})}
+  function errText(c){var v=c.validity;if(v.valueMissing)return c.type==='file'?'Allega una copia del biglietto.':'Questo campo è obbligatorio.';
+    if(v.typeMismatch&&c.type==='email')return 'Inserisci un’email completa, per esempio nome@dominio.it.';
+    if(v.rangeUnderflow||v.badInput)return 'Inserisci un numero valido.';return 'Controlla questo campo.'}
+  function markErr(c,msg){var w=c.closest('.field');if(!w)return;w.classList.add('err');var id=c.id+'-e';var p=document.createElement('p');p.className='field-err';p.id=id;p.textContent=msg;w.appendChild(p);
+    c.setAttribute('aria-invalid','true');c.setAttribute('aria-describedby',((c.getAttribute('aria-describedby')||'')+' '+id).trim())}
+  function validate(f){clearErrs(f);var first=null;
+    f.querySelectorAll('input:not([type=hidden]):not([name=_honey]),textarea').forEach(function(c){var bad=!c.checkValidity();
+      if(!bad&&c.type==='file'&&c.files&&c.files[0]&&c.files[0].size>MAX){bad=true;markErr(c,'Il file supera 5 MB: allega una versione più leggera.')}
+      else if(bad)markErr(c,errText(c));if(bad&&!first)first=c});
+    if(first)first.focus();return !first}
+  function show(f,kind,html){var m=f.querySelector('.form-msg');m.className='form-msg '+kind;m.innerHTML=(kind==='ok'?OK:KO)+'<div>'+html+'</div>';m.hidden=false;m.focus()}
+  function busy(f,on){var b=f.querySelector('button[type=submit]'),l=b.querySelector('.btn-label');if(on){b.dataset.t=l.textContent;l.textContent='Invio in corso…';b.setAttribute('aria-busy','true');b.disabled=true}else{l.textContent=b.dataset.t||l.textContent;b.removeAttribute('aria-busy');b.disabled=false}}
+  function prepare(f){var g=function(n){return f.querySelector('input[name="'+n+'"]')};
+    g('Pagina').value=location.href.split('#')[0];
+    var who=f.querySelector('input[autocomplete=name]');var d=new Date();var when=d.toLocaleDateString('it-IT')+' '+d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});
+    g('_subject').value='Sito Sun Lines · '+f.dataset.subject+(who&&who.value?' · '+who.value.trim():'')+' · '+when;
+    g('_next').value=new URL('grazie.html',location.href).href}
+  var FALLBACK='Riprova tra poco oppure scrivi a <a href="mailto:info@sunlines.it">info@sunlines.it</a> o chiama lo <a href="tel:+39078950885">0789 50885</a>.';
+  document.querySelectorAll('form[data-send]').forEach(function(f){
+    f.addEventListener('submit',function(e){
+      if(!validate(f)){e.preventDefault();return}
+      if(f.querySelector('input[name=_honey]').value){e.preventDefault();return}
+      prepare(f);
+      if(f.dataset.send==='post'){busy(f,true);return}   /* file attached: normal POST, the service redirects to grazie.html */
+      e.preventDefault();busy(f,true);
+      var fd=new FormData(f);f.querySelectorAll('input[type=date]').forEach(function(c){if(c.value){var a=c.value.split('-');fd.set(c.name,a[2]+'/'+a[1]+'/'+a[0])}});var mk=f.querySelector('input[name="Consenso offerte via email"]');if(mk&&!mk.checked)fd.append(mk.name,'No');
+      var ctl=('AbortController' in window)?new AbortController():null;var to=setTimeout(function(){if(ctl)ctl.abort()},20000);
+      fetch(f.dataset.ajax,{method:'POST',body:fd,headers:{'Accept':'application/json'},signal:ctl?ctl.signal:undefined})
+        .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})})
+        .then(function(x){clearTimeout(to);busy(f,false);
+          if(x.ok&&String(x.j.success)!=='false'){f.reset();show(f,'ok','<p><strong>Richiesta inviata.</strong></p><p class="small">Ti abbiamo mandato una conferma via email e ti rispondiamo il prima possibile.</p>')}
+          else{show(f,'ko','<p><strong>Non siamo riusciti a inviare la richiesta.</strong></p><p class="small">'+FALLBACK+'</p>')}})
+        .catch(function(){clearTimeout(to);busy(f,false);show(f,'ko','<p><strong>Connessione non riuscita.</strong></p><p class="small">'+FALLBACK+'</p>')});
+    });
+  });
 })();
 
 (function(){

@@ -14,7 +14,9 @@ from pages_c import noleggio_autobus, transfer, parcheggio, chi_siamo, faq, abbo
 from pages_legal import note_legali, privacy_new as privacy, cookie_policy, diritti, condizioni_trasporto as condizioni, condizioni_vendita, accessibilita, LEGAL_CSS
 layout.CSS += LEGAL_CSS + layout.CK_CSS
 layout.JS += layout.CK_JS
-import hero_carousel, parking_map
+import hero_carousel, parking_map, forms
+layout.CSS += forms.CSS
+layout.JS += forms.JS
 layout.CSS += parking_map.CSS + """
 .partner-btns{display:grid;gap:10px}
 .partner-btn{display:flex;align-items:center;gap:14px;min-height:64px;padding:10px 14px;border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--white);color:var(--navy);text-decoration:none}
@@ -43,10 +45,11 @@ PAGES = {
     "assistenza.html": assistenza, "condizioni-generali.html": condizioni, "privacy.html": privacy, "lavora-con-noi.html": lavora,
     "condizioni-di-vendita.html": condizioni_vendita, "diritti-dei-passeggeri.html": diritti, "note-legali.html": note_legali,
     "cookie-policy.html": cookie_policy, "accessibilita.html": accessibilita,
+    "grazie.html": lambda: forms.grazie_page(layout.page),
 }
 for fn, fnc in PAGES.items():
     html = fnc()
-    if PREVIEW:
+    if PREVIEW and 'name="robots"' not in html:
         html = html.replace('<meta name="description"', '<meta name="robots" content="noindex, nofollow">\n<meta name="description"', 1)
     open(os.path.join(OUT, fn), "w").write(html)
 open(os.path.join(OUT, ".nojekyll"), "w").write("")

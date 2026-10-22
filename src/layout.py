@@ -291,11 +291,6 @@ JS = r"""
   var lm=document.querySelector('.langmenu');
   if(lm){document.addEventListener('click',function(e){if(lm.open&&!lm.contains(e.target))lm.open=false});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lm.open){lm.open=false;lm.querySelector('summary').focus()}});}
-  document.querySelectorAll('form[data-proto]').forEach(function(f){
-    f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');
-      if(!f.checkValidity()){f.reportValidity();return}
-      n.hidden=false;n.textContent='Prototipo: il modulo funziona come esempio e non invia dati.';});
-  });
 })();
 """
 

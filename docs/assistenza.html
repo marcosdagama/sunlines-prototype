@@ -341,6 +341,21 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
 .ft-legal-links a,.ft-legal-links button{color:var(--on-navy);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer}
 .ft-legal-links a:hover,.ft-legal-links button:hover{color:#fff;text-decoration:underline}
 
+/* forms: sending states */
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.field input,.field textarea,.form-msg{scroll-margin-top:110px}
+.field-hint{margin:0;font-size:14px;color:var(--muted)}
+.field input[type=file]{padding:10px;background:var(--white)}
+.field.err input,.field.err textarea{border-color:var(--terracotta)}
+.field-err{margin:0;font-size:14px;font-weight:600;color:var(--terracotta)}
+.form button[aria-busy="true"]{opacity:.75;cursor:progress}
+.form-msg{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;padding:14px 16px;border-radius:var(--r-md);border:1px solid var(--hairline);background:var(--white)}
+.form-msg:focus{outline:2px solid var(--navy);outline-offset:2px}
+.form-msg.ok{border-left:4px solid var(--macchia)}.form-msg.ok .i{color:var(--macchia)}
+.form-msg.ko{border-left:4px solid var(--terracotta)}.form-msg.ko .i{color:var(--terracotta)}
+.form-msg p{margin:0}
+.form-req{margin:0}
+
 /* parking location map */
 .pm .mp-chips{display:flex;flex-wrap:wrap;gap:8px}
 .pm .mp-chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border-radius:999px;border:1px solid var(--hairline);background:var(--white);font:600 15px var(--font);color:var(--muted);cursor:pointer}
@@ -445,13 +460,21 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
 </div></section>
 <section class="section section-white" id="assistenza"><div class="wrap grid grid-2" style="align-items:start">
   <div class="prose"><h2 class="h1">Richiesta di assistenza</h2><p>Problemi con un biglietto, un abbonamento o una prenotazione? Descrivi la richiesta e ti ricontattiamo.</p></div>
-  <div class="panel"><form class="form" id="f-assist" data-proto novalidate>
-<div class="field-row"><div class="field"><label for="f-assist-nome">Nome e cognome <span class="req" aria-hidden="true">*</span></label><input id="f-assist-nome" name="nome" type="text" required autocomplete="name"></div><div class="field"><label for="f-assist-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="f-assist-email" name="email" type="email" required autocomplete="email"></div></div><div class="field-row"><div class="field"><label for="f-assist-telefono">Telefono</label><input id="f-assist-telefono" name="telefono" type="tel" autocomplete="tel"></div></div><div class="field"><label for="f-assist-richiesta">Richiesta</label><textarea id="f-assist-richiesta" name="richiesta"></textarea></div>
+  <div class="panel"><form class="form" id="f-assist" action="https://formsubmit.co/info@sunlines.it" method="post" data-send="ajax" data-ajax="https://formsubmit.co/ajax/info@sunlines.it" data-subject="Richiesta di assistenza" novalidate>
+<input type="hidden" name="_subject" value="Sito Sun Lines · Richiesta di assistenza">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_autoresponse" value="Grazie, abbiamo ricevuto la tua richiesta a Sun Lines e ti rispondiamo il prima possibile. Per urgenze chiama lo 0789 50885. Questo è un messaggio automatico: per scriverci rispondi a info@sunlines.it.">
+<input type="hidden" name="_next" value="">
+<input type="hidden" name="Modulo" value="Richiesta di assistenza">
+<input type="hidden" name="Pagina" value="">
+<div class="hp" aria-hidden="true"><label for="f-assist-hp">Non compilare questo campo</label><input id="f-assist-hp" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+<div class="field-row"><div class="field"><label for="f-assist-nome">Nome e cognome <span class="req" aria-hidden="true">*</span></label><input id="f-assist-nome" name="Nome e cognome" type="text" required autocomplete="name"></div><div class="field"><label for="f-assist-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="f-assist-email" name="email" type="email" required autocomplete="email"></div></div><div class="field-row"><div class="field"><label for="f-assist-telefono">Telefono</label><input id="f-assist-telefono" name="Telefono" type="tel" autocomplete="tel"></div></div><div class="field"><label for="f-assist-richiesta">Richiesta</label><textarea id="f-assist-richiesta" name="Richiesta"></textarea></div>
 
 <p class="form-privacy small">I dati servono solo a rispondere a questa richiesta. Leggi come li trattiamo nell’<a href="privacy.html#t-assistenza">informativa privacy</a>.</p>
-<div class="actions"><button class="btn btn-primary" type="submit">Invia richiesta</button></div>
-<p class="form-note" role="status" hidden></p>
-<p class="proto-note"><span class="req">*</span> Campi obbligatori. Il controllo anti-spam “Rispondi prima di inviare” del sito attuale andrà sostituito da un controllo invisibile.</p>
+<div class="actions"><button class="btn btn-primary" type="submit"><span class="btn-label">Invia richiesta</span></button></div>
+<div class="form-msg" role="status" aria-live="polite" tabindex="-1" hidden></div>
+<p class="form-req small muted"><span class="req" aria-hidden="true">*</span> Campi obbligatori.</p>
 </form></div></div></section>
 <section class="section" id="reclami"><div class="wrap grid grid-2" style="align-items:start">
   <div class="prose"><h2 class="h1">Reclami e segnalazioni</h2>
@@ -460,23 +483,39 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
       <li><strong>Ti confermiamo la ricezione entro un mese</strong> e ti diamo una risposta definitiva <strong>entro 3 mesi</strong>.</li>
       <li><strong>Se non rispondiamo o la risposta non ti soddisfa</strong>, puoi rivolgerti gratuitamente all’<a href="diritti-dei-passeggeri.html#art">Autorità di Regolazione dei Trasporti</a>.</li></ol>
     <p class="small muted">Regole e diritti: <a href="diritti-dei-passeggeri.html">Diritti dei passeggeri</a> · <a href="condizioni-generali.html">Condizioni generali di trasporto</a> · <a href="https://www.sunlines.it/pdf/carta-qualita-sunlines.pdf">Carta della qualità dei servizi</a> (PDF)</p></div>
-  <div class="panel"><form class="form" id="f-reclami" data-proto novalidate>
-<div class="field-row"><div class="field"><label for="f-reclami-nome">Nome e cognome <span class="req" aria-hidden="true">*</span></label><input id="f-reclami-nome" name="nome" type="text" required autocomplete="name"></div><div class="field"><label for="f-reclami-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="f-reclami-email" name="email" type="email" required autocomplete="email"></div></div><div class="field-row"><div class="field"><label for="f-reclami-telefono">Telefono</label><input id="f-reclami-telefono" name="telefono" type="tel" autocomplete="tel"></div><div class="field"><label for="f-reclami-linea">Linea, data e ora del viaggio</label><input id="f-reclami-linea" name="linea" type="text"></div></div><div class="field"><label for="f-reclami-reclamo">Reclamo o segnalazione <span class="req" aria-hidden="true">*</span></label><textarea id="f-reclami-reclamo" name="reclamo" required></textarea></div>
+  <div class="panel"><form class="form" id="f-reclami" action="https://formsubmit.co/info@sunlines.it" method="post" data-send="ajax" data-ajax="https://formsubmit.co/ajax/info@sunlines.it" data-subject="Reclamo o segnalazione" novalidate>
+<input type="hidden" name="_subject" value="Sito Sun Lines · Reclamo o segnalazione">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_autoresponse" value="Grazie, abbiamo ricevuto la tua richiesta a Sun Lines e ti rispondiamo il prima possibile. Per urgenze chiama lo 0789 50885. Questo è un messaggio automatico: per scriverci rispondi a info@sunlines.it.">
+<input type="hidden" name="_next" value="">
+<input type="hidden" name="Modulo" value="Reclamo o segnalazione">
+<input type="hidden" name="Pagina" value="">
+<div class="hp" aria-hidden="true"><label for="f-reclami-hp">Non compilare questo campo</label><input id="f-reclami-hp" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+<div class="field-row"><div class="field"><label for="f-reclami-nome">Nome e cognome <span class="req" aria-hidden="true">*</span></label><input id="f-reclami-nome" name="Nome e cognome" type="text" required autocomplete="name"></div><div class="field"><label for="f-reclami-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="f-reclami-email" name="email" type="email" required autocomplete="email"></div></div><div class="field-row"><div class="field"><label for="f-reclami-telefono">Telefono</label><input id="f-reclami-telefono" name="Telefono" type="tel" autocomplete="tel"></div><div class="field"><label for="f-reclami-linea">Linea, data e ora del viaggio</label><input id="f-reclami-linea" name="Linea, data e ora del viaggio" type="text"></div></div><div class="field"><label for="f-reclami-reclamo">Reclamo o segnalazione <span class="req" aria-hidden="true">*</span></label><textarea id="f-reclami-reclamo" name="Reclamo o segnalazione" required></textarea></div>
 
 <p class="form-privacy small">I dati servono solo a rispondere a questa richiesta. Leggi come li trattiamo nell’<a href="privacy.html#t-assistenza">informativa privacy</a>.</p>
-<div class="actions"><button class="btn btn-primary" type="submit">Invia reclamo</button></div>
-<p class="form-note" role="status" hidden></p>
-<p class="proto-note"><span class="req">*</span> Campi obbligatori. Il controllo anti-spam “Rispondi prima di inviare” del sito attuale andrà sostituito da un controllo invisibile.</p>
+<div class="actions"><button class="btn btn-primary" type="submit"><span class="btn-label">Invia reclamo</span></button></div>
+<div class="form-msg" role="status" aria-live="polite" tabindex="-1" hidden></div>
+<p class="form-req small muted"><span class="req" aria-hidden="true">*</span> Campi obbligatori.</p>
 </form></div></div></section>
 <section class="section section-white" id="fattura"><div class="wrap grid grid-2" style="align-items:start">
   <div class="prose"><h2 class="h1">Richiesta fattura</h2><p>Compila i dati di fatturazione e del viaggio e allega una copia del biglietto.</p></div>
-  <div class="panel"><form class="form" id="f-fattura" data-proto novalidate>
-<div class="field-row"><div class="field"><label for="f-fattura-nome">Nome e cognome <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-nome" name="nome" type="text" required autocomplete="name"></div><div class="field"><label for="f-fattura-ragione">Ragione sociale <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-ragione" name="ragione" type="text" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-indirizzo">Indirizzo <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-indirizzo" name="indirizzo" type="text" required></div><div class="field"><label for="f-fattura-cap">CAP <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-cap" name="cap" type="text" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-citta">Città – PR <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-citta" name="citta" type="text" required></div><div class="field"><label for="f-fattura-piva">Partita IVA <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-piva" name="piva" type="text" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-email" name="email" type="email" required autocomplete="email"></div><div class="field"><label for="f-fattura-telefono">Telefono</label><input id="f-fattura-telefono" name="telefono" type="tel" autocomplete="tel"></div></div><div class="field-row"><div class="field"><label for="f-fattura-biglietto">Numero biglietto <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-biglietto" name="biglietto" type="text" required></div><div class="field"><label for="f-fattura-data">Data di viaggio <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-data" name="data" type="date" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-tratta">Tratta <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-tratta" name="tratta" type="text" required></div><div class="field"><label for="f-fattura-passeggeri">Numero di passeggeri <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-passeggeri" name="passeggeri" type="number" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-importo">Importo complessivo del biglietto <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-importo" name="importo" type="text" required></div><div class="field"><label for="f-fattura-sdi">Codice SDI <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-sdi" name="sdi" type="text" required></div></div><div class="field"><label for="f-fattura-copia">Copia del biglietto <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-copia" name="copia" type="file" required></div>
+  <div class="panel"><form class="form" id="f-fattura" action="https://formsubmit.co/info@sunlines.it" method="post" enctype="multipart/form-data" data-send="post" data-ajax="https://formsubmit.co/ajax/info@sunlines.it" data-subject="Richiesta fattura" novalidate>
+<input type="hidden" name="_subject" value="Sito Sun Lines · Richiesta fattura">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_autoresponse" value="Grazie, abbiamo ricevuto la tua richiesta a Sun Lines e ti rispondiamo il prima possibile. Per urgenze chiama lo 0789 50885. Questo è un messaggio automatico: per scriverci rispondi a info@sunlines.it.">
+<input type="hidden" name="_next" value="">
+<input type="hidden" name="Modulo" value="Richiesta fattura">
+<input type="hidden" name="Pagina" value="">
+<div class="hp" aria-hidden="true"><label for="f-fattura-hp">Non compilare questo campo</label><input id="f-fattura-hp" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+<div class="field-row"><div class="field"><label for="f-fattura-nome">Nome e cognome <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-nome" name="Nome e cognome" type="text" required autocomplete="name"></div><div class="field"><label for="f-fattura-ragione">Ragione sociale <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-ragione" name="Ragione sociale" type="text" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-indirizzo">Indirizzo <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-indirizzo" name="Indirizzo" type="text" required></div><div class="field"><label for="f-fattura-cap">CAP <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-cap" name="CAP" type="text" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-citta">Città – PR <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-citta" name="Città – PR" type="text" required></div><div class="field"><label for="f-fattura-piva">Partita IVA <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-piva" name="Partita IVA" type="text" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-email" name="email" type="email" required autocomplete="email"></div><div class="field"><label for="f-fattura-telefono">Telefono</label><input id="f-fattura-telefono" name="Telefono" type="tel" autocomplete="tel"></div></div><div class="field-row"><div class="field"><label for="f-fattura-biglietto">Numero biglietto <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-biglietto" name="Numero biglietto" type="text" required></div><div class="field"><label for="f-fattura-data">Data di viaggio <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-data" name="Data di viaggio" type="date" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-tratta">Tratta <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-tratta" name="Tratta" type="text" required></div><div class="field"><label for="f-fattura-passeggeri">Numero di passeggeri <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-passeggeri" name="Numero di passeggeri" type="number" required></div></div><div class="field-row"><div class="field"><label for="f-fattura-importo">Importo complessivo del biglietto <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-importo" name="Importo complessivo del biglietto" type="text" required></div><div class="field"><label for="f-fattura-sdi">Codice SDI <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-sdi" name="Codice SDI" type="text" required></div></div><div class="field"><label for="f-fattura-copia">Copia del biglietto <span class="req" aria-hidden="true">*</span></label><input id="f-fattura-copia" name="attachment" type="file" required accept=".pdf,.jpg,.jpeg,.png" aria-describedby="f-fattura-copia-h"><p class="field-hint" id="f-fattura-copia-h">PDF o foto, massimo 5 MB.</p></div>
 
 <p class="form-privacy small">I dati servono solo a rispondere a questa richiesta. Leggi come li trattiamo nell’<a href="privacy.html#t-fattura">informativa privacy</a>.</p>
-<div class="actions"><button class="btn btn-primary" type="submit">Richiedi fattura</button></div>
-<p class="form-note" role="status" hidden></p>
-<p class="proto-note"><span class="req">*</span> Campi obbligatori. Il controllo anti-spam “Rispondi prima di inviare” del sito attuale andrà sostituito da un controllo invisibile.</p>
+<div class="actions"><button class="btn btn-primary" type="submit"><span class="btn-label">Richiedi fattura</span></button></div>
+<div class="form-msg" role="status" aria-live="polite" tabindex="-1" hidden></div>
+<p class="form-req small muted"><span class="req" aria-hidden="true">*</span> Campi obbligatori.</p>
 </form></div></div></section></main>
 <footer class="site-footer">
 <div class="ft-stripes" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -541,11 +580,6 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
   var lm=document.querySelector('.langmenu');
   if(lm){document.addEventListener('click',function(e){if(lm.open&&!lm.contains(e.target))lm.open=false});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lm.open){lm.open=false;lm.querySelector('summary').focus()}});}
-  document.querySelectorAll('form[data-proto]').forEach(function(f){
-    f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');
-      if(!f.checkValidity()){f.reportValidity();return}
-      n.hidden=false;n.textContent='Prototipo: il modulo funziona come esempio e non invia dati.';});
-  });
 })();
 
 (function(){
@@ -576,6 +610,48 @@ mark.todo{background:#FFF1D6;color:#6B3E00;border:1px dashed #D99A2B;border-radi
   b.addEventListener('keydown',function(e){if(e.key==='Escape'&&opener){close()}});
   document.querySelectorAll('[data-cookie-prefs]').forEach(function(x){x.addEventListener('click',function(){open(true,x)})});
   if(!saved)open(false);
+})();
+
+(function(){
+  var OK='<svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>';
+  var KO='<svg class="i" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>';
+  var MAX=5*1024*1024;
+  function clearErrs(f){f.querySelectorAll('.field.err').forEach(function(x){x.classList.remove('err');var m=x.querySelector('.field-err');if(m)m.remove();var c=x.querySelector('input,textarea');if(c){c.removeAttribute('aria-invalid');var d=(c.getAttribute('aria-describedby')||'').split(' ').filter(function(t){return t&&t.indexOf('-e')!==t.length-2}).join(' ');if(d)c.setAttribute('aria-describedby',d);else c.removeAttribute('aria-describedby')}})}
+  function errText(c){var v=c.validity;if(v.valueMissing)return c.type==='file'?'Allega una copia del biglietto.':'Questo campo è obbligatorio.';
+    if(v.typeMismatch&&c.type==='email')return 'Inserisci un’email completa, per esempio nome@dominio.it.';
+    if(v.rangeUnderflow||v.badInput)return 'Inserisci un numero valido.';return 'Controlla questo campo.'}
+  function markErr(c,msg){var w=c.closest('.field');if(!w)return;w.classList.add('err');var id=c.id+'-e';var p=document.createElement('p');p.className='field-err';p.id=id;p.textContent=msg;w.appendChild(p);
+    c.setAttribute('aria-invalid','true');c.setAttribute('aria-describedby',((c.getAttribute('aria-describedby')||'')+' '+id).trim())}
+  function validate(f){clearErrs(f);var first=null;
+    f.querySelectorAll('input:not([type=hidden]):not([name=_honey]),textarea').forEach(function(c){var bad=!c.checkValidity();
+      if(!bad&&c.type==='file'&&c.files&&c.files[0]&&c.files[0].size>MAX){bad=true;markErr(c,'Il file supera 5 MB: allega una versione più leggera.')}
+      else if(bad)markErr(c,errText(c));if(bad&&!first)first=c});
+    if(first)first.focus();return !first}
+  function show(f,kind,html){var m=f.querySelector('.form-msg');m.className='form-msg '+kind;m.innerHTML=(kind==='ok'?OK:KO)+'<div>'+html+'</div>';m.hidden=false;m.focus()}
+  function busy(f,on){var b=f.querySelector('button[type=submit]'),l=b.querySelector('.btn-label');if(on){b.dataset.t=l.textContent;l.textContent='Invio in corso…';b.setAttribute('aria-busy','true');b.disabled=true}else{l.textContent=b.dataset.t||l.textContent;b.removeAttribute('aria-busy');b.disabled=false}}
+  function prepare(f){var g=function(n){return f.querySelector('input[name="'+n+'"]')};
+    g('Pagina').value=location.href.split('#')[0];
+    var who=f.querySelector('input[autocomplete=name]');var d=new Date();var when=d.toLocaleDateString('it-IT')+' '+d.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});
+    g('_subject').value='Sito Sun Lines · '+f.dataset.subject+(who&&who.value?' · '+who.value.trim():'')+' · '+when;
+    g('_next').value=new URL('grazie.html',location.href).href}
+  var FALLBACK='Riprova tra poco oppure scrivi a <a href="mailto:info@sunlines.it">info@sunlines.it</a> o chiama lo <a href="tel:+39078950885">0789 50885</a>.';
+  document.querySelectorAll('form[data-send]').forEach(function(f){
+    f.addEventListener('submit',function(e){
+      if(!validate(f)){e.preventDefault();return}
+      if(f.querySelector('input[name=_honey]').value){e.preventDefault();return}
+      prepare(f);
+      if(f.dataset.send==='post'){busy(f,true);return}   /* file attached: normal POST, the service redirects to grazie.html */
+      e.preventDefault();busy(f,true);
+      var fd=new FormData(f);f.querySelectorAll('input[type=date]').forEach(function(c){if(c.value){var a=c.value.split('-');fd.set(c.name,a[2]+'/'+a[1]+'/'+a[0])}});var mk=f.querySelector('input[name="Consenso offerte via email"]');if(mk&&!mk.checked)fd.append(mk.name,'No');
+      var ctl=('AbortController' in window)?new AbortController():null;var to=setTimeout(function(){if(ctl)ctl.abort()},20000);
+      fetch(f.dataset.ajax,{method:'POST',body:fd,headers:{'Accept':'application/json'},signal:ctl?ctl.signal:undefined})
+        .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})})
+        .then(function(x){clearTimeout(to);busy(f,false);
+          if(x.ok&&String(x.j.success)!=='false'){f.reset();show(f,'ok','<p><strong>Richiesta inviata.</strong></p><p class="small">Ti abbiamo mandato una conferma via email e ti rispondiamo il prima possibile.</p>')}
+          else{show(f,'ko','<p><strong>Non siamo riusciti a inviare la richiesta.</strong></p><p class="small">'+FALLBACK+'</p>')}})
+        .catch(function(){clearTimeout(to);busy(f,false);show(f,'ko','<p><strong>Connessione non riuscita.</strong></p><p class="small">'+FALLBACK+'</p>')});
+    });
+  });
 })();
 
 (function(){

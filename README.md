@@ -45,6 +45,16 @@ The registered office and REA come from the current site's Condizioni generali (
 
 The cookie banner is on in the prototype so it can be reviewed. If the live site uses only technical cookies, set `COOKIE_BANNER = False` in `src/cookie_consent.py`: no banner is then required, and the footer "Preferenze cookie" link disappears too.
 
+## Forms
+
+The five forms (bus hire quote, transfer and NCC quote, support, complaints, invoice request) are sent by FormSubmit (formsubmit.co) to info@sunlines.it as a table email, with the form name, page, sender's name and time in the subject. The sender gets an automatic confirmation. Settings are in `src/forms.py`.
+
+- **Activate once:** the first submission from the live site sends an activation email to info@sunlines.it. Click the link in it; until then nothing is delivered.
+- **Hide the address:** after activation FormSubmit offers a random alias; put it in `FORM_ACTION` and `FORM_AJAX` so the email address is not in the page source.
+- **Invoice form** carries a file, so it posts normally and lands on `grazie.html`; the others send in the background and show the result in place.
+- **Spam:** a hidden honeypot field; FormSubmit's captcha is off to keep the form on the page.
+- **Switching service:** any service that accepts a form POST and returns JSON works; change the two URLs.
+
 ## Map section
 
 The home page has a "Dove andiamo" map with switchable layers (Airbus 90, lines 20/30/50, bus hire and NCC, parking) and a north / whole-island view. Its markup, styles, script and data all live in `src/sardinia_map.py`.
@@ -82,5 +92,5 @@ When on-site ticketing becomes possible, replace the content of that section wit
 - Replace the AI-generated fleet photos and the three "Foto da scattare" placeholders.
 - Replace the 800 px prototype images with the original high-resolution files.
 - Fill every "da completare" marker and have the legal pages signed off by Sun Lines' lawyer or accountant.
-- Connect the forms (quote, support, complaints, invoice) to email or a form service; in the prototype they validate but do not send.
+- Forms: activate FormSubmit (see below) and replace the address in `src/forms.py` with FormSubmit's random alias.
 - Add the English pages under `docs/en/` and set English to available in `LANGS`.
