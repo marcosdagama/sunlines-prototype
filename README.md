@@ -20,7 +20,9 @@ src/                  the page generator
   layout.py           styles, header, footer, mobile contact bar
   pages_a.py          Home, Airbus 90, Linee e orari
   pages_b.py          Noleggio bus, Transfer e NCC, Parcheggio, Chi siamo
-  pages_c.py          FAQ, Abbonamenti studenti, Assistenza, legal pages, Lavora con noi
+  pages_c.py          FAQ, Abbonamenti studenti, Assistenza, Lavora con noi
+  pages_legal.py      Note legali, Privacy, Cookie policy, Diritti dei passeggeri, Condizioni di trasporto e di vendita, Accessibilità
+  cookie_consent.py   cookie banner (Garante 2021 rules); COOKIE_BANNER switches it on or off
   sardinia_map.py     "Dove andiamo" interactive map on the home page (self-contained)
   sardinia_coast.txt  Sardinia coastline for the map (Natural Earth, public domain)
   assets/             logo files (SVG)
@@ -34,6 +36,14 @@ Languages are listed once, in `LANGS` in `src/common.py`: code, name in its own 
 - A language marked `False` shows in the menu as "in arrivo" and gets no `hreflang`.
 - To publish one: add its translated pages under `docs/<code>/` (for example `docs/en/`), then set it to `True` and rebuild.
 - Italian stays at the root and is the `x-default`.
+
+## Legal pages and missing company data
+
+Company data lives in `COMPANY` in `src/common.py`. Anything still unknown (share capital, PEC, single shareholder) shows on the site as a yellow "[da completare: …]" marker, and so do the retention periods and terms Sun Lines must confirm in `src/pages_legal.py`. Search the built pages for "da completare" to list what is left.
+
+The registered office and REA come from the current site's Condizioni generali (Via dei Fornai, REA 65706); confirm them on the visura camerale.
+
+The cookie banner is on in the prototype so it can be reviewed. If the live site uses only technical cookies, set `COOKIE_BANNER = False` in `src/cookie_consent.py`: no banner is then required, and the footer "Preferenze cookie" link disappears too.
 
 ## Map section
 
@@ -71,6 +81,6 @@ When on-site ticketing becomes possible, replace the content of that section wit
 - Rebuild with `PREVIEW=0` so search engines and AI assistants can index the site.
 - Replace the AI-generated fleet photos and the three "Foto da scattare" placeholders.
 - Replace the 800 px prototype images with the original high-resolution files.
-- Rewrite the privacy policy for GDPR: the current text cites Legislative Decree 196/2003 and names another company.
+- Fill every "da completare" marker and have the legal pages signed off by Sun Lines' lawyer or accountant.
 - Connect the forms (quote, support, complaints, invoice) to email or a form service; in the prototype they validate but do not send.
 - Add the English pages under `docs/en/` and set English to available in `LANGS`.

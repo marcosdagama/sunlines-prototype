@@ -114,7 +114,7 @@ def airbus():
       <p><strong>La Linea 90 è un servizio su prenotazione: il biglietto va acquistato online in anticipo.</strong> È comunque possibile l'acquisto a bordo, con supplemento, ma non è garantita la disponibilità del posto.</p>
       <p class="small muted">La vendita online è disponibile fino a un’ora prima dell’orario di partenza previsto oppure fino al raggiungimento della capienza massima disponibile.</p>
       <div class="actions"><a class="btn btn-primary" href="{PORTAL}">{icon("ticket",18)} Prenota il tuo biglietto online {icon("external",16)}</a></div>
-      <p class="small muted">Si apre il portale di vendita Sun Lines, dove scegli la corsa e paghi.</p>
+      <p class="small muted">Si apre il portale di vendita Sun Lines, gestito da Bigo Solutions, dove scegli la corsa e paghi. Il portale applica le <a href="condizioni-di-vendita.html">condizioni di vendita</a> e la propria informativa privacy.</p>
     </div>
     <div style="display:grid;gap:10px">
       <h3 class="h3">Domande rapide</h3>

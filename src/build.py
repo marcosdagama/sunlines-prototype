@@ -4,9 +4,16 @@ import layout
 layout.CSS += """
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .prose .ph,.grid>.ph{border-radius:var(--r-md)}
+.form-privacy{margin:0;color:var(--muted)}
+.note-box{display:grid;gap:8px;padding:16px;border:1px solid var(--hairline);border-left:4px solid var(--blue);border-radius:var(--r-sm);background:var(--sand)}
+.note-box p,.note-box h3{margin:0}
+.steps-list{display:grid;gap:10px;padding-left:1.3em;margin:0}
 """
 from pages_a import home, airbus, linee
-from pages_c import noleggio_autobus, transfer, parcheggio, chi_siamo, faq, abbonamenti, assistenza, condizioni, privacy, lavora
+from pages_c import noleggio_autobus, transfer, parcheggio, chi_siamo, faq, abbonamenti, assistenza, lavora
+from pages_legal import note_legali, privacy_new as privacy, cookie_policy, diritti, condizioni_trasporto as condizioni, condizioni_vendita, accessibilita, LEGAL_CSS
+layout.CSS += LEGAL_CSS + layout.CK_CSS
+layout.JS += layout.CK_JS
 from common import BASE, EMAIL, PHONE, WA_DISPLAY, PORTAL
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -19,6 +26,8 @@ PAGES = {
     "noleggio-autobus.html": noleggio_autobus, "transfer-ncc.html": transfer, "parcheggio-aeroporto-olbia.html": parcheggio,
     "chi-siamo.html": chi_siamo, "domande-frequenti.html": faq, "abbonamenti-studenti.html": abbonamenti,
     "assistenza.html": assistenza, "condizioni-generali.html": condizioni, "privacy.html": privacy, "lavora-con-noi.html": lavora,
+    "condizioni-di-vendita.html": condizioni_vendita, "diritti-dei-passeggeri.html": diritti, "note-legali.html": note_legali,
+    "cookie-policy.html": cookie_policy, "accessibilita.html": accessibilita,
 }
 for fn, fnc in PAGES.items():
     html = fnc()
@@ -32,7 +41,8 @@ for f in ["sun-lines-logo.svg", "sun-lines-logo-white.svg", "sun-lines-sun-mark.
     shutil.copy(os.path.join(up, f), OUT)
 
 paths = ["/", "/transfer-ncc", "/noleggio-autobus", "/airbus-olbia-sassari-alghero", "/linee-e-orari", "/parcheggio-aeroporto-olbia",
-         "/abbonamenti-studenti", "/chi-siamo", "/domande-frequenti", "/assistenza", "/condizioni-generali", "/privacy", "/lavora-con-noi"]
+         "/abbonamenti-studenti", "/chi-siamo", "/domande-frequenti", "/assistenza", "/condizioni-generali", "/privacy", "/lavora-con-noi",
+         "/condizioni-di-vendita", "/diritti-dei-passeggeri", "/note-legali", "/cookie-policy", "/accessibilita"]
 open(os.path.join(OUT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     "".join(f"  <url><loc>{BASE}{p}</loc><lastmod>2026-10-22</lastmod></url>\n" for p in paths) + "</urlset>\n")
 

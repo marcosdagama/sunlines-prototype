@@ -116,3 +116,27 @@ def breadcrumb_html(items):
         else:
             parts.append(f'<li><a href="{href}">{esc(name)}</a></li>')
     return '<nav class="crumbs" aria-label="Percorso"><ol>' + "".join(parts) + '</ol></nav>'
+
+# ---------- company data (art. 2250 c.c.) ----------
+# None = still to be supplied by Sun Lines: shown on the site as a visible "da completare" marker.
+COMPANY = {
+    "name": "Sun Lines Elite Service S.r.l.",
+    "sede_legale": "Via dei Fornai, 07026 Olbia (SS)",   # from the current Condizioni generali; the site also uses Via Pozzo 23 (operating office) — to confirm
+    "registro": "Registro delle Imprese di Sassari",
+    "rea": "SS-65706",                                  # from the current Condizioni generali — to confirm on the visura
+    "capitale": None,                                   # e.g. "€ 100.000,00 i.v."
+    "socio_unico": None,                                # True / False
+    "pec": None,
+    "piva": "00358880904",
+}
+PORTAL_PROVIDER = "Bigo Solutions"
+
+
+def todo(what):
+    """Visible marker for data Sun Lines still has to supply."""
+    return f'<mark class="todo" title="Da completare prima della pubblicazione">[da completare: {esc(what)}]</mark>'
+
+
+def co(key, label):
+    v = COMPANY.get(key)
+    return esc(v) if v else todo(label)

@@ -1,7 +1,7 @@
 from layout import *
 
 
-def form(fid, fields, submit="Invia richiesta"):
+def form(fid, fields, submit="Invia richiesta", notice="finalita", marketing=False):
     """fields: list of (id, label, type, required) ; type in text,email,tel,number,date,textarea,file"""
     rows = []
     pending = []
@@ -28,9 +28,11 @@ def form(fid, fields, submit="Invia richiesta"):
                 rows.append('<div class="field-row">' + "".join(render(p) for p in pending) + '</div>'); pending = []
     if pending:
         rows.append('<div class="field-row">' + "".join(render(p) for p in pending) + '</div>')
+    mk = (f'<label class="check" for="{fid}-mkt"><input id="{fid}-mkt" name="marketing" type="checkbox"> <span>Facoltativo: voglio ricevere offerte e novità di Sun Lines via email. Posso revocare il consenso in ogni momento.</span></label>' if marketing else "")
     return f'''<form class="form" id="{fid}" data-proto novalidate>
 {"".join(rows)}
-<label class="check" for="{fid}-privacy"><input id="{fid}-privacy" name="privacy" type="checkbox" required> <span>Accetto il trattamento dei miei dati personali e dichiaro di aver letto l’<a href="privacy.html">informativa sulla privacy</a>. <span class="req" aria-hidden="true">*</span></span></label>
+{mk}
+<p class="form-privacy small">I dati servono solo a rispondere a questa richiesta. Leggi come li trattiamo nell’<a href="privacy.html#{notice}">informativa privacy</a>.</p>
 <div class="actions"><button class="btn btn-primary" type="submit">{esc(submit)}</button></div>
 <p class="form-note" role="status" hidden></p>
 <p class="proto-note"><span class="req">*</span> Campi obbligatori. Il controllo anti-spam “Rispondi prima di inviare” del sito attuale andrà sostituito da un controllo invisibile.</p>
@@ -72,7 +74,7 @@ def noleggio_autobus():
     <p>Preferisci scriverci? WhatsApp <strong class="tnum">{WA_DISPLAY}</strong> · Email <strong>{EMAIL}</strong></p>
     <p><a class="btn btn-wa" href="{WA["bus"]}">{icon("chat",18)} Scrivici su WhatsApp</a></p>
   </div>
-  <div class="panel">{form("q-bus", QUOTE_FIELDS)}</div>
+  <div class="panel">{form("q-bus", QUOTE_FIELDS, notice="t-preventivi", marketing=True)}</div>
 </div></section>'''
     svc = {"@type": "Service", "name": "Noleggio autobus con conducente", "serviceType": "Noleggio autobus con conducente", "provider": {"@id": BASE + "/#org"},
            "description": "Autobus con conducente da 20 e 50 posti per gruppi, escursioni in Gallura, transfer aeroportuali collettivi, gite scolastiche, matrimoni ed eventi aziendali in tutta la Sardegna.",
@@ -112,7 +114,7 @@ def transfer():
     <h2 class="h1">Richiedi il servizio</h2>
     <p>Per richiedere il servizio usa il modulo oppure, in alternativa, scrivi su WhatsApp al <strong class="tnum">{WA_DISPLAY}</strong> o all’indirizzo <strong>{EMAIL}</strong>.</p>
   </div>
-  <div class="panel">{form("q-ncc", QUOTE_FIELDS)}</div>
+  <div class="panel">{form("q-ncc", QUOTE_FIELDS, notice="t-preventivi", marketing=True)}</div>
 </div></section>'''
     svc = {"@type": "TaxiService", "name": "Noleggio auto con conducente (NCC) e transfer", "provider": {"@id": BASE + "/#org"},
            "description": "Transfer privati su prenotazione da e per il Porto di Olbia, l’Aeroporto di Olbia Costa Smeralda, hotel e altre destinazioni della Sardegna.",

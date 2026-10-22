@@ -1,4 +1,5 @@
 from common import *
+from cookie_consent import COOKIE_BANNER, banner as cookie_banner, CSS as CK_CSS, JS as CK_JS
 
 CSS = r"""
 /* Layout: sticky white header, sand page, white cards, one navy footer; mobile gets a fixed contact bar. Single light look, like the real operator site. */
@@ -248,7 +249,7 @@ p{margin:0}
 .ft-assoc img{display:block;height:52px;width:auto;opacity:.82;transition:opacity .2s}
 .ft-assoc li:hover img{opacity:1}
 .ft-legal{display:flex;flex-wrap:wrap;gap:16px 24px;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
-.ft-legal p{margin:0;font-size:14px;color:var(--on-navy)}.ft-br{display:none}
+.ft-company{display:grid;gap:10px;min-width:0;max-width:760px}.ft-legal p{margin:0;font-size:14px;color:var(--on-navy)}.ft-br{display:none}
 .ft-social{display:flex;gap:8px;align-items:center}
 .ft-social a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);color:var(--white)}
 .ft-social a:hover{border-color:var(--orange);color:var(--orange)}
@@ -356,8 +357,8 @@ def footer():
                        ("abbonamenti-studenti.html", "Abbonamenti studenti"), ("lavora-con-noi.html", "Lavora con noi"),
                        (BASE + "/customer-satisfaction.html?view=question&amp;id=1", "Questionario TPL")]),
         ("Assistenza", [("assistenza.html#assistenza", "Richiesta di assistenza"), ("assistenza.html#reclami", "Reclami e segnalazioni"),
-                        ("assistenza.html#fattura", "Richiesta fattura"), ("condizioni-generali.html", "Condizioni di trasporto"),
-                        ("privacy.html", "Privacy")]),
+                        ("assistenza.html#fattura", "Richiesta fattura"), ("diritti-dei-passeggeri.html", "Diritti dei passeggeri"),
+                        ("condizioni-generali.html", "Condizioni di trasporto"), ("condizioni-di-vendita.html", "Condizioni di vendita")]),
     ]
     cols = "".join(f'<nav class="ft-col" aria-label="{t}"><h2>{t}</h2><ul>' + "".join(f'<li><a href="{h}">{n}</a></li>' for h, n in links) + '</ul></nav>'
                    for t, links in groups)
@@ -390,7 +391,10 @@ def footer():
     </ul>
   </div>
   <div class="ft-legal">
-    <p>© Sun Lines Elite Service S.r.l. · P. IVA 00358880904</p>
+    <div class="ft-company">
+      <p>© {COMPANY["name"]} · Sede legale {co("sede_legale", "sede legale")} · {co("registro", "Registro Imprese")}, REA {co("rea", "REA")} · Capitale sociale {co("capitale", "capitale sociale")} · P. IVA {COMPANY["piva"]}</p>
+      <ul class="ft-legal-links"><li><a href="note-legali.html">Note legali</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="cookie-policy.html">Cookie policy</a></li>{'<li><button type="button" data-cookie-prefs>Preferenze cookie</button></li>' if COOKIE_BANNER else ''}<li><a href="accessibilita.html">Accessibilità</a></li></ul>
+    </div>
     <div class="ft-social">
       <a href="{FB}" aria-label="Sun Lines su Facebook">{icon("fb", 18)}</a><a href="{IG}" aria-label="Sun Lines su Instagram">{icon("ig", 18)}</a>
       <a class="ft-up" href="#main">{icon("up", 16)} Torna su</a>
@@ -438,6 +442,7 @@ def page(*, slug, title, desc, canonical_path, active, body, ld, cta=None, wa=No
 <main id="main">{body}</main>
 {footer()}
 {mbar(cta, wa)}
+{cookie_banner()}
 <script>{JS}</script>'''
     if is_index:
         return meta + "\n" + content

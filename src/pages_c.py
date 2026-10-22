@@ -111,6 +111,7 @@ def abbonamenti():
     <h1 class="h1">Abbonamenti studenti Linea 50</h1>
     <p class="lead">Richiedi online il tuo abbonamento. Possono richiedere l’abbonamento agevolato gli studenti fino a 27 anni.</p>
     <div class="actions"><a class="btn btn-primary" href="{SHOP}">Richiedi l’abbonamento online {icon("external",16)}</a></div>
+    <p class="small muted">Il portale abbonamenti è gestito da Bigo Solutions e applica la propria informativa privacy. Per i minori di 14 anni la richiesta la fa il genitore o tutore.</p>
   </div>
   {photo("Studente con smartphone accanto a un minibus Sun Lines", "attuale", "16/10", eager=True, src="abbonamenti-studenti")}
 </div></section>
@@ -162,12 +163,12 @@ def abbonamenti():
 
 def assistenza():
     crumbs = [("Home", "index.html"), ("Assistenza", "")]
-    f1 = form("f-assist", [("nome", "Nome e cognome", "text", True), ("email", "E-mail", "email", True), ("telefono", "Telefono", "tel", False), ("richiesta", "Richiesta", "textarea", False)])
-    f2 = form("f-reclami", [("nome", "Nome e cognome", "text", True), ("email", "E-mail", "email", True), ("telefono", "Telefono", "tel", False), ("reclamo", "Reclamo o segnalazione", "textarea", False)], "Invia segnalazione")
+    f1 = form("f-assist", [("nome", "Nome e cognome", "text", True), ("email", "E-mail", "email", True), ("telefono", "Telefono", "tel", False), ("richiesta", "Richiesta", "textarea", False)], notice="t-assistenza")
+    f2 = form("f-reclami", [("nome", "Nome e cognome", "text", True), ("email", "E-mail", "email", True), ("telefono", "Telefono", "tel", False), ("linea", "Linea, data e ora del viaggio", "text", False), ("reclamo", "Reclamo o segnalazione", "textarea", True)], "Invia reclamo", notice="t-assistenza")
     f3 = form("f-fattura", [("nome", "Nome e cognome", "text", True), ("ragione", "Ragione sociale", "text", True), ("indirizzo", "Indirizzo", "text", True), ("cap", "CAP", "text", True),
                              ("citta", "Città – PR", "text", True), ("piva", "Partita IVA", "text", True), ("email", "E-mail", "email", True), ("telefono", "Telefono", "tel", False),
                              ("biglietto", "Numero biglietto", "text", True), ("data", "Data di viaggio", "date", True), ("tratta", "Tratta", "text", True), ("passeggeri", "Numero di passeggeri", "number", True),
-                             ("importo", "Importo complessivo del biglietto", "text", True), ("sdi", "Codice SDI", "text", True), ("copia", "Copia del biglietto", "file", True)], "Richiedi fattura")
+                             ("importo", "Importo complessivo del biglietto", "text", True), ("sdi", "Codice SDI", "text", True), ("copia", "Copia del biglietto", "file", True)], "Richiedi fattura", notice="t-fattura")
     body = f'''
 <section class="page-hero"><div class="wrap" style="display:grid;gap:16px">{breadcrumb_html(crumbs)}
   <h1 class="h1">Assistenza e contatti</h1>
@@ -183,7 +184,12 @@ def assistenza():
   <div class="prose"><h2 class="h1">Richiesta di assistenza</h2><p>Problemi con un biglietto, un abbonamento o una prenotazione? Descrivi la richiesta e ti ricontattiamo.</p></div>
   <div class="panel">{f1}</div></div></section>
 <section class="section" id="reclami"><div class="wrap grid grid-2" style="align-items:start">
-  <div class="prose"><h2 class="h1">Reclami e segnalazioni</h2><p>Per le condizioni di viaggio e i diritti dei passeggeri consulta le <a href="condizioni-generali.html">Condizioni generali di trasporto</a>.</p></div>
+  <div class="prose"><h2 class="h1">Reclami e segnalazioni</h2>
+    <p>Puoi presentare un reclamo entro <strong>3 mesi</strong> dalla data del viaggio.</p>
+    <ol class="steps-list"><li><strong>Scrivici</strong> con questo modulo o a {EMAIL}, indicando linea, data e ora del viaggio.</li>
+      <li><strong>Ti confermiamo la ricezione entro un mese</strong> e ti diamo una risposta definitiva <strong>entro 3 mesi</strong>.</li>
+      <li><strong>Se non rispondiamo o la risposta non ti soddisfa</strong>, puoi rivolgerti gratuitamente all’<a href="diritti-dei-passeggeri.html#art">Autorità di Regolazione dei Trasporti</a>.</li></ol>
+    <p class="small muted">Regole e diritti: <a href="diritti-dei-passeggeri.html">Diritti dei passeggeri</a> · <a href="condizioni-generali.html">Condizioni generali di trasporto</a> · <a href="https://www.sunlines.it/pdf/carta-qualita-sunlines.pdf">Carta della qualità dei servizi</a> (PDF)</p></div>
   <div class="panel">{f2}</div></div></section>
 <section class="section section-white" id="fattura"><div class="wrap grid grid-2" style="align-items:start">
   <div class="prose"><h2 class="h1">Richiesta fattura</h2><p>Compila i dati di fatturazione e del viaggio e allega una copia del biglietto.</p></div>
@@ -193,36 +199,6 @@ def assistenza():
     return page(slug="assistenza", title="Assistenza, reclami e richiesta fattura | Sun Lines",
                 desc="Contatta Sun Lines: assistenza su biglietti e abbonamenti, reclami e segnalazioni, oggetti smarriti e richiesta fattura. WhatsApp +39 346 320 6740, tel. 0789 50885.",
                 canonical_path="/assistenza", active=None, body=body, ld=ld, cta=("#assistenza", "Scrivici"))
-
-
-def condizioni():
-    crumbs = [("Home", "index.html"), ("Condizioni generali", "")]
-    body = f'''
-<section class="page-hero"><div class="wrap" style="display:grid;gap:16px">{breadcrumb_html(crumbs)}<h1 class="h1">Condizioni generali di trasporto</h1></div></section>
-<section class="section section-white"><div class="wrap prose">
-  <h2 class="h2">Premessa</h2>
-  <p>Le Condizioni di Viaggio disciplinano il servizio di trasporto passeggeri su gomma in ambito nazionale ed internazionale, effettuato dalla SUN LINES ELITE SERVICE SRL con Sede Legale in Via dei Fornai - 07026 OLBIA (OT), P. IVA 00358880904 - Camera Commercio Sassari - REA 65706 - Telefono: (+39) 0789 50885 - email {EMAIL}</p>
-  <p><a href="{BASE}/pdf/carta-qualita-sunlines.pdf">Potete scaricare la Carta della qualità dei Servizi Sun Lines a questo link.</a></p>
-  <p><a href="airbus-olbia-sassari-alghero.html#biglietti">Modalità di acquisto dei titoli di viaggio e tariffe.</a></p>
-  <p>L'organismo nazionale per l'applicazione del regolamento sui diritti dei passeggeri può essere contattato con le seguenti modalità:</p>
-  <p><strong>Autorità di Regolazione dei Trasporti</strong><br>Via Nizza 230, 10126 Torino</p>
-</div></section>'''
-    ld = jsonld(ORG, breadcrumb_ld([("Home", "/"), ("Condizioni generali", "/condizioni-generali")]))
-    return page(slug="condizioni", title="Condizioni generali di trasporto | Sun Lines",
-                desc="Condizioni generali di trasporto passeggeri di Sun Lines Elite Service S.r.l., Carta della qualità dei servizi e contatti dell’Autorità di Regolazione dei Trasporti.",
-                canonical_path="/condizioni-generali", active=None, body=body, ld=ld)
-
-
-PRIVACY = open(__file__.replace("pages_c.py", "privacy.html.txt")).read()
-
-def privacy():
-    crumbs = [("Home", "index.html"), ("Privacy", "")]
-    body = f'''
-<section class="page-hero"><div class="wrap" style="display:grid;gap:16px">{breadcrumb_html(crumbs)}<h1 class="h1">Informativa sul trattamento di dati personali</h1></div></section>
-<section class="section section-white"><div class="wrap prose">{PRIVACY}</div></section>'''
-    ld = jsonld(ORG, breadcrumb_ld([("Home", "/"), ("Privacy", "/privacy")]))
-    return page(slug="privacy", title="Informativa privacy | Sun Lines", desc="Informativa sul trattamento dei dati personali di Sun Lines Elite Service S.r.l.",
-                canonical_path="/privacy", active=None, body=body, ld=ld)
 
 
 def lavora():
@@ -247,6 +223,8 @@ def lavora():
     <p>Per la partecipazione alla ricerca in oggetto è necessario trasmettere la relativa domanda all’indirizzo e-mail <strong>{EMAIL}</strong>, indicando i propri recapiti postali e telefonici, ed allegando:</p>
     <ul>{"".join(f"<li>{esc(d)}</li>" for d in docs)}</ul>
     <p>I partecipanti selezionati dalla Società, previo invito espresso della stessa, dovranno sostenere un colloquio attitudinale e, successivamente, una prova pratica di guida di un autobus, con il fine di verificare il grado di abilità e di padronanza tecnica nella guida del veicolo.</p>
+    <div class="note-box"><h3 class="h3">Come trattiamo la tua candidatura</h3>
+      <p class="small">Usiamo curriculum e documenti solo per valutare la candidatura e li conserviamo per 12 mesi, poi li cancelliamo. Non serve un consenso: basta inviare la candidatura. Non inviare dati non richiesti, come informazioni sulla salute. <a href="privacy.html#t-candidature">Informativa privacy completa</a>.</p></div>
     <p>L’assunzione risulterà comunque subordinata al previo accertamento, da parte delle strutture mediche individuate dalla Società, dell’idoneità psicofisica alla mansione del soggetto, ai sensi del D.M. n. 88-1999 (visita preassuntiva) e ai sensi del D.Lgs 81/2008.</p></div>
 </div></section>'''
     job = {"@type": "JobPosting", "title": "Autista di autobus di linea ed NCC e/o autista auto NCC", "hiringOrganization": {"@id": BASE + "/#org"},
